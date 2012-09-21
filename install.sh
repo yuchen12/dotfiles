@@ -19,7 +19,7 @@ setup_vim()
     # tweak for bufexplorer
     sed -i 's/call s:BEError("Escaped")/"&/g' $bundle_dir/bufexplorer.zip/plugin/bufexplorer.vim
 
-    pushd .
+    pushd . > /dev/null
     # build command-t
     cd $bundle_dir/Command-T/ruby/command-t
     ruby extconf.rb
