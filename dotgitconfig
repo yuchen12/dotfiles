@@ -1,0 +1,64 @@
+[color]
+    showbranch = auto
+    interactive = auto
+    branch = auto
+    diff = auto
+    status = auto
+    grep = auto
+    ui = auto
+[color "branch"]
+    current = 209 reverse bold
+    local = 38
+    remote = 203
+[color "diff"]
+    ;plain
+    func = 249 reverse
+    whitespace = 160 reverse
+    meta = 223 bold
+    frag = 48
+    old = 168
+    new = 44
+    commit = 172 bold
+[color "grep"]
+    ;selected = 187
+    ;context = 187
+    function = 44
+    match = 221 bold
+    filename = 138
+    linenumber = 36
+[color "status"]
+    header = 223
+    added = 6 bold
+    changed = red bold
+    branch = 223 reverse bold
+    nobranch = 209 reverse
+    untracked = 184 bold
+[user]
+    name = yuchen
+    email = yuchen12@gmail.com
+[alias]
+    add = add -v
+    cp = cherry-pick
+    co = checkout
+    mg = merge --no-edit
+    ci = commit
+    cs = commit -s
+    br = branch
+    st = status
+    ss = status --short
+    df = diff
+    ;dw = diff --word-diff
+    dt = difftool
+    mt = mergetool
+    cf = config
+    lg = log --decorate
+    lp = log --decorate -p
+    ;lw = log --decorate -p --word-diff
+    last = log --decorate -1 HEAD
+    lognomerge = log --no-merges --decorate
+    glog = log --pretty=oneline --graph --abbrev-commit --decorate
+[merge]
+    tool = kdiff3
+[core]
+    quotepath = false
+    pager = less -r

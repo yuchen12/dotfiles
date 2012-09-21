@@ -1,0 +1,575 @@
+" Author: Wang Zhen
+
+" vundle 设置 {{{1
+" ===================================
+filetype off                   " required!
+let g:vundle_default_git_proto = 'git'
+
+set rtp+=~/.vim_bundle/vundle
+call vundle#rc('~/.vim_bundle')
+
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+if filereadable(expand("~/.vim/bundles.vim"))
+    source ~/.vim/bundles.vim
+endif
+filetype plugin indent on
+syntax enable
+syntax on
+" }}}1
+
+" 颜色相关设置 {{{1
+" ===================================
+if &term =~ "xterm\\|screen"
+    " 256 color
+    set t_Co=256
+    set t_AB=[48;5;%dm
+    set t_AF=[38;5;%dm
+endif
+" 主题设置 {{{2
+if has("gui_running")
+    set background=dark
+    let g:solarized_termtrans=1
+    let g:solarized_termcolors=256
+    let g:solarized_contrast="high"
+    let g:solarized_visibility="high"
+    silent! colorscheme solarized
+elseif &t_Co == 256
+    set background=dark
+    "let g:solarized_termtrans=1
+    "let g:solarized_termcolors=256
+    "let g:solarized_contrast="high"
+    "let g:solarized_visibility="high"
+    "silent! colorscheme solarized
+    "silent! colorscheme default
+    "silent! colorscheme xoria256
+    "silent! colorscheme colorzone
+    "silent! colorscheme murphy
+    silent! colorscheme desertEx
+    "silent! colorscheme fisa
+    "silent! colorscheme manuscript
+    "silent! colorscheme desert256
+    "silent! colorscheme desert-warm-256
+    "silent! colorscheme zenburn
+    "silent! colorscheme inkpot
+end
+" hi设置 {{{2
+hi diffAdded ctermfg=31 guifg=#268bd2
+hi diffRemoved ctermfg=161 guifg=#d30102
+hi cursorline term=standout,bold cterm=bold ctermfg=None ctermbg=23 gui=bold " 高亮光标所在行
+hi Normal ctermbg=None
+hi ToDo cterm=bold ctermbg=9 ctermfg=226 gui=standout guibg=#eeee00 guifg=#ff4500
+
+"hi visual term=reverse cterm=reverse ctermfg=64 ctermbg=222 gui=reverse guifg=#6b8e23 guibg=#f0e68c
+hi Visual guifg=#faf4c6 guibg=#3c414c guisp=#3c414c gui=NONE ctermfg=230 ctermbg=239 cterm=NONE
+hi Search term=reverse ctermfg=0 ctermbg=11 guifg=Black guibg=Yellow gui=none
+hi number ctermfg=166 guifg=#d75f00
+
+hi String ctermfg=176 ctermbg=238 guifg=#c080d0 guibg=#404040 guisp=#404040
+hi SpecialChar term=bold ctermfg=122 ctermbg=238 guifg=aquamarine2 guibg=#404040 guisp=#404040
+hi cConstant ctermfg=red cterm=bold guifg=red gui=bold
+hi Statement ctermbg=none cterm=none ctermfg=197
+hi Comment guifg=#7f9f7f gui=italic ctermfg=108
+hi preproc ctermfg=160
+hi! link pythonstrformatting SpecialChar
+hi! link pythonescape SpecialChar
+
+hi LineNr term=underline ctermfg=238 ctermbg=234 guifg=#424242 guibg=#202020 guisp=#202020
+hi! link cursorlinenr cursorline
+
+" 自动补全弹出菜单颜色设置
+hi Pmenu term=standout ctermfg=0 ctermbg=250 guifg=#000000 guibg=#bcbcbc
+hi PmenuSel cterm=bold ctermfg=234 ctermbg=174 gui=bold guifg=bg guibg=#df8787
+"hi PmenuThumb cterm=NONE ctermfg=0 ctermbg=68 gui=NONE guifg=#000000 guibg=#afdf5f
+hi PMenuThumb guifg=#dbdbdb guibg=#303030 guisp=#303030 gui=NONE ctermfg=253 ctermbg=236 cterm=NONE
+"hi PmenuSbar ctermbg=248 guibg=Grey
+"hi PMenuSbar guifg=#ededed guibg=#202020 guisp=#202020 gui=NONE ctermfg=255 ctermbg=234 cterm=NONE
+"hi PMenuSel guifg=#f0f0f0 guibg=#398215 guisp=#398215 gui=NONE ctermfg=255 ctermbg=2 cterm=bold
+"hi PMenu guifg=#0f0f0f guibg=#749652 guisp=#749652 gui=NONE ctermfg=233 ctermbg=107 cterm=NONE
+"hi PMenuThumb guifg=#dbdbdb guibg=#303030 guisp=#303030 gui=NONE ctermfg=253 ctermbg=236 cterm=NONE
+
+" 高亮特殊字符
+"hi SpecialKey cterm=bold ctermfg=64 gui=bold guifg=Red guibg=White
+"hi SpecialKey term=bold ctermfg=16 ctermbg=223 guifg=black guibg=wheat1
+hi SpecialKey guifg=#808080 guibg=#343434 guisp=#343434 gui=NONE ctermfg=8 ctermbg=236 cterm=NONE
+
+hi WildMenu term=standout cterm=bold ctermfg=16 ctermbg=95 guifg=gray guibg=gray17
+
+" 高亮行尾的空格
+au BufEnter,InsertEnter,InsertLeave * 2match WhitespaceEOL /\s\+$/
+highlight WhitespaceEOL ctermbg=red guibg=red
+
+" Highlight VCS conflict markers
+au BufEnter,InsertEnter,InsertLeave * 3match ErrorMsg /^\(<\|=\|>\)\{7\}\([^=].\+\)\?$/
+
+" }}}1
+
+" set相关 {{{1
+" ===================================
+" 一般设置 {{{2
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+if has("vms")
+    set nobackup      " do not keep a backup file, use versions instead
+else
+    set backup        " keep a backup file
+endif
+set ruler           " show the cursor position all the time
+set ttyfast         " smoother changes
+set showcmd         " display incomplete commands
+set incsearch       " do incremental searching
+set ignorecase
+set smartcase       " 当搜索字符中包含大写字母时，大小写敏感
+set sw=4            " shiftwidth
+set et              " expandtab
+set nu              " show line number
+set wm=4            " wrapmargin
+set ts=4            " tabstop
+set smarttab        " smarttab
+set softtabstop=4
+set matchpairs+=<:> " show matching <> as well
+set updatetime=1000
+set hidden          " allow buffers to go into the background without needing to save
+set mouse=a         " In many terminal emulators the mouse works just fine, thus enable it.
+set fileformats=unix,dos,mac
+set nopaste
+set smartindent
+set title " change the terminal's title
+set wildmenu
+set autowrite
+set hlsearch
+set ai              " autoindent
+set si              " smartindent
+set tags=tags;/
+set wrap
+set so=7            " Set 7 lines to curors - when moving vertical..
+set fdm=marker
+auto FileType c,cpp,python set fdm=syntax
+auto FileType diff set fdm=diff
+set foldlevelstart=999
+set laststatus=2
+set pastetoggle=<F3>
+set report=0
+set cursorline      " 高亮当前行
+"set cuc             " 高亮当前列
+set wildignore+=*.o,*.obj
+set wildignore+=*~,*.sw?
+set wildignore+=.git,.svn,CVS,.hg
+set infercase
+set display=lastline " when a line is long, don't omit it in @
+
+set history=1000    " keep 1000 lines of command line history
+set undolevels=1000
+if v:version >= 703
+    set undofile
+    set undodir=~/.vim_tmp
+endif
+
+"set list
+"set listchars=tab:\|-,extends:>,nbsp:.,precedes:<
+"▋,eol:¶
+"
+autocmd FileType text setlocal textwidth=78 " For all text files set 'textwidth' to 78 characters.
+
+" 打开文件时自动跳到上次退出时光标所在位置
+autocmd BufReadPost *
+            \ if line("'\"") > 0 && line("'\"") <= line("$") |
+            \   exe "normal! g`\"" |
+            \ endif
+
+"autocmd BufEnter * lcd %:p:h " 自动切换到当前文件所在目录
+
+" Convenient command to see the difference between the current buffer and the file it was loaded from, thus the changes you made.
+command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+            \ | wincmd p | diffthis
+
+:runtime! ftplugin/man.vim " :Man 3 printf
+" 编码设置 {{{2
+let &termencoding=&encoding
+" vim解析文件时尝试的编码格式顺序列表
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr
+set encoding=utf-8  " vim内部使用的字符编码格式
+set fileencoding=utf-8  " vim识别出来的文件的编码格式
+"set termencoding=utf-8
+
+" map leader {{{2
+let g:C_MapLeader=','
+let C_MapLeader=','
+let mapleader=','
+let g:mapleader=','
+
+" map {{{2
+nnoremap ; :
+nnoremap <Leader>; ;
+nnoremap <Leader>q :q<CR>
+
+"nnoremap j gj
+"nnoremap k gk
+cmap w!! w !sudo tee % > /dev/null
+
+" Quick alignment of text
+nnoremap <Leader>al :left<CR>
+nnoremap <Leader>ar :right<CR>
+nnoremap <Leader>ac :center<CR>
+
+" Conflict markers {{{2
+" highlight conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+" shortcut to jump to next conflict marker
+nnoremap <silent> <leader>k /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
+
+nmap <silent> <leader>df :DiffOrig<cr>
+
+" use ,n to turn off highlighting
+nmap <silent> <leader>n :silent noh<CR>
+nmap <silent> <leader>rr :redraw!<cr> " Fast redraw
+
+" Smart way to move btw. windows
+"nmap <C-j> <C-W>j
+"nmap <C-k> <C-W>k
+"nmap <C-h> <C-W>h
+"nmap <C-l> <C-W>l
+
+map Q gq            " Don't use Ex mode, use Q for formatting
+
+" C/C++ 相关设置 {{{2
+set cinoptions=:0,g0,l1,(0,w0,W4,t0,N-s
+autocmd BufNewFile *.c 0r ~/.vim/templates/main.c
+autocmd BufNewFile *.{cpp,cc} 0r ~/.vim/templates/main.cpp
+autocmd BufNewFile *.{h,hpp} call <SID>insert_include_guard() " C/C++ include guard
+
+" c/c++ include guard {{{3
+function! s:insert_include_guard()
+    let guard_name = substitute(toupper(expand("%:t")), "\\-\\|\\.", "_", "g") . '_' . "INCLUDED__"
+    execute "normal! i#ifndef " . guard_name
+    execute "normal! o#define " . guard_name
+    execute "normal! o\n<+TYPE HERE+>\n"
+    execute "normal! Go#endif /* " . guard_name . " */"
+    normal! kk
+endfunction
+
+" python 相关设置 {{{2
+autocmd BufNewFile *.py 0r ~/.vim/templates/main.py
+let python_highlight_all = 1
+
+" shell {{{2
+autocmd BufNewFile *.sh 0r ~/.vim/templates/main.sh
+
+" quickfix {{{2
+au QuickfixCmdPost make call QfMakeConv() " 编码转换
+" 在有错误时自动打开quickfix窗口
+"au QuickFixCmdPost [^l]* nested cwindow
+"au QuickFixCmdPost l* nested cwindow
+" QfMakeConv {{{3
+function! QfMakeConv()
+    let qflist = getqflist()
+    for i in qflist
+        let i.text = iconv(i.text, "C", "utf-8")
+    endfor
+    call setqflist(qflist)
+endfunction
+nmap <F6> :cn <cr>
+nmap <F7> :cp <cr>
+nmap <leader>cn :cn<cr>
+nmap <leader>cp :cp<cr>
+nmap <leader>cw :cw 10<cr>
+
+" cscope {{{2
+set cscopequickfix=s-,c-,d-,i-,t-,e-
+map <F12> :call Do_CsTag()<CR>
+nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>:copen<CR>
+nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>:copen<CR>
+nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+" Do_CsTag {{{3
+function! Do_CsTag()
+    let dir = getcwd()
+    if filereadable("tags")
+        let tagsdeleted=delete("./"."tags")
+        if(tagsdeleted!=0)
+            echohl WarningMsg | echo "Fail to do tags! I cannot delete the tags" | echohl None
+            return
+        endif
+    endif
+    if has("cscope")
+        silent! execute "cs kill -1"
+    endif
+    if filereadable("cscope.files")
+        let csfilesdeleted=delete("./"."cscope.files")
+        if(csfilesdeleted!=0)
+            echohl WarningMsg | echo "Fail to do cscope! I cannot delete the cscope.files" | echohl None
+            return
+        endif
+    endif
+    if filereadable("cscope.out")
+        let csoutdeleted=delete("./"."cscope.out")
+        if(csoutdeleted!=0)
+            echohl WarningMsg | echo "Fail to do cscope! I cannot delete the cscope.out" | echohl None
+            return
+        endif
+    endif
+    if(executable('ctags'))
+        "silent! execute "!ctags -R --c-types=+p --fields=+S *"
+        "silent! execute "!ctags -R --c++-kinds=+pl --fields=+iaS --extra=+q ."
+        silent! execute "!ctags -R --sort=yes --c++-kinds=+plx --fields=+iaS --extra=+q ."
+    endif
+    if(executable('cscope') && has("cscope") )
+        silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files"
+        silent! execute "!cscope -b"
+        execute "normal :"
+        if filereadable("cscope.out")
+            execute "cs add cscope.out"
+        endif
+    endif
+endfunction
+" }}}1
+
+" 插件设置 {{{1
+" ===================================
+" winManager {{{2
+let g:winManagerWindowLayout="NERDTree|BufExplorer"
+let g:defaultExplorer = 0
+let g:winManagerWidth=30
+"nmap wm :WMToggle<cr>
+nmap wm :if IsWinManagerVisible() <BAR> WMToggle<CR> <BAR> else <BAR> WMToggle<CR>:q<CR> endif <CR><CR>
+
+" NERDTree {{{2
+"Used by winmanager
+let g:NERDTree_title = "[NERDTree]"
+
+function! NERDTree_Start()
+    exec 'NERDTree'
+endfunction
+
+function! NERDTree_IsValid()
+    return 1
+endfunction
+
+let NERDTreeShowBookmarks=1
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', 'CVS']
+let NERDTreeChDirMode=0
+"let NERDTreeQuitOnOpen=1
+let NERDTreeShowHidden=1
+let NERDTreeHightCursorline=1
+"let NerdTreeShowLineNumbers=1
+let NERDTreeStatusline=1
+let NERDTreeDirArrows=0
+let NERDTreeShowBookmarks=1
+let NERDChristmasTree=1
+"let NERDTreeKeepTreeInNewTab=1
+
+" BufExplorer {{{2
+let g:bufExplorerDefaultHelp=0       " show default help or not
+let g:bufExplorerDetailedHelp=0      " Show detailed help.
+let g:bufExplorerShowRelativePath=1  " Show relative paths.
+let g:bufExplorerSortBy='mru'        " Sort by most recently used.
+let g:bufExplorerSplitRight=0        " Split left.
+let g:bufExplorerSplitVertical=1     " Split vertically.
+let g:bufExplorerSplitVertSize = 30  " Split width
+let g:bufExplorerUseCurrentWindow=1  " Open in new window.
+let g:bufExplorerMaxHeight=25        " Max height
+let g:bufExplorerMinHeight=25        " Max height
+autocmd BufWinEnter \[Buf\ List\] setl nonumber
+
+" Tagbar {{{2
+nmap tg :TagbarToggle<cr>
+" open Tabbar automatically on Vim startup only if opening Vim with a supported file/files
+"autocmd VimEnter * nested :call tagbar#autoopen()
+let g:tagbar_auto_showtag=1
+"let g:tagbar_autofocus=1
+let g:tagbar_usearrows=1
+let g:tagbar_sort=0
+"let g:tagbar_ctags_bin='/usr/bin/ctags'
+
+" clang_complete {{{2
+let g:clang_auto_select=1
+let g:clang_complete_auto=1
+let g:clang_complete_copen=1
+let g:clang_hl_errors=1
+let g:clang_periodic_quickfix=0
+let g:clang_snippets=1
+let g:clang_snippets_engine="clang_complete"
+let g:clang_conceal_snippets=1
+let g:clang_use_library=1
+"let g:clang_trailing_placeholder=1
+"let g:clang_library_path="/usr/local/lib"
+let g:clang_complete_macros=1
+"let g:clang_exec = 'clang'
+let g:clang_complete_patterns=1
+"let g:clang_user_options="2>/dev/null || exit 0"
+let g:clang_auto_user_options="path, .clang_complete, gcc"
+set completeopt=menuone,menu,longest
+
+" super tab {{{2
+"let g:SuperTabPluginLoaded=1 " Avoid load SuperTab Plugin
+"let g:SuperTabDefaultCompletionType='context'
+"let g:SuperTabContextDefaultCompletionType='<c-p>'
+"let g:SuperTabRetainCompletionType=2
+"let g:SuperTabLongestEnhanced=1
+"let g:SuperTabLongestHighlight=1
+"let g:SuperTabDefaultCompletionType="<C-X><C-O>"
+"let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
+"let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
+"let g:SuperTabContextDiscoverDiscovery =
+"      \ ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
+"
+
+" TaskList {{{2
+map <leader>td :TaskList<CR>
+
+" Gundo {{{2
+map <leader>gu :GundoToggle<CR>
+
+" csupport {{{2
+" csupport templates path
+let g:C_LocalTemplateFile=$HOME."/.vim/templates/Templates"
+
+" python-mode {{{2
+let g:pymode_lint_checker = "pyflakes"
+
+" neocomplcache {{{2
+let g:neocomplcache_disable_auto_select_buffer_name_pattern = '\[Command Line\]'
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_min_syntax_length = 2
+let g:neocomplcache_enable_auto_delimiter = 0
+" AutoComplPop like behavior.
+let g:neocomplcache_enable_auto_select = 1
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+" Plugin key-mappings.
+" <C-n>: neocomplcache.
+inoremap <expr><C-n> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>\<Down>"
+" <C-p>: keyword completion.
+inoremap <expr><C-p> pumvisible() ? "\<C-p>" : "\<C-p>\<C-n>"
+imap <C-k> <Plug>(neocomplcache_snippets_expand)
+smap <C-k> <Plug>(neocomplcache_snippets_expand)
+inoremap <expr><C-g> neocomplcache#undo_completion()
+inoremap <expr><C-l> neocomplcache#complete_common_string()
+" <CR>: close popup
+" <s-CR>: close popup and save indent.
+inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup() "\<CR>" : "\<CR>"
+" <TAB>: completion.
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+"inoremap <expr><TAB> pumvisible() ? "\<C-n>" :
+      "\ <SID>check_back_space() ? "\<TAB>" :
+      "\ neocomplcache#start_manual_complete()
+
+function! s:check_back_space() "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1] =~ '\s'
+endfunction "}}}
+
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y> neocomplcache#close_popup()
+inoremap <expr><C-e> pumvisible() ? neocomplcache#cancel_popup() : "\<End>"
+
+inoremap <expr><C-x><C-f> neocomplcache#manual_filename_complete()
+
+" <C-f>, <C-b>: page move.
+inoremap <expr><C-f> pumvisible() ? "\<PageDown>" : "\<Right>"
+inoremap <expr><C-b> pumvisible() ? "\<PageUp>" :
+      \neocomplcache#sources#completefunc_complete#call_completefunc('googlesuggest_complete#completefunc')
+
+" Enable omni completion.
+"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+let g:neocomplcache_omni_functions = {
+      \ 'python' : 'pythoncomplete#Complete',
+      \ }
+
+" Enable heavy omni completion.
+if !exists('g:neocomplcache_omni_patterns')
+    let g:neocomplcache_omni_patterns = {}
+endif
+"let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+"let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
+let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+
+" For snippet_complete marker.
+if has('conceal')
+    set conceallevel=2 concealcursor=inv
+endif
+
+let g:neocomplcache_force_overwrite_completefunc=1
+let g:neocomplcache_disable_auto_complete=0
+
+" Define Dictionary
+" need to run :NeoComplCacheCachingDictionary c
+" and :NeoComplCacheCachingDictionary cpp
+let g:neocomplcache_dictionary_filetype_lists={
+            \'default':'',
+            \'cpp':'~/.vim/bundle/c.vim/c-support/wordlists/c-c++-keywords.list,
+            \~/.vim/bundle/c.vim/c-support/wordlists/k+r.list,
+            \~/.vim/bundle/c.vim/c-support/wordlists/stl_index.list',
+            \'c':'~/.vim/bundle/c.vim/c-support/wordlists/c-c++-keywords.list,
+            \~/.vim/bundle/c.vim/c-support/wordlists/k+r.list,
+            \~/.vim/bundle/c.vim/c-support/wordlists/stl_index.list'}
+" Define keyword.
+if !exists('g:neocomplcache_keyword_patterns')
+    let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+let g:neocomplcache_use_vimproc = 1
+" }
+
+" syntastic {{{2
+let g:syntastic_auto_loc_list=1
+let g:syntastic_mode_map = { 'mode': 'active',
+            \ 'passive_filetypes': ['c', 'cpp', 'python'] }
+let g:syntastic_cpp_config_file = '.__config'
+
+" Command-T {{{2
+nnoremap <silent> <Leader>ff :CommandT<CR>
+nnoremap <silent> <Leader>bb :CommandTBuffer<CR>
+
+" MiniBufExplorer {{{2
+"let g:miniBufExplVSplit=25
+let g:miniBufExplorerMoreThanOne=0
+let g:miniBufExplUseSingleClick=1
+
+" ShowFunc.vim {{{2
+"map <F7> <Plug>ShowFunc
+"map! <F7> <Plug>ShowFunc
+
+" ctags.vim {{{2
+"let g:ctags_statusline=1
+"let g:ctags_title=1
+"let generate_tags=1
+"
+" Indent Guides {{{2
+nmap <silent> <leader>ig <Plug>IndentGuidesToggle
+"let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=95
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=150
+
+" powerline {{{2
+"let g:Powerline_cache_enabled=0
+"let g:Powerline_theme = 'skwp'
+let g:Powerline_stl_path_style = 'full'
+
+" lusty {{{2
+",lj ,lf, lb
+nmap <silent> <leader>j :LustyJuggler<CR>
+
+" yankring {{{2
+let g:yankring_history_dir='~/.vim_tmp'
+nnoremap <Leader>r :YRShow<CR>
+" }}}1

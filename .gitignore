@@ -1,0 +1,7 @@
+*~
+*.o
+*.swp
+*.pyc
+.netrwhist
+tags
+cscope.out
