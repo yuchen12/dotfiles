@@ -410,20 +410,6 @@ let g:clang_complete_macros=1
 let g:clang_complete_patterns=1
 let g:clang_auto_user_options="path, .clang_complete, gcc"
 
-" super tab {{{2
-"let g:SuperTabPluginLoaded=1 " Avoid load SuperTab Plugin
-"let g:SuperTabDefaultCompletionType='context'
-"let g:SuperTabContextDefaultCompletionType='<c-p>'
-"let g:SuperTabRetainCompletionType=2
-"let g:SuperTabLongestEnhanced=1
-"let g:SuperTabLongestHighlight=1
-"let g:SuperTabDefaultCompletionType="<C-X><C-O>"
-"let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
-"let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
-"let g:SuperTabContextDiscoverDiscovery =
-"      \ ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
-"
-
 " TaskList {{{2
 map <leader>td :TaskList<CR>
 
@@ -438,83 +424,39 @@ let g:C_LocalTemplateFile=$HOME."/.vim/templates/Templates"
 let g:pymode_lint_checker = "pyflakes"
 
 " neocomplcache {{{2
-let g:neocomplcache_disable_auto_select_buffer_name_pattern = '\[Command Line\]'
+let g:neocomplcache_disable_auto_complete=0
 let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_min_syntax_length = 2
-let g:neocomplcache_enable_auto_delimiter = 0
-" AutoComplPop like behavior.
+let g:neocomplcache_enable_fuzzy_completion = 0
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_auto_completion_start_length = 2
+let g:neocomplcache_manual_completion_start_length = 0
+let g:neocomplcache_min_keyword_length = 3
+let g:neocomplcache_enable_cursor_hold_i = 0
+let g:neocomplcache_cursor_hold_i_time = 300
+let g:neocomplcache_enable_insert_char_pre = 0
+let g:neocomplcache_enable_prefetch = 0
 let g:neocomplcache_enable_auto_select = 1
-
-" SuperTab like snippets behavior.
-imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-" Plugin key-mappings.
-" <C-n>: neocomplcache.
-inoremap <expr><C-n> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>\<Down>"
-" <C-p>: keyword completion.
-inoremap <expr><C-p> pumvisible() ? "\<C-p>" : "\<C-p>\<C-n>"
-imap <C-k> <Plug>(neocomplcache_snippets_expand)
-smap <C-k> <Plug>(neocomplcache_snippets_expand)
-inoremap <expr><C-g> neocomplcache#undo_completion()
-inoremap <expr><C-l> neocomplcache#complete_common_string()
-" <CR>: close popup
-" <s-CR>: close popup and save indent.
-inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
-inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup() "\<CR>" : "\<CR>"
-" <TAB>: completion.
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-"inoremap <expr><TAB> pumvisible() ? "\<C-n>" :
-      "\ <SID>check_back_space() ? "\<TAB>" :
-      "\ neocomplcache#start_manual_complete()
-
-function! s:check_back_space() "{{{
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1] =~ '\s'
-endfunction "}}}
-
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y> neocomplcache#close_popup()
-inoremap <expr><C-e> pumvisible() ? neocomplcache#cancel_popup() : "\<End>"
-
-inoremap <expr><C-x><C-f> neocomplcache#manual_filename_complete()
-
-" <C-f>, <C-b>: page move.
-inoremap <expr><C-f> pumvisible() ? "\<PageDown>" : "\<Right>"
-inoremap <expr><C-b> pumvisible() ? "\<PageUp>" :
-      \neocomplcache#sources#completefunc_complete#call_completefunc('googlesuggest_complete#completefunc')
-
-" Enable omni completion.
-"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-let g:neocomplcache_omni_functions = {
-      \ 'python' : 'pythoncomplete#Complete',
-      \ }
-
-" Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-    let g:neocomplcache_omni_patterns = {}
-endif
-"let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-"let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-
-" For snippet_complete marker.
-if has('conceal')
-    set conceallevel=2 concealcursor=inv
+let g:neocomplcache_enable_auto_delimiter = 0
+let g:neocomplcache_disable_auto_select_buffer_name_pattern = '\[Command Line\]'
+let g:neocomplcache_temporary_dir = '~/.vim_tmp/.neocon'
+let g:neocomplcache_max_list = 100
+if !exists('g:neocomplcache_force_omni_patterns')
+    let g:neocomplcache_force_omni_patterns = {}
 endif
 
 let g:neocomplcache_force_overwrite_completefunc=1
-let g:neocomplcache_disable_auto_complete=0
+let g:neocomplcache_force_omni_patterns.c =
+      \ '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_force_omni_patterns.cpp =
+      \ '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
 " Define Dictionary
 " need to run :NeoComplCacheCachingDictionary c
 " and :NeoComplCacheCachingDictionary cpp
-let g:neocomplcache_dictionary_filetype_lists={
+let g:neocomplcache_dictionary_filetype_lists = {
             \'default':'',
             \'cpp':'~/.vim/bundle/c.vim/c-support/wordlists/c-c++-keywords.list,
             \~/.vim/bundle/c.vim/c-support/wordlists/k+r.list,
@@ -522,14 +464,87 @@ let g:neocomplcache_dictionary_filetype_lists={
             \'c':'~/.vim/bundle/c.vim/c-support/wordlists/c-c++-keywords.list,
             \~/.vim/bundle/c.vim/c-support/wordlists/k+r.list,
             \~/.vim/bundle/c.vim/c-support/wordlists/stl_index.list'}
-" Define keyword.
+
+let g:neocomplcache_omni_functions = {
+      \ 'python' : 'pythoncomplete#Complete',
+      \ }
+
 if !exists('g:neocomplcache_keyword_patterns')
     let g:neocomplcache_keyword_patterns = {}
 endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+let g:neocomplcache_keyword_patterns['default'] = '[0-9a-zA-Z:#_]\+'
+let g:neocomplcache_keyword_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+if !exists('g:neocomplcache_omni_patterns')
+    let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+let g:neocomplcache_force_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:neocomplcache_caching_limit_file_size = 500000
+
+if !exists('g:neocomplcache_same_filetype_lists')
+    let g:neocomplcache_same_filetype_lists = {}
+endif
+
+" For snippet_complete marker.
+if has('conceal')
+    set conceallevel=2 concealcursor=inv
+endif
+
+" key maps {{{3
+inoremap <expr><C-g> neocomplcache#undo_completion()
+inoremap <expr><C-l> neocomplcache#complete_common_string()
+
+" <C-f>, <C-b>: page move.
+inoremap <expr><C-f> pumvisible() ? "\<PageDown>" : "\<Right>"
+inoremap <expr><C-b> pumvisible() ? "\<PageUp>" : "\<Left>"
+
+" paste
+inoremap <expr><C-y> pumvisible() ? neocomplcache#close_popup() : "\<C-r>\""
+" close popup
+inoremap <expr><C-e> pumvisible() ? neocomplcache#cancel_popup() : "\<End>"
+
+imap <C-k> <Plug>(neocomplcache_snippets_expand)
+
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+
+" <C-n>: neocomplcache.
+inoremap <expr><C-n> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>\<Down>"
+" <C-p>: keyword completion.
+inoremap <expr><C-p> pumvisible() ? "\<C-p>" : "\<C-p>\<C-n>"
+
+inoremap <expr>'  pumvisible() ? neocomplcache#close_popup() : "'"
+inoremap <expr><C-x><C-f> neocomplcache#manual_filename_complete()
+
+imap <C-s> <Plug>(neocomplcache_start_unite_snippet)
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+endfunction
+
+" <TAB>: completion.
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ neocomplcache#start_manual_complete()
+
+function! s:check_back_space() "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1] =~ '\s'
+endfunction "}}}
+
+" <S-TAB>: completion back.
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup() "\<CR>" : "\<CR>"
+
+" }}}3
 
 let g:neocomplcache_use_vimproc = 1
-" }
 
 " syntastic {{{2
 let g:syntastic_auto_loc_list=1
