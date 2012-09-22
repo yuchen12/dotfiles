@@ -138,6 +138,8 @@ set nopaste
 set smartindent
 set title " change the terminal's title
 set wildmenu
+"set wildmode=longest:full,full
+set wildmode=longest,full
 set autowrite
 set hlsearch
 set ai              " autoindent
@@ -166,6 +168,8 @@ if v:version >= 703
     set undofile
     set undodir=~/.vim_tmp
 endif
+
+set completeopt=menuone
 
 "set list
 "set listchars=tab:\|-,extends:>,nbsp:.,precedes:<
@@ -396,15 +400,15 @@ let g:clang_periodic_quickfix=0
 let g:clang_snippets=1
 let g:clang_snippets_engine="clang_complete"
 let g:clang_conceal_snippets=1
+let g:clang_clang_close_preview=1
+let g:clang_trailing_placeholder=0
+"let g:clang_exec="clang"
+let g:clang_user_options="-std=c++11"
 let g:clang_use_library=1
-"let g:clang_trailing_placeholder=1
 "let g:clang_library_path="/usr/local/lib"
 let g:clang_complete_macros=1
-"let g:clang_exec = 'clang'
 let g:clang_complete_patterns=1
-"let g:clang_user_options="2>/dev/null || exit 0"
 let g:clang_auto_user_options="path, .clang_complete, gcc"
-set completeopt=menuone,menu,longest
 
 " super tab {{{2
 "let g:SuperTabPluginLoaded=1 " Avoid load SuperTab Plugin

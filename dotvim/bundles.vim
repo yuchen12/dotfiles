@@ -20,6 +20,7 @@ Bundle 'nathanaelkane/vim-indent-guides'
 "Bundle 'jwu/exvim'
 Bundle 'klen/python-mode'
 Bundle 'Lokaltog/vim-powerline'
+"Bundle 'msanders/snipmate.vim'
 
 " vim-scripts repos
 Bundle 'TaskList.vim'
