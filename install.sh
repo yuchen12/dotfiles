@@ -38,6 +38,7 @@ ln -svf $PWD/dotscreenrc ~/.screenrc
 ln -svf $PWD/dottoprc ~/.toprc
 ln -svf $PWD/dotgdbinit ~/.gdbinit
 ln -svf $PWD/git-completion.bash ~/.git-completion.bash
+ln -svf $PWD/git-prompt.sh ~/.git-prompt.sh
 ln -sfv $PWD/dotemacs ~/.emacs
 
 setup_vim

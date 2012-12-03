@@ -60,11 +60,13 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 git_completion_file=~/.git-completion.bash
+git_prompt_file=~/.git-prompt.sh
 git_complete=no
 
 if type git > /dev/null 2>&1; then
     git_complete=yes
     source $git_completion_file
+    source $git_prompt_file
     ## see /etc/bash_completion.d/git
     GIT_PS1_SHOWDIRTYSTATE=1
     GIT_PS1_SHOWSTASHSTATE=1
