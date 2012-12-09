@@ -3,6 +3,20 @@
 #set pagination off
 #set non-stop on
 
+define cls
+    !clear
+end
+document cls
+    Clear the screen
+end
+
+define reset
+    !reset
+end
+document reset
+    Reset the screen
+end
+
 #
 # C++ related beautifiers (optional)
 #
