@@ -48,6 +48,7 @@ Bundle 'pythoncomplete'
 "Bundle 'project.tar.gz'
 "Bundle 'doxygen-support.vim'
 "Bundle 'DoxygenToolkit.vim'
+Bundle 'jansenm/vim-cmake'
 
 " color scheme
 Bundle 'desert-warm-256'
