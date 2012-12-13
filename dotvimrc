@@ -422,6 +422,7 @@ let g:C_LocalTemplateFile=$HOME."/.vim/templates/Templates"
 
 " python-mode {{{2
 let g:pymode_lint_checker = "pyflakes"
+let g:pymode_rope_guess_project = 0
 
 " neocomplcache {{{2
 let g:neocomplcache_disable_auto_complete=0
@@ -472,6 +473,7 @@ let g:neocomplcache_dictionary_filetype_lists = {
 let g:neocomplcache_omni_functions = {
       \ 'python' : 'pythoncomplete#Complete',
       \ }
+"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 
 if !exists('g:neocomplcache_keyword_patterns')
     let g:neocomplcache_keyword_patterns = {}
