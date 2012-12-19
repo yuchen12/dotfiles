@@ -235,9 +235,10 @@ export PATH=$PATH:$ANDROID_SDK_DIR/platform-tools:$ANDROID_SDK_DIR/tools
 ulimit -c unlimited
 
 if ! screen -ls | grep 'No Sockets found in' > /dev/null 2>&1; then
-    echo ========================================================================
-    echo
+    echo ">>> screen sessions:"
     screen -ls
-    echo
-    echo ========================================================================
 fi
+a=`tmux ls 2>/dev/null`
+
+[ -n "$a" ] && echo -e ">>> tmux sessions:\n$a\n"
+unset a
