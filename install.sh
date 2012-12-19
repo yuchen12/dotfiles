@@ -40,5 +40,6 @@ ln -svf $PWD/dotgdbinit ~/.gdbinit
 ln -svf $PWD/git-completion.bash ~/.git-completion.bash
 ln -svf $PWD/git-prompt.sh ~/.git-prompt.sh
 ln -sfv $PWD/dotemacs ~/.emacs
+ln -sfv $PWD/dottmux.conf ~/.tmux.conf
 
 setup_vim

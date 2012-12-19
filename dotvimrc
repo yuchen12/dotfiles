@@ -423,6 +423,7 @@ let g:C_LocalTemplateFile=$HOME."/.vim/templates/Templates"
 " python-mode {{{2
 let g:pymode_lint_checker = "pyflakes"
 let g:pymode_rope_guess_project = 0
+let g:pymode_rope=0
 
 " neocomplcache {{{2
 let g:neocomplcache_disable_auto_complete=0
@@ -532,9 +533,9 @@ function! s:my_cr_function()
 endfunction
 
 " <TAB>: completion.
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ neocomplcache#start_manual_complete()
+"inoremap <expr><TAB> pumvisible() ? "\<C-n>" :
+      "\ <SID>check_back_space() ? "\<TAB>" :
+      "\ neocomplcache#start_manual_complete()
 
 function! s:check_back_space() "{{{
   let col = col('.') - 1

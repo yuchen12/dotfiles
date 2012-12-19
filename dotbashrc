@@ -172,9 +172,9 @@ case "$TERM" in
         PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
         ;;
     screen*)
-        ## for screen, make the following work in ~/.screenrc
-        ## shelltitle "$ |bash"
-        PS1='\[\033k\033\\\]'$PS1
+            ## for screen, make the following work in ~/.screenrc
+            ## shelltitle "$ |bash"
+        [ -z "$TMUX" ] && PS1='\[\033k\033\\\]'$PS1
         ;;
     *)
         ;;

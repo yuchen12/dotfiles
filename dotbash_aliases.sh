@@ -12,6 +12,7 @@ alias cl='clang'
 alias cl++='clang++'
 alias mk='make'
 alias sc=screen
+alias tm=tmux
 alias by=byobu
 alias em=emacs
 alias ipy=ipython
