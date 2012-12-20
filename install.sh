@@ -41,5 +41,6 @@ ln -svf $PWD/git-completion.bash ~/.git-completion.bash
 ln -svf $PWD/git-prompt.sh ~/.git-prompt.sh
 ln -sfv $PWD/dotemacs ~/.emacs
 ln -sfv $PWD/dottmux.conf ~/.tmux.conf
+ln -sfv $PWD/bash_completion_tmux.sh ~/.bash_completion_tmux.sh
 
 setup_vim

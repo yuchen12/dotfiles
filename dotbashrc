@@ -74,6 +74,8 @@ if type git > /dev/null 2>&1; then
     GIT_PS1_SHOWUPSTREAM="auto"
 fi
 
+source ~/.bash_completion_tmux.sh
+
 if [ "$color_prompt" = yes ]; then
     ## color settings
     # \e[1;3x;4ymTEXT

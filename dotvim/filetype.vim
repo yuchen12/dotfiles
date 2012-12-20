@@ -8,3 +8,7 @@
 " SystemTap scripts
 au BufNewFile,BufRead *.stp			set ft=stap
 
+augroup filetypedetect
+    au BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
+augroup END
+
