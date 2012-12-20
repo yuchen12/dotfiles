@@ -1,7 +1,19 @@
+# all-stop mode: when any thread in your program stops,
+#                all other threads in the program are also stopped.
+#                This is the default mode.
+# non-stop mode: other threads can continue to run freely while you
+#                examine the stopped thread in the debugger.
+
+
 # multithread non-stop mode
-#set target-async 1
-#set pagination off
-#set non-stop on
+set target-async 1
+set pagination off
+set non-stop on
+
+#scheduler-locking
+#schedule-multple
+
+#set detach-on-fork off
 
 define cls
     !clear
