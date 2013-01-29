@@ -281,16 +281,32 @@ nmap <leader>cp :cp<cr>
 nmap <leader>cw :cw 10<cr>
 
 " cscope {{{2
+
+if has("cscope")
+    "set csprg=/usr/local/bin/cscope
+    set csto=0
+    set cst
+    set nocsverb
+    " add any database in current directory
+    if filereadable("cscope.out")
+        cs add cscope.out
+        " else add database pointed to by environment
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
+    set csverb
+endif
+
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 map <F12> :call Do_CsTag()<CR>
-nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>:copen<CR>
-nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>:copen<CR>
-nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+nmap <leader>sfs :cs find s <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+nmap <leader>sfg :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>sfc :cs find c <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+nmap <leader>sft :cs find t <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+nmap <leader>sfe :cs find e <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+nmap <leader>sff :cs find f <C-R>=expand("<cfile>")<CR><CR>:copen<CR>
+nmap <leader>sfi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>:copen<CR>
+nmap <leader>sfd :cs find d <C-R>=expand("<cword>")<CR><CR>:copen<CR>
 " Do_CsTag {{{3
 function! Do_CsTag()
     let dir = getcwd()
@@ -408,7 +424,7 @@ let g:clang_use_library=1
 "let g:clang_library_path="/usr/local/lib"
 let g:clang_complete_macros=1
 let g:clang_complete_patterns=1
-let g:clang_auto_user_options="path, .clang_complete, gcc"
+let g:clang_auto_user_options="path, .clang_complete, compile_commands.json"
 
 " TaskList {{{2
 map <leader>td :TaskList<CR>

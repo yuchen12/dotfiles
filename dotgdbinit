@@ -6,14 +6,15 @@
 
 
 # multithread non-stop mode
-set target-async 1
-set pagination off
-set non-stop on
+#set target-async 1
+#set pagination off
+#set non-stop on
 
 #scheduler-locking
 #schedule-multple
 
 #set detach-on-fork off
+#set follow-fork-mode child
 
 define cls
     !clear
