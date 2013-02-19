@@ -62,3 +62,5 @@
 [core]
     quotepath = false
     pager = less -r
+[push]
+	default = simple
