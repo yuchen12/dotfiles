@@ -56,7 +56,7 @@
     ;lw = log --decorate -p --word-diff
     last = log --decorate -1 HEAD
     lognomerge = log --no-merges --decorate
-    glog = log --pretty=oneline --graph --abbrev-commit --decorate
+    glog = log --oneline --graph --decorate
 [merge]
     tool = kdiff3
 [core]
