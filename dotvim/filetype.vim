@@ -1,10 +1,3 @@
-" Vim support file to detect file types
-" Language:	SystemTap
-" Maintainer:	SystemTap Developers <systemtap@sourceware.org>
-" Last Change:	2011 Aug 4
-" Note: this overrides the default *.stp mapping to "Stored Procedures"
-"   It would be nice to find a way to intelligently detect this.
-
 " SystemTap scripts
 au BufNewFile,BufRead *.stp			set ft=stap
 
@@ -12,3 +5,6 @@ augroup filetypedetect
     au BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
 augroup END
 
+" markdown filetype file
+au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn}   set filetype=markdown
+au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn}.{des3,des,bf,bfa,aes,idea,cast,rc2,rc4,rc5,desx} set filetype=markdown
