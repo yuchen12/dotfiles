@@ -34,7 +34,7 @@
     nobranch = 209 reverse
     untracked = 184 bold
 [user]
-    name = yuchen
+    name = Wang Zhen
     email = yuchen12@gmail.com
 [alias]
     add = add -v
