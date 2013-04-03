@@ -614,4 +614,6 @@ nmap <silent> <leader>j :LustyJuggler<CR>
 " yankring {{{2
 let g:yankring_history_dir='~/.vim_tmp'
 nnoremap <Leader>r :YRShow<CR>
+" vim-markdown {{{2
+let g:vim_markdown_folding_disabled=1
 " }}}1
