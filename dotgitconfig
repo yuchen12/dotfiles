@@ -41,7 +41,7 @@
     cp = cherry-pick
     co = checkout
     mg = merge --no-edit
-    ci = commit
+    ci = commit -s
     cs = commit -s
     br = branch
     st = status
@@ -57,6 +57,7 @@
     last = log --decorate -1 HEAD
     lognomerge = log --no-merges --decorate
     glog = log --oneline --graph --decorate
+    sb = submodule
 [merge]
     tool = kdiff3
 [core]
