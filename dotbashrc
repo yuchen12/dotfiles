@@ -59,6 +59,12 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+LOCAL_PATH=$HOME/local/bin
+LOCAL_LD_LIBRARY_PATH=$HOME/local/lib
+
+[ -d $LOCAL_PATH ] && export PATH=$LOCAL_PATH:$PATH
+[ -d $LOCAL_LD_LIBRARY_PATH ] && export LD_LIBRARY_PATH=$LOCAL_LD_LIBRARY_PATH:$LD_LIBRARY_PATH
+
 git_completion_file=~/.git-completion.bash
 git_prompt_file=~/.git-prompt.sh
 git_complete=no
@@ -219,11 +225,9 @@ if ! shopt -oq posix; then
 fi
 
 export LANG=en_US.utf8
-
 export GTK_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
 export QT_IM_MODULE=fcitx
-
 export EDITOR=vim
 
 if type ccache > /dev/null 2>&1; then
@@ -231,15 +235,13 @@ if type ccache > /dev/null 2>&1; then
     export CXX="ccache g++"
 fi
 
-export ANDROID_SDK_DIR=~/sources/android-sdk-linux
-export PATH=$PATH:$ANDROID_SDK_DIR/platform-tools:$ANDROID_SDK_DIR/tools
-
 ulimit -c unlimited
 
 if ! screen -ls | grep 'No Sockets found in' > /dev/null 2>&1; then
     echo ">>> screen sessions:"
     screen -ls
 fi
+
 a=`tmux ls 2>/dev/null`
 
 [ -n "$a" ] && echo -e ">>> tmux sessions:\n$a\n"
