@@ -43,5 +43,6 @@ ln -sfv $PWD/dotemacs ~/.emacs
 ln -sfv $PWD/dottmux.conf ~/.tmux.conf
 ln -sfv $PWD/bash_completion_tmux.sh ~/.bash_completion_tmux.sh
 ln -sfv $PWD/dircolors.256dark ~/.dircolors
+ln -sfv $PWD/dotprofile ~/.bash_profile
 
 setup_vim
