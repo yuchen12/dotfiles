@@ -65,20 +65,31 @@ LOCAL_LD_LIBRARY_PATH=$HOME/local/lib
 [ -d $LOCAL_PATH ] && export PATH=$LOCAL_PATH:$PATH
 [ -d $LOCAL_LD_LIBRARY_PATH ] && export LD_LIBRARY_PATH=$LOCAL_LD_LIBRARY_PATH:$LD_LIBRARY_PATH
 
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    fi
+fi
+
 git_completion_file=~/.git-completion.bash
 git_prompt_file=~/.git-prompt.sh
 git_complete=no
 
 if type git > /dev/null 2>&1; then
     git_complete=yes
-    source $git_completion_file
-    source $git_prompt_file
     ## see /etc/bash_completion.d/git
     GIT_PS1_SHOWDIRTYSTATE=1
     GIT_PS1_SHOWSTASHSTATE=1
     GIT_PS1_SHOWUNTRACKEDFILES=1
     GIT_PS1_SHOWUPSTREAM="auto"
     GIT_PS1_SHOWCOLORHINTS=1
+    source $git_completion_file
+    source $git_prompt_file
 fi
 
 source ~/.bash_completion_tmux.sh
@@ -214,17 +225,6 @@ if [ -f ~/.bash_aliases.sh ]; then
     . ~/.bash_aliases.sh
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-    if [ -f /usr/share/bash-completion/bash_completion ]; then
-        . /usr/share/bash-completion/bash_completion
-    elif [ -f /etc/bash_completion ]; then
-        . /etc/bash_completion
-    fi
-fi
-
 export LANG=en_US.utf8
 export GTK_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
@@ -244,6 +244,5 @@ if ! screen -ls | grep 'No Sockets found in' > /dev/null 2>&1; then
 fi
 
 a=`tmux ls 2>/dev/null`
-
 [ -n "$a" ] && echo -e ">>> tmux sessions:\n$a\n"
 unset a
