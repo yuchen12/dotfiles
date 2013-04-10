@@ -78,6 +78,7 @@ if type git > /dev/null 2>&1; then
     GIT_PS1_SHOWSTASHSTATE=1
     GIT_PS1_SHOWUNTRACKEDFILES=1
     GIT_PS1_SHOWUPSTREAM="auto"
+    GIT_PS1_SHOWCOLORHINTS=1
 fi
 
 source ~/.bash_completion_tmux.sh
