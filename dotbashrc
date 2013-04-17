@@ -76,20 +76,20 @@ if ! shopt -oq posix; then
     fi
 fi
 
-git_completion_file=~/.git-completion.bash
-git_prompt_file=~/.git-prompt.sh
-git_complete=no
+has_git=no
 
 if type git > /dev/null 2>&1; then
-    git_complete=yes
-    ## see /etc/bash_completion.d/git
+    has_git=yes
+
+    ## see ~/.git-completion.bash && ~/.git-prompt.sh
     GIT_PS1_SHOWDIRTYSTATE=1
     GIT_PS1_SHOWSTASHSTATE=1
     GIT_PS1_SHOWUNTRACKEDFILES=1
     GIT_PS1_SHOWUPSTREAM="auto"
     GIT_PS1_SHOWCOLORHINTS=1
-    source $git_completion_file
-    source $git_prompt_file
+
+    source ~/.git-completion.bash
+    source ~/.git-prompt.sh
 fi
 
 source ~/.bash_completion_tmux.sh
@@ -171,7 +171,7 @@ if [ "$color_prompt" = yes ]; then
         PS1=${ERROR_COLOR}'$(a=$?;if [ $a -ne 0 ];then echo "[$a]";fi)'
         PS1="${PS1}${CHROOT_COLOR}${debian_chroot:+($debian_chroot)}"
         PS1="${PS1}${USER_NAME_COLOR}\u${AT_COLOR}@${HOST_COLOR}\h${SSH_COLOR}"'$(if [ -n "$SSH_CLIENT" ];then echo "{SSH}";fi)'"${CLEAR_COLOR}:${PWD_COLOR}\w"
-        if [ x$git_complete = xyes ]; then
+        if [ x$has_git = xyes ]; then
             # show git branch and other informations
             PS1=${PS1}${GIT_COLOR}'$(__git_ps1 "(%s)")'
         fi
@@ -184,7 +184,7 @@ fi
 unset color_prompt force_color_prompt
 unset ERROR_COLOR CHROOT_COLOR USER_NAME_COLOR AT_COLOR \
     HOST_COLOR PWD_COLOR GIT_COLOR PROMT_CHAR_COLOR \
-    git_completion_file git_complete SSH_COLOR
+    has_git SSH_COLOR
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -238,11 +238,15 @@ fi
 
 ulimit -c unlimited
 
-if ! screen -ls | grep 'No Sockets found in' > /dev/null 2>&1; then
+a=`screen -ls 2>/dev/null`
+if ! echo "$a" | grep -q '^No Sockets found in'; then
     echo ">>> screen sessions:"
-    screen -ls
+    echo "$a"
 fi
 
 a=`tmux ls 2>/dev/null`
-[ -n "$a" ] && echo -e ">>> tmux sessions:\n$a\n"
+if [ -n "$a" ]; then
+    echo ">>> tmux sessions:"
+    echo "$a"
+fi
 unset a
