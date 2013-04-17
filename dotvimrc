@@ -483,12 +483,12 @@ endif
 " and :NeoComplCacheCachingDictionary cpp
 let g:neocomplcache_dictionary_filetype_lists = {
             \'default':'',
-            \'cpp':'~/.vim/bundle/c.vim/c-support/wordlists/c-c++-keywords.list,
-            \~/.vim/bundle/c.vim/c-support/wordlists/k+r.list,
-            \~/.vim/bundle/c.vim/c-support/wordlists/stl_index.list',
-            \'c':'~/.vim/bundle/c.vim/c-support/wordlists/c-c++-keywords.list,
-            \~/.vim/bundle/c.vim/c-support/wordlists/k+r.list,
-            \~/.vim/bundle/c.vim/c-support/wordlists/stl_index.list'}
+            \'cpp':'~/.vim_bundle/c.vim/c-support/wordlists/c-c++-keywords.list,
+            \~/.vim_bundle/c.vim/c-support/wordlists/k+r.list,
+            \~/.vim_bundle/c.vim/c-support/wordlists/stl_index.list',
+            \'c':'~/.vim_bundle/c.vim/c-support/wordlists/c-c++-keywords.list,
+            \~/.vim_bundle/c.vim/c-support/wordlists/k+r.list,
+            \~/.vim_bundle/c.vim/c-support/wordlists/stl_index.list'}
 
 let g:neocomplcache_omni_functions = {
       \ 'python' : 'pythoncomplete#Complete',

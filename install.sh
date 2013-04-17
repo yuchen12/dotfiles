@@ -10,7 +10,6 @@ setup_vim()
     [ ! -d $tmpdir ] && (rm -rf $tmpdir && mkdir $tmpdir)
 
     # vundle
-    # this is the real folder, ~/.vim/bundle is a symbolic link to this
     bundle_dir=~/.vim_bundle
     rm -rf $bundle_dir && mkdir $bundle_dir
     git clone http://github.com/gmarik/vundle.git $bundle_dir/vundle
@@ -28,8 +27,6 @@ setup_vim()
 
     popd > /dev/null
 }
-
-saved_pwd=$PWD
 
 ln -svf $PWD/dotbashrc ~/.bashrc
 ln -svf $PWD/dotbash_aliases.sh ~/.bash_aliases.sh
