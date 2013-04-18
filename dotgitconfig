@@ -54,7 +54,7 @@
     lg = log --decorate
     lp = log --decorate -p
     ;lw = log --decorate -p --word-diff
-    last = log --decorate -1 HEAD
+    last = log --decorate -1
     lognomerge = log --no-merges --decorate
     glog = log --oneline --graph --decorate
     sb = submodule
