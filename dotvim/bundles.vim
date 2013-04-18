@@ -23,6 +23,8 @@ Bundle 'klen/python-mode'
 Bundle 'Lokaltog/vim-powerline'
 "Bundle 'msanders/snipmate.vim'
 
+Bundle 'tangledhelix/vim-octopress'
+
 "Bundle 'plasticboy/vim-markdown'
 
 " vim-scripts repos
