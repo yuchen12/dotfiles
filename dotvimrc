@@ -6,6 +6,7 @@ filetype off                   " required!
 let g:vundle_default_git_proto = 'git'
 
 set rtp+=~/.vim_bundle/vundle
+set rtp+=$GOROOT/misc/vim
 call vundle#rc('~/.vim_bundle')
 
 " let Vundle manage Vundle
