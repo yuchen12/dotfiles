@@ -10,6 +10,11 @@
 			"args": { "gradient": true },
 			"after": "%"
 		},
+		"readonly_indicator": {
+			"args" : {
+				"text" : "[RO]"
+			}
+        },
 		"line_current_symbol": {
 			"contents": "LN"
 		}
@@ -32,8 +37,7 @@
 			},
 			{
 				"name": "readonly_indicator",
-				"draw_soft_divider": false,
-				"after": " "
+				"draw_soft_divider": false
 			},
 			{
 				"name": "file_directory",
