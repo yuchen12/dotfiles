@@ -1,47 +1,85 @@
 #!/bin/bash
 
+vim_bundle_dir=~/.vim_bundle
+vim_tmpdir=~/.vim_tmp
+
 setup_vim()
 {
     # vim related
-    ln -svf $PWD/dotvimrc ~/.vimrc
-    rm -rf ~/.vim && ln -svf $PWD/dotvim ~/.vim
-
-    tmpdir=~/.vim_tmp
-    [ ! -d $tmpdir ] && (rm -rf $tmpdir && mkdir $tmpdir)
+    [ ! -d $vim_tmpdir ] && (rm -rf $vim_tmpdir && mkdir $vim_tmpdir)
 
     # vundle
-    bundle_dir=~/.vim_bundle
-    rm -rf $bundle_dir && mkdir $bundle_dir
-    git clone http://github.com/gmarik/vundle.git $bundle_dir/vundle
+    rm -rf $vim_bundle_dir && mkdir $vim_bundle_dir
+    git clone http://github.com/gmarik/vundle.git $vim_bundle_dir/vundle
     vim +BundleInstall +qa
+    build_vim_plugins
+}
 
+update_vim_plugins()
+{
+    vim +BundleUpdate +qa
+    build_vim_plugins
+}
+
+build_vim_plugins()
+{
     pushd . > /dev/null
     # build command-t
-    cd $bundle_dir/Command-T/ruby/command-t
+    cd $vim_bundle_dir/Command-T/ruby/command-t
     ruby extconf.rb
     make -j4
 
     # build vimproc
-    cd $bundle_dir/vimproc
+    cd $vim_bundle_dir/vimproc
     make -f make_unix.mak
 
     popd > /dev/null
 }
 
-ln -svf $PWD/dotbashrc ~/.bashrc
-ln -svf $PWD/dotbash_aliases.sh ~/.bash_aliases.sh
-ln -svf $PWD/dotgitconfig ~/.gitconfig
-ln -svf $PWD/dotscreenrc ~/.screenrc
-ln -svf $PWD/dottoprc ~/.toprc
-ln -svf $PWD/dotgdbinit ~/.gdbinit
-ln -svf $PWD/git-completion.bash ~/.git-completion.bash
-ln -svf $PWD/git-prompt.sh ~/.git-prompt.sh
-ln -sfv $PWD/dotemacs ~/.emacs
-ln -sfv $PWD/dottmux.conf ~/.tmux.conf
-ln -sfv $PWD/bash_completion_tmux.sh ~/.bash_completion_tmux.sh
-ln -sfv $PWD/dircolors.256dark ~/.dircolors
-ln -sfv $PWD/dotprofile ~/.bash_profile
+link()
+{
+    from=$1
+    to=$2
 
-setup_vim
+    rm -rfv $to && ln -sfv $from $to
+}
 
-ln -sfv $PWD/powerline ~/.config/
+setup_link()
+{
+    link $PWD/dotbashrc               ~/.bashrc
+    link $PWD/dotbash_aliases.sh      ~/.bash_aliases.sh
+    link $PWD/dotgitconfig            ~/.gitconfig
+    link $PWD/dotscreenrc             ~/.screenrc
+    link $PWD/dottoprc                ~/.toprc
+    link $PWD/dotgdbinit              ~/.gdbinit
+    link $PWD/git-completion.bash     ~/.git-completion.bash
+    link $PWD/git-prompt.sh           ~/.git-prompt.sh
+    link $PWD/dotemacs                ~/.emacs
+    link $PWD/dottmux.conf            ~/.tmux.conf
+    link $PWD/bash_completion_tmux.sh ~/.bash_completion_tmux.sh
+    link $PWD/dircolors.256dark       ~/.dircolors
+    link $PWD/dotprofile              ~/.bash_profile
+    link $PWD/powerline               ~/.config/powerline
+    link $PWD/dotvimrc                ~/.vimrc
+    link $PWD/dotvim                  ~/.vim
+}
+
+install()
+{
+    setup_link
+    setup_vim
+}
+
+update()
+{
+    setup_link
+    update_vim_plugins
+}
+
+basename=`basename $0`
+
+if [ $basename = "install.sh" ]; then
+    install
+elif [ $basename = "update.sh" ]; then
+    update
+fi
