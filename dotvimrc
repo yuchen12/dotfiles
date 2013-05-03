@@ -604,9 +604,21 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=95
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=150
 
 " powerline {{{2
+set rtp+=~/.vim_bundle/powerline/powerline/bindings/vim
 "let g:Powerline_cache_enabled=0
 "let g:Powerline_theme = 'skwp'
 let g:Powerline_stl_path_style = 'full'
+
+"if !has('gui_running')
+    "set ttimeoutlen=10
+    "augroup FastEscape
+        "autocmd!
+        "autocmd InsertEnter * set timeoutlen=0
+        "autocmd InsertLeave * set timeoutlen=1000
+    "augroup END
+"endif
+set noshowmode
+
 
 " lusty {{{2
 ",lj ,lf, lb

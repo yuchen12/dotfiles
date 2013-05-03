@@ -43,3 +43,5 @@ ln -sfv $PWD/dircolors.256dark ~/.dircolors
 ln -sfv $PWD/dotprofile ~/.bash_profile
 
 setup_vim
+
+ln -sfv $PWD/powerline ~/.config/
