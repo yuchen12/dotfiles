@@ -172,8 +172,8 @@ endif
 
 set completeopt=menuone
 
-"set list
-"set listchars=tab:\|-,extends:>,nbsp:.,precedes:<
+set list
+set listchars=tab:\|-,extends:>,nbsp:.,precedes:<
 "▋,eol:¶
 "
 autocmd FileType text setlocal textwidth=78 " For all text files set 'textwidth' to 78 characters.
