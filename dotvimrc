@@ -6,7 +6,9 @@ filetype off                   " required!
 let g:vundle_default_git_proto = 'git'
 
 set rtp+=~/.vim_bundle/vundle
+set rtp+=~/.vim_bundle/gocode/vim
 set rtp+=$GOROOT/misc/vim
+set rtp+=~/.vim_bundle/powerline/powerline/bindings/vim
 call vundle#rc('~/.vim_bundle')
 
 " let Vundle manage Vundle
@@ -507,6 +509,7 @@ let g:neocomplcache_keyword_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 "let g:neocomplcache_force_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:neocomplcache_omni_patterns.go = '\h\w*\.'
 let g:neocomplcache_caching_limit_file_size = 500000
 
 if !exists('g:neocomplcache_same_filetype_lists')
@@ -604,7 +607,6 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=95
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=150
 
 " powerline {{{2
-set rtp+=~/.vim_bundle/powerline/powerline/bindings/vim
 "let g:Powerline_cache_enabled=0
 "let g:Powerline_theme = 'skwp'
 let g:Powerline_stl_path_style = 'full'
@@ -629,4 +631,5 @@ let g:yankring_history_dir='~/.vim_tmp'
 nnoremap <Leader>r :YRShow<CR>
 " vim-markdown {{{2
 let g:vim_markdown_folding_disabled=1
+
 " }}}1
