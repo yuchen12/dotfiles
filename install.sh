@@ -33,7 +33,11 @@ build_vim_plugins()
     cd $vim_bundle_dir/vimproc
     make -f make_unix.mak
 
+    # gocode
+    cd $vim_bundle_dir/gocode && go build && go install
+
     popd > /dev/null
+
 }
 
 link()
@@ -67,6 +71,8 @@ setup_link()
 install()
 {
     setup_link
+    . ~/.bashrc
+    . ~/.bash_profile
     setup_vim
 }
 
