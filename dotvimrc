@@ -509,7 +509,7 @@ let g:neocomplcache_keyword_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 "let g:neocomplcache_force_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-let g:neocomplcache_omni_patterns.go = '\h\w*\.'
+let g:neocomplcache_omni_patterns.go = '\h\w*\.\?'
 let g:neocomplcache_caching_limit_file_size = 500000
 
 if !exists('g:neocomplcache_same_filetype_lists')
