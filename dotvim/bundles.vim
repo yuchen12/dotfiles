@@ -55,6 +55,7 @@ Bundle 'pythoncomplete'
 "Bundle 'doxygen-support.vim'
 "Bundle 'DoxygenToolkit.vim'
 Bundle 'jansenm/vim-cmake'
+Bundle 'jstemmer/gotags'
 
 " color scheme
 Bundle 'desert-warm-256'
