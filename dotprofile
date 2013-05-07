@@ -28,7 +28,7 @@ unset LOCAL_LIB_PATH LOCAL_LIB64_PATH LOCAL_PATH
 
 export GOROOT=$HOME/go
 export GOBIN=$GOROOT/bin
-export GOPATH=$HOME/go-pkg
+export GOPATH=$HOME/go/pkg
 export PATH=$GOBIN:$PATH
 
 export LD_LIBRARY_PATH PATH
