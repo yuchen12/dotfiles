@@ -72,6 +72,7 @@ setup_link()
     make_link $PWD/powerline               ~/.config/powerline
     make_link $PWD/dotvimrc                ~/.vimrc
     make_link $PWD/dotvim                  ~/.vim
+    make_link $PWD/dothgrc                 ~/.hgrc
 }
 
 update()
