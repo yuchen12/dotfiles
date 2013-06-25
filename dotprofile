@@ -8,23 +8,18 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-LOCAL_PATH=$HOME/local/bin
-LOCAL_LIB_PATH=$HOME/local/lib
-LOCAL_LIB64_PATH=$HOME/local/lib64
+LOCAL=$HOME/local
 
-[ -d $LOCAL_LIB_PATH ] && LD_LIBRARY_PATH=$LOCAL_LIB_PATH:$LD_LIBRARY_PATH
-[ -d $LOCAL_LIB64_PATH ] && LD_LIBRARY_PATH=$LOCAL_LIB64_PATH:$LD_LIBRARY_PATH
-[ -d $LOCAL_PATH ] && PATH=$LOCAL_PATH:$PATH
-
-unset LOCAL_LIB_PATH LOCAL_LIB64_PATH LOCAL_PATH
+export LD_LIBRARY_PATH=$LOCAL/lib64:$LOCAL/lib:$LD_LIBRARY_PATH
+export PATH=$LOCAL/bin:$PATH
+export PKG_CONFIG_PATH=$LOCAL/lib/pkgconfig:$PKG_CONFIG_PATH
 
 export GOROOT=$HOME/go
 export GOBIN=$GOROOT/bin
 export GOPATH=$HOME/go/pkg
 export PATH=$GOBIN:$PATH
 
-export LD_LIBRARY_PATH PATH
-
+unset LOCAL
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then

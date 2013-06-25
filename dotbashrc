@@ -225,22 +225,31 @@ export XMODIFIERS="@im=fcitx"
 export QT_IM_MODULE=fcitx
 export EDITOR=vim
 
-if type ccache > /dev/null 2>&1; then
+ulimit -c unlimited
+
+function exist() {
+    type $1 > /dev/null 2>&1
+}
+
+if exist ccache; then
     export CC="ccache gcc"
     export CXX="ccache g++"
 fi
 
-ulimit -c unlimited
-
-a=`screen -ls 2>/dev/null`
-if ! echo "$a" | grep -q '^No Sockets found in'; then
-    echo ">>> screen sessions:"
-    echo "$a"
+if exist screen; then
+    a=`screen -ls 2>/dev/null`
+    if ! echo "$a" | grep -q '^No Sockets found in'; then
+        echo ">>> screen sessions:"
+        echo "$a"
+    fi
+    unset a
 fi
 
-a=`tmux ls 2>/dev/null`
-if [ -n "$a" ]; then
-    echo ">>> tmux sessions:"
-    echo "$a"
+if exist tmux; then
+    a=`tmux ls 2>/dev/null`
+    if [ -n "$a" ]; then
+        echo ">>> tmux sessions:"
+        echo "$a"
+    fi
+    unset a
 fi
-unset a
