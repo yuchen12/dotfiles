@@ -84,6 +84,7 @@ update()
 
 install()
 {
+    mkdir ~/.config
     setup_link
     . ~/.bash_profile
     setup_vim
