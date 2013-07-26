@@ -648,6 +648,7 @@ __git_list_porcelain_commands ()
 		cat-file)         : plumbing;;
 		check-attr)       : plumbing;;
 		check-ignore)     : plumbing;;
+		check-mailmap)    : plumbing;;
 		check-ref-format) : plumbing;;
 		checkout-index)   : plumbing;;
 		commit-tree)      : plumbing;;
@@ -2490,9 +2491,10 @@ __git_main ()
 		i="${words[c]}"
 		case "$i" in
 		--git-dir=*) __git_dir="${i#--git-dir=}" ;;
+		--git-dir)   ((c++)) ; __git_dir="${words[c]}" ;;
 		--bare)      __git_dir="." ;;
 		--help) command="help"; break ;;
-		-c) c=$((++c)) ;;
+		-c|--work-tree|--namespace) ((c++)) ;;
 		-*) ;;
 		*) command="$i"; break ;;
 		esac
@@ -2510,6 +2512,7 @@ __git_main ()
 			--exec-path
 			--exec-path=
 			--html-path
+			--man-path
 			--info-path
 			--work-tree=
 			--namespace=
