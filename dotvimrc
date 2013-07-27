@@ -142,7 +142,7 @@ set smartindent
 set title " change the terminal's title
 set wildmenu
 "set wildmode=longest:full,full
-set wildmode=longest,full
+set wildmode=longest,list,full
 set autowrite
 set hlsearch
 set ai              " autoindent
@@ -172,7 +172,7 @@ if v:version >= 703
     set undodir=~/.vim_tmp
 endif
 
-set completeopt=menuone
+set completeopt=menu,menuone,longest
 
 set list
 set listchars=tab:\|-,extends:>,nbsp:.,precedes:<
@@ -627,6 +627,7 @@ inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup() "\<CR>" : "\<CR
 let g:syntastic_auto_loc_list=1
 let g:syntastic_mode_map = { 'mode': 'active',
             \ 'passive_filetypes': ['c', 'cpp', 'python'] }
+let g:syntastic_cpp_compiler_options=' -std=c++11 -Wall -Wextra'
 let g:syntastic_cpp_config_file = '.__config'
 
 " Command-T {{{2
