@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# install go, git, tmux
+# install go, git, tmux, clang, libclang, ruby-dev
 # vim should be built with python & ruby support
 
 vim_bundle_dir=~/.vim_bundle
@@ -84,7 +84,7 @@ update()
 
 install()
 {
-    mkdir ~/.config
+    mkdir ~/.config >/dev/null 2>&1
     setup_link
     . ~/.bash_profile
     setup_vim
