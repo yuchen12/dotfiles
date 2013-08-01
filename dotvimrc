@@ -630,6 +630,8 @@ let g:syntastic_mode_map = { 'mode': 'active',
 let g:syntastic_cpp_compiler_options=' -std=c++11 -Wall -Wextra'
 let g:syntastic_cpp_config_file = '.__config'
 
+nnoremap <silent> <Leader>sk :SyntasticCheck<CR>
+
 " Command-T {{{2
 nnoremap <silent> <Leader>ff :CommandT<CR>
 nnoremap <silent> <Leader>bb :CommandTBuffer<CR>
