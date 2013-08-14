@@ -686,3 +686,9 @@ nnoremap <Leader>r :YRShow<CR>
 let g:vim_markdown_folding_disabled=1
 
 " }}}1
+
+" Use local vimrc if available {{{1
+if filereadable(expand("~/.vimrc.local"))
+    source ~/.vimrc.local
+endif
+" }}}1

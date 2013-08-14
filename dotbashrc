@@ -227,6 +227,10 @@ export EDITOR=vim
 
 ulimit -c unlimited
 
+if [ -f ~/.bashrc.local ]; then
+    . ~/.bashrc.local
+fi
+
 function exist() {
     type $1 > /dev/null 2>&1
 }
