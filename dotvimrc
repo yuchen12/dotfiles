@@ -174,7 +174,7 @@ endif
 
 set completeopt=menu,menuone,longest
 
-set list
+autocmd FileType c,cpp,python,sh set list
 set listchars=tab:\|-,extends:>,nbsp:.,precedes:<
 "▋,eol:¶
 "
