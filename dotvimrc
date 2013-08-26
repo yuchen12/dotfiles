@@ -244,6 +244,7 @@ map Q gq            " Don't use Ex mode, use Q for formatting
 " C/C++ 相关设置 {{{2
 set cinoptions=:0,g0,l1,(0,w0,W4,t0,N-s
 autocmd BufNewFile *.c 0r ~/.vim/templates/main.c
+autocmd BufNewFile *.go 0r ~/.vim/templates/main.go
 autocmd BufNewFile *.{cpp,cc} 0r ~/.vim/templates/main.cpp
 autocmd BufNewFile *.{h,hpp} call <SID>insert_include_guard() " C/C++ include guard
 
