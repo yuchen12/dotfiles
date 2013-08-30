@@ -1,5 +1,6 @@
 " original repos on github
 Bundle 'tpope/vim-fugitive'
+Bundle 'airblade/vim-gitgutter'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Rip-Rip/clang_complete'
 Bundle 'majutsushi/tagbar'

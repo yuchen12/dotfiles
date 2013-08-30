@@ -136,6 +136,11 @@ set matchpairs+=<:> " show matching <> as well
 set updatetime=1000
 set hidden          " allow buffers to go into the background without needing to save
 set mouse=a         " In many terminal emulators the mouse works just fine, thus enable it.
+
+if exists('$TMUX')
+    set ttymouse=xterm2
+endif
+
 set fileformats=unix,dos,mac
 set nopaste
 set smartindent
@@ -187,6 +192,9 @@ autocmd BufReadPost *
             \ endif
 
 "autocmd BufEnter * lcd %:p:h " 自动切换到当前文件所在目录
+
+" automatically rebalance windows on vim resize
+autocmd VimResized * :wincmd =
 
 " Convenient command to see the difference between the current buffer and the file it was loaded from, thus the changes you made.
 command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
@@ -634,6 +642,7 @@ let g:syntastic_cpp_config_file = '.__config'
 nnoremap <silent> <Leader>sk :SyntasticCheck<CR>
 
 " Command-T {{{2
+let g:CommandTMaxHeight = 20
 nnoremap <silent> <Leader>ff :CommandT<CR>
 nnoremap <silent> <Leader>bb :CommandTBuffer<CR>
 
@@ -683,8 +692,16 @@ nmap <silent> <leader>j :LustyJuggler<CR>
 " yankring {{{2
 let g:yankring_history_dir='~/.vim_tmp'
 nnoremap <Leader>r :YRShow<CR>
+
 " vim-markdown {{{2
 let g:vim_markdown_folding_disabled=1
+
+" vim git gutter
+let g:gitgutter_enabled = 0
+let g:gitgutter_escape_grep = 1
+let g:gitgutter_realtime = 0
+"let g:gitgutter_eager = 0
+nmap <leader>gt :GitGutterToggle<CR>
 
 " }}}1
 
