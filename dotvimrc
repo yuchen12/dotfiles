@@ -7,7 +7,9 @@ let g:vundle_default_git_proto = 'git'
 
 set rtp+=~/.vim_bundle/vundle
 set rtp+=~/.vim_bundle/gocode/vim
-set rtp+=$GOROOT/misc/vim
+if $GOROOT != ''
+    set rtp+=$GOROOT/misc/vim
+endif
 set rtp+=~/.vim_bundle/powerline/powerline/bindings/vim
 call vundle#rc('~/.vim_bundle')
 
@@ -46,17 +48,9 @@ elseif &t_Co == 256
     "let g:solarized_contrast="high"
     "let g:solarized_visibility="high"
     "silent! colorscheme solarized
-    "silent! colorscheme default
-    "silent! colorscheme xoria256
-    "silent! colorscheme colorzone
-    "silent! colorscheme murphy
+    "silent! colorscheme desertEx
     silent! colorscheme desertEx
-    "silent! colorscheme fisa
-    "silent! colorscheme manuscript
-    "silent! colorscheme desert256
-    "silent! colorscheme desert-warm-256
-    "silent! colorscheme zenburn
-    "silent! colorscheme inkpot
+    "silent! colorscheme molokai256
 end
 " hi设置 {{{2
 hi diffAdded ctermfg=31 guifg=#268bd2
@@ -101,8 +95,8 @@ hi SpecialKey guifg=#808080 guibg=#343434 guisp=#343434 gui=NONE ctermfg=8 cterm
 hi WildMenu term=standout cterm=bold ctermfg=16 ctermbg=95 guifg=gray guibg=gray17
 
 " 高亮行尾的空格
-au BufEnter,InsertEnter,InsertLeave * 2match WhitespaceEOL /\s\+$/
-highlight WhitespaceEOL ctermbg=red guibg=red
+"au BufEnter,InsertEnter,InsertLeave * 2match WhitespaceEOL /\s\+$/
+"highlight WhitespaceEOL ctermbg=red guibg=red
 
 " Highlight VCS conflict markers
 au BufEnter,InsertEnter,InsertLeave * 3match ErrorMsg /^\(<\|=\|>\)\{7\}\([^=].\+\)\?$/
@@ -112,6 +106,7 @@ au BufEnter,InsertEnter,InsertLeave * 3match ErrorMsg /^\(<\|=\|>\)\{7\}\([^=].\
 " set相关 {{{1
 " ===================================
 " 一般设置 {{{2
+set nocompatible
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 if has("vms")
@@ -141,6 +136,7 @@ if exists('$TMUX')
     set ttymouse=xterm2
 endif
 
+set fileformat=unix
 set fileformats=unix,dos,mac
 set nopaste
 set smartindent
@@ -153,7 +149,7 @@ set hlsearch
 set ai              " autoindent
 set si              " smartindent
 set tags=tags;/
-set wrap
+set nowrap
 set so=7            " Set 7 lines to curors - when moving vertical..
 set fdm=marker
 auto FileType c,cpp,python set fdm=syntax
@@ -170,7 +166,7 @@ set wildignore+=.git,.svn,CVS,.hg
 set infercase
 set display=lastline " when a line is long, don't omit it in @
 
-set history=1000    " keep 1000 lines of command line history
+set history=500
 set undolevels=1000
 if v:version >= 703
     set undofile
@@ -180,7 +176,7 @@ endif
 set completeopt=menu,menuone,longest
 
 autocmd FileType c,cpp,python,sh set list
-set listchars=tab:\|-,extends:>,nbsp:.,precedes:<
+set listchars=tab:\|-,extends:>,nbsp:.,precedes:<,trail:~
 "▋,eol:¶
 "
 autocmd FileType text setlocal textwidth=78 " For all text files set 'textwidth' to 78 characters.
@@ -222,7 +218,10 @@ nnoremap <Leader>q :q<CR>
 
 "nnoremap j gj
 "nnoremap k gk
-cmap w!! w !sudo tee % > /dev/null
+cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
+
+" delete trailing whitespaces
+nmap <silent><Leader>et :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " Quick alignment of text
 nnoremap <Leader>al :left<CR>
@@ -249,6 +248,8 @@ nmap <silent> <leader>rr :redraw!<cr> " Fast redraw
 
 map Q gq            " Don't use Ex mode, use Q for formatting
 
+au BufNewFile,BufRead *.json set ft=json
+
 " C/C++ 相关设置 {{{2
 set cinoptions=:0,g0,l1,(0,w0,W4,t0,N-s
 autocmd BufNewFile *.c 0r ~/.vim/templates/main.c
@@ -268,6 +269,7 @@ endfunction
 
 " python 相关设置 {{{2
 autocmd BufNewFile *.py 0r ~/.vim/templates/main.py
+au FileType python setlocal foldmethod=indent
 let python_highlight_all = 1
 
 " shell {{{2
