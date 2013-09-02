@@ -43,56 +43,43 @@ if has("gui_running")
     silent! colorscheme solarized
 elseif &t_Co == 256
     set background=dark
-    "let g:solarized_termtrans=1
-    "let g:solarized_termcolors=256
-    "let g:solarized_contrast="high"
-    "let g:solarized_visibility="high"
+    let g:solarized_termtrans=1
+    let g:solarized_termcolors=256
+    let g:solarized_contrast="high"
+    let g:solarized_visibility="high"
     "silent! colorscheme solarized
     "silent! colorscheme desertEx
-    silent! colorscheme desertEx
-    "silent! colorscheme molokai256
+    let g:rehash256=1
+    silent! colorscheme molokai
 end
 " hi设置 {{{2
 hi diffAdded ctermfg=31 guifg=#268bd2
 hi diffRemoved ctermfg=161 guifg=#d30102
-hi cursorline term=standout,bold cterm=bold ctermfg=None ctermbg=23 gui=bold " 高亮光标所在行
-hi Normal ctermbg=None
-hi ToDo cterm=bold ctermbg=9 ctermfg=226 gui=standout guibg=#eeee00 guifg=#ff4500
-
-"hi visual term=reverse cterm=reverse ctermfg=64 ctermbg=222 gui=reverse guifg=#6b8e23 guibg=#f0e68c
-hi Visual guifg=#faf4c6 guibg=#3c414c guisp=#3c414c gui=NONE ctermfg=230 ctermbg=239 cterm=NONE
-hi Search term=reverse ctermfg=0 ctermbg=11 guifg=Black guibg=Yellow gui=none
-hi number ctermfg=166 guifg=#d75f00
-
-hi String ctermfg=176 ctermbg=238 guifg=#c080d0 guibg=#404040 guisp=#404040
-hi SpecialChar term=bold ctermfg=122 ctermbg=238 guifg=aquamarine2 guibg=#404040 guisp=#404040
-hi cConstant ctermfg=red cterm=bold guifg=red gui=bold
-hi Statement ctermbg=none cterm=none ctermfg=197
-hi Comment guifg=#7f9f7f gui=italic ctermfg=108
-hi preproc ctermfg=160
-hi! link pythonstrformatting SpecialChar
-hi! link pythonescape SpecialChar
-
-hi LineNr term=underline ctermfg=238 ctermbg=234 guifg=#424242 guibg=#202020 guisp=#202020
-hi! link cursorlinenr cursorline
+"hi cursorline term=standout,bold cterm=bold ctermfg=None ctermbg=23 gui=bold " 高亮光标所在行
+"hi Normal ctermbg=None
+hi ToDo cterm=bold ctermfg=9 ctermbg=226 gui=standout guibg=#eeee00 guifg=#ff4500
 
 " 自动补全弹出菜单颜色设置
-hi Pmenu term=standout ctermfg=0 ctermbg=250 guifg=#000000 guibg=#bcbcbc
+hi Pmenu term=standout cterm=none ctermfg=0 ctermbg=250 guifg=#000000 guibg=#bcbcbc
 hi PmenuSel cterm=bold ctermfg=234 ctermbg=174 gui=bold guifg=bg guibg=#df8787
-"hi PmenuThumb cterm=NONE ctermfg=0 ctermbg=68 gui=NONE guifg=#000000 guibg=#afdf5f
-hi PMenuThumb guifg=#dbdbdb guibg=#303030 guisp=#303030 gui=NONE ctermfg=253 ctermbg=236 cterm=NONE
-"hi PmenuSbar ctermbg=248 guibg=Grey
-"hi PMenuSbar guifg=#ededed guibg=#202020 guisp=#202020 gui=NONE ctermfg=255 ctermbg=234 cterm=NONE
-"hi PMenuSel guifg=#f0f0f0 guibg=#398215 guisp=#398215 gui=NONE ctermfg=255 ctermbg=2 cterm=bold
-"hi PMenu guifg=#0f0f0f guibg=#749652 guisp=#749652 gui=NONE ctermfg=233 ctermbg=107 cterm=NONE
-"hi PMenuThumb guifg=#dbdbdb guibg=#303030 guisp=#303030 gui=NONE ctermfg=253 ctermbg=236 cterm=NONE
+hi PMenuSbar guifg=#ededed guibg=#202020 guisp=#202020 gui=NONE ctermfg=255 ctermbg=255 cterm=NONE
+hi PMenuThumb guifg=#dbdbdb guibg=#303030 guisp=#303030 gui=NONE ctermfg=253 ctermbg=35 cterm=NONE
 
 " 高亮特殊字符
-"hi SpecialKey cterm=bold ctermfg=64 gui=bold guifg=Red guibg=White
-"hi SpecialKey term=bold ctermfg=16 ctermbg=223 guifg=black guibg=wheat1
 hi SpecialKey guifg=#808080 guibg=#343434 guisp=#343434 gui=NONE ctermfg=8 ctermbg=236 cterm=NONE
 
-hi WildMenu term=standout cterm=bold ctermfg=16 ctermbg=95 guifg=gray guibg=gray17
+"hi WildMenu term=standout cterm=standout ctermfg=95 ctermbg=230 guifg=gray guibg=gray17
+
+hi cMathOperator            cterm=bold ctermfg=6 guifg=#3EFFE2
+hi cPointerOperator         cterm=bold ctermfg=6 guifg=#3EFFE2
+hi cLogicalOperator         cterm=bold ctermfg=6 guifg=#3EFFE2
+hi cBinaryOperator          cterm=bold ctermfg=6 guifg=#3EFFE2
+hi cBinaryOperatorError     cterm=bold ctermfg=6 guifg=#3EFFE2
+hi cLogicalOperator         cterm=bold ctermfg=6 guifg=#3EFFE2
+hi cLogicalOperatorError    cterm=bold ctermfg=6 guifg=#3EFFE2
+"hi cFunction                term=underline cterm=bold ctermfg=148 guifg=skyblue
+hi! link cFunction Function
+hi PreCondit cterm=bold ctermfg=160
 
 " 高亮行尾的空格
 "au BufEnter,InsertEnter,InsertLeave * 2match WhitespaceEOL /\s\+$/

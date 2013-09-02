@@ -51,7 +51,7 @@ make_link()
     from=$1
     to=$2
 
-    rm -rfv $to && ln -sfv $from $to
+    rm -rfv $to.old && mv -f $to $to.old && ln -sfv $from $to
 }
 
 setup_link()
