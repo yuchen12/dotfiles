@@ -162,10 +162,9 @@ endif
 
 set completeopt=menu,menuone,longest
 
-autocmd FileType c,cpp,python,sh set list
-set listchars=tab:\|-,extends:>,nbsp:.,precedes:<,trail:~
-"▋,eol:¶
-"
+autocmd FileType c,cpp,python,sh,go set list
+set listchars=tab:\|-,extends:>,nbsp:.,precedes:<,trail:~ "eol:¶
+
 autocmd FileType text setlocal textwidth=78 " For all text files set 'textwidth' to 78 characters.
 
 " 打开文件时自动跳到上次退出时光标所在位置
