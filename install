@@ -51,8 +51,9 @@ make_link()
     from=$1
     to=$2
 
-    if [ -f $to ]; then
-        rm -rfv $to.old && mv -f $to $to.old
+    if [ -e $to ]; then
+        rm -rfv $to.old
+        mv -f $to $to.old
     fi
 
     ln -sfv $from $to
