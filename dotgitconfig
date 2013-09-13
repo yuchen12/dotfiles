@@ -43,7 +43,7 @@
     mg = merge --no-edit
     ci = commit -s
     cs = commit -s
-    br = branch
+    br = branch -vv
     st = status
     ss = status --short
     df = diff
