@@ -1,10 +1,16 @@
 #!/bin/bash
 
 # install go, git, tmux, clang, libclang, ruby-dev
-# vim should be built with python & ruby support
+# vim should be built with python/ruby/lua support
+
+set -e
 
 vim_bundle_dir=~/.vim_bundle
 vim_tmpdir=~/.vim_tmp
+
+gorepos="github.com/nsf/gocode \
+    github.com/jstemmer/gotags \
+    code.google.com/p/rog-go/exp/cmd/godef"
 
 setup_vim()
 {
@@ -35,12 +41,6 @@ build_vim_plugins()
     # build vimproc
     cd $vim_bundle_dir/vimproc
     make -f make_unix.mak
-
-    # gocode
-    cd $vim_bundle_dir/gocode && go build && go install
-
-    # gotags, actually, this is not a vim plugin
-    cd $vim_bundle_dir/gotags && go build && go install
 
     popd > /dev/null
 
@@ -83,6 +83,8 @@ setup_link()
 update()
 {
     setup_link
+    echo "go get -u $gorepos"
+    go get -u $gorepos
     update_vim_plugins
 }
 
@@ -92,6 +94,8 @@ install()
     mkdir ~/.config >/dev/null 2>&1
     setup_link
     . ~/.bash_profile
+    echo "go get $gorepos"
+    go get $gorepos
     setup_vim
 }
 

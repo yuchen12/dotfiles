@@ -27,9 +27,8 @@ Bundle 'Lokaltog/powerline'
 Bundle 'tangledhelix/vim-octopress'
 Bundle "elzr/vim-json"
 "Bundle 'plasticboy/vim-markdown'
-Bundle 'nsf/gocode'
+Bundle 'dgryski/vim-godef'
 Bundle 'jansenm/vim-cmake'
-Bundle 'jstemmer/gotags'
 
 " vim-scripts repos
 Bundle 'TaskList.vim'
