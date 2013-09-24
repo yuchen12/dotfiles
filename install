@@ -14,36 +14,17 @@ gorepos="github.com/nsf/gocode \
 
 setup_vim()
 {
-    # vim related
     [ ! -d $vim_tmpdir ] && (rm -rf $vim_tmpdir && mkdir $vim_tmpdir)
 
-    # vundle
+    # neobundle
     rm -rf $vim_bundle_dir && mkdir $vim_bundle_dir
-    git clone http://github.com/gmarik/vundle.git $vim_bundle_dir/vundle
-    vim +BundleInstall +qa
-    build_vim_plugins
+    git clone http://github.com/Shougo/neobundle.vim $vim_bundle_dir/neobundle
+    vim  +qa
 }
 
 update_vim_plugins()
 {
-    vim +BundleUpdate +qa
-    build_vim_plugins
-}
-
-build_vim_plugins()
-{
-    pushd . > /dev/null
-    # build command-t
-    cd $vim_bundle_dir/Command-T/ruby/command-t
-    ruby extconf.rb
-    make -j4
-
-    # build vimproc
-    cd $vim_bundle_dir/vimproc
-    make -f make_unix.mak
-
-    popd > /dev/null
-
+    vim +NeoBundleUpdate +qa
 }
 
 make_link()
@@ -91,7 +72,7 @@ update()
 
 install()
 {
-    mkdir ~/.config >/dev/null 2>&1
+    mkdir -p ~/.config >/dev/null 2>&1
     setup_link
     . ~/.bash_profile
     echo "go get $gorepos"

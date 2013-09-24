@@ -1,30 +1,39 @@
 " Author: Wang Zhen
 
-" vundle 设置 {{{1
+" neobundle 设置 {{{1
 " ===================================
-filetype off                   " required!
-let g:vundle_default_git_proto = 'git'
 
-set rtp+=~/.vim_bundle/vundle
-set rtp+=~/.vim_bundle/powerline/powerline/bindings/vim
-if $GOROOT != ''
-    set rtp+=$GOROOT/misc/vim
+set nocompatible
+if has('vim_starting')
+    set rtp+=~/.vim_bundle/neobundle
 endif
-if $GOPATH != ''
-    set rtp+=$GOPATH/src/github.com/nsf/gocode/vim
-endif
-call vundle#rc('~/.vim_bundle')
+call neobundle#rc(expand('~/.vim_bundle'))
 
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
+NeoBundleFetch 'Shougo/neobundle.vim', {'name': 'neobundle'}
 
 if filereadable(expand("~/.vim/bundles.vim"))
     source ~/.vim/bundles.vim
 endif
+
+if $GOROOT != ''
+    set rtp+=$GOROOT/misc/vim
+endif
+
 filetype plugin indent on
 syntax enable
 syntax on
+
+NeoBundleCheck
+
+if !has('vim_starting')
+    " Call on_source hook when reloading .vimrc.
+    call neobundle#call_hook('on_source')
+endif
+
+if $GOPATH != ''
+    au filetype go set rtp+=$GOPATH/src/github.com/nsf/gocode/vim
+endif
+
 " }}}1
 
 " 颜色相关设置 {{{1
@@ -49,8 +58,6 @@ elseif &t_Co == 256
     let g:solarized_termcolors=256
     let g:solarized_contrast="high"
     let g:solarized_visibility="high"
-    "silent! colorscheme solarized
-    "silent! colorscheme desertEx
     let g:rehash256=1
     silent! colorscheme molokai
 end
@@ -95,7 +102,6 @@ au BufEnter,InsertEnter,InsertLeave * 3match ErrorMsg /^\(<\|=\|>\)\{7\}\([^=].\
 " set相关 {{{1
 " ===================================
 " 一般设置 {{{2
-set nocompatible
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 if has("vms")
@@ -355,15 +361,15 @@ endfunction
 " 插件设置 {{{1
 " ===================================
 " winManager {{{2
-let g:winManagerWindowLayout="NERDTree|BufExplorer"
-let g:defaultExplorer = 0
-let g:winManagerWidth=30
-"nmap wm :WMToggle<cr>
-nmap wm :if IsWinManagerVisible() <BAR> WMToggle<CR> <BAR> else <BAR> WMToggle<CR>:q<CR> endif <CR><CR>
+"let g:winManagerWindowLayout="NERDTree|BufExplorer"
+"let g:defaultExplorer = 0
+"let g:winManagerWidth=30
+"nmap wm :if IsWinManagerVisible() <BAR> WMToggle<CR> <BAR> else <BAR> WMToggle<CR>:q<CR> endif <CR><CR>
 
 " NERDTree {{{2
 "Used by winmanager
 let g:NERDTree_title = "[NERDTree]"
+nmap <silent> wm :NERDTreeToggle <CR>
 
 function! NERDTree_Start()
     exec 'NERDTree'
@@ -387,17 +393,17 @@ let NERDChristmasTree=1
 "let NERDTreeKeepTreeInNewTab=1
 
 " BufExplorer {{{2
-let g:bufExplorerDefaultHelp=0       " show default help or not
-let g:bufExplorerDetailedHelp=0      " Show detailed help.
-let g:bufExplorerShowRelativePath=1  " Show relative paths.
-let g:bufExplorerSortBy='mru'        " Sort by most recently used.
-let g:bufExplorerSplitRight=0        " Split left.
-let g:bufExplorerSplitVertical=1     " Split vertically.
-let g:bufExplorerSplitVertSize = 30  " Split width
-let g:bufExplorerUseCurrentWindow=1  " Open in new window.
-let g:bufExplorerMaxHeight=25        " Max height
-let g:bufExplorerMinHeight=25        " Max height
-autocmd BufWinEnter \[Buf\ List\] setl nonumber
+"let g:bufExplorerDefaultHelp=0       " show default help or not
+"let g:bufExplorerDetailedHelp=0      " Show detailed help.
+"let g:bufExplorerShowRelativePath=1  " Show relative paths.
+"let g:bufExplorerSortBy='mru'        " Sort by most recently used.
+"let g:bufExplorerSplitRight=0        " Split left.
+"let g:bufExplorerSplitVertical=1     " Split vertically.
+"let g:bufExplorerSplitVertSize = 30  " Split width
+"let g:bufExplorerUseCurrentWindow=1  " Open in new window.
+"let g:bufExplorerMaxHeight=25        " Max height
+"let g:bufExplorerMinHeight=25        " Max height
+"autocmd BufWinEnter \[Buf\ List\] setl nonumber
 
 " Tagbar {{{2
 nmap tg :TagbarToggle<cr>
@@ -683,7 +689,6 @@ let g:Powerline_stl_path_style = 'full'
 "augroup END
 "endif
 set noshowmode
-
 
 " lusty {{{2
 ",lj ,lf, lb

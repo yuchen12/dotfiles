@@ -1,70 +1,80 @@
-" original repos on github
-Bundle 'tpope/vim-fugitive'
-Bundle 'gregsexton/gitv'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Rip-Rip/clang_complete'
-Bundle 'majutsushi/tagbar'
-Bundle 'sjl/gundo.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'Shougo/neocomplete'
-Bundle 'Shougo/neosnippet'
-Bundle 'Shougo/vimproc'
-Bundle 'honza/vim-snippets'
-Bundle 'tpope/vim-surround'
-Bundle 'kshenoy/vim-signature'
-"Bundle 'fholgado/minibufexpl.vim'
-Bundle 'sjbach/lusty'
-Bundle 'wincent/Command-T'
-Bundle 'nathanaelkane/vim-indent-guides'
-"Bundle 'jwu/exvim'
-Bundle 'klen/python-mode'
-Bundle 'Lokaltog/powerline'
-"Bundle 'msanders/snipmate.vim'
+NeoBundle 'tpope/vim-fugitive', { 'external_commands': 'git' }
+NeoBundle 'gregsexton/gitv', { 'external_commands': 'git' }
+NeoBundle 'airblade/vim-gitgutter', { 'external_commands': 'git' }
+NeoBundle 'kshenoy/vim-signature', { 'external_commands': 'git' }
+NeoBundleLazy 'nathanaelkane/vim-indent-guides', {'autoload': {'commands': 'IndentGuidesToggle'} }
 
-Bundle 'tangledhelix/vim-octopress'
-Bundle "elzr/vim-json"
-"Bundle 'plasticboy/vim-markdown'
-Bundle 'dgryski/vim-godef'
-Bundle 'jansenm/vim-cmake'
+NeoBundle 'Lokaltog/vim-easymotion'
+
+NeoBundleLazy 'majutsushi/tagbar', { 'autoload': { 'commands': 'TagbarToggle' } }
+NeoBundleLazy 'sjl/gundo.vim', { 'autoload': { 'commands': 'GundoToggle' } }
+NeoBundleLazy 'scrooloose/nerdtree', { 'autoload': { 'commands': 'NERDTreeToggle' } }
+
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundleLazy 'Shougo/neocomplete', {'autoload': {'insert': 1}}
+NeoBundleLazy 'Shougo/neosnippet', {'autoload': {'insert': 1}}
+
+NeoBundle 'Shougo/vimproc', {
+            \ 'build': {
+            \   'unix': 'make -f make_unix.mak',
+            \   'mac': 'make -f make_mac.mak',
+            \   },
+            \}
+
+NeoBundle 'wincent/Command-T', {
+            \'build': {
+            \   'unix': 'cd ruby/command-t && ruby extconf.rb && make -j4',
+            \   'mac': 'cd ruby/command-t && ruby extconf.rb && make -j4',
+            \   },
+            \}
+
+NeoBundleLazy 'honza/vim-snippets', {'autoload': {'insert': 1}}
+NeoBundle 'tpope/vim-surround'
+"NeoBundle 'fholgado/minibufexpl.vim'
+NeoBundle 'sjbach/lusty'
+
+NeoBundleLazy 'klen/python-mode', {'autoload': {'filetypes': 'python'}}
+NeoBundleLazy 'python.vim', {'autoload': {'filetypes': 'python'}}
+NeoBundleLazy 'python_match.vim', {'autoload': {'filetypes': 'python'}}
+NeoBundleLazy 'pythoncomplete', {'autoload': {'filetypes': 'python'}}
+
+NeoBundle 'Lokaltog/powerline', { 'rtp': '~/.vim_bundle/powerline/powerline/bindings/vim' }
+
+NeoBundleLazy 'tangledhelix/vim-octopress', {'autoload': {'filetypes': 'markdown'} }
+NeoBundleLazy "elzr/vim-json", {'autoload': {'filetypes': 'json'}}
+NeoBundleLazy 'jansenm/vim-cmake', {'autoload': {'filetypes': 'cmake'}}
+
+NeoBundleLazy 'dgryski/vim-godef', {'autoload': {'filetypes': 'go'}}
 
 " vim-scripts repos
-Bundle 'TaskList.vim'
-Bundle 'winmanager'
-"Bundle 'bufexplorer.zip'
-Bundle 'c.vim'
-Bundle 'xoria256.vim'
-Bundle 'CmdlineComplete'
-Bundle 'a.vim'
-Bundle 'YankRing.vim'
-Bundle 'Align'
-Bundle 'DrawIt'
-Bundle 'VisIncr'
-Bundle 'mru.vim'
-"Bundle 'sudo.vim'
-Bundle 'SudoEdit.vim'
-Bundle 'python.vim'
-Bundle 'python_match.vim'
-Bundle 'pythoncomplete'
-"Bundle 'ctags.vim--Johnson'
-"Bundle 'ShowFunc.vim'
-"Bundle 'Conque-Shell'
-"Bundle 'L9'
-"Bundle 'FuzzyFinder'
-"Bundle 'project.tar.gz'
-"Bundle 'doxygen-support.vim'
-"Bundle 'DoxygenToolkit.vim'
+NeoBundleLazy 'TaskList.vim', {'autoload': {'commands': 'TaskList'}}
+"NeoBundle 'winmanager'
+"NeoBundle 'bufexplorer.zip'
+
+NeoBundle 'c.vim'
+NeoBundleLazy 'a.vim', {'autoload': {'filetypes': ['c', 'cpp']}}
+NeoBundleLazy 'Rip-Rip/clang_complete', {'autoload': {'insert': 1, 'filetypes': ['c', 'cpp']}}
+
+NeoBundle 'CmdlineComplete'
+NeoBundle 'YankRing.vim'
+NeoBundle 'Align'
+NeoBundleLazy 'DrawIt', {'autoload': {'commands': 'DrawIt'}}
+NeoBundle 'VisIncr'
+NeoBundle 'mru.vim'
+"NeoBundle 'sudo.vim'
+NeoBundleLazy 'SudoEdit.vim', {'autoload': {'commands': ['SudoRead', 'SudoEdit']}}
+"NeoBundle 'FuzzyFinder'
 
 " color scheme
-Bundle 'desert-warm-256'
-Bundle 'desert256.vim'
-Bundle 'desertEx'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'Zenburn'
-Bundle 'inkpot'
-Bundle 'Colorzone'
-Bundle 'manuscript.vim'
-Bundle 'fisadev/fisa-vim-colorscheme'
-Bundle 'tomasr/molokai'
+"NeoBundle 'desert-warm-256'
+"NeoBundle 'desert256.vim'
+"NeoBundle 'desertEx'
+"NeoBundle 'altercation/vim-colors-solarized'
+"NeoBundle 'Zenburn'
+"NeoBundle 'inkpot'
+"NeoBundle 'Colorzone'
+"NeoBundle 'manuscript.vim'
+"NeoBundle 'fisadev/fisa-vim-colorscheme'
+NeoBundle 'tomasr/molokai'
+"NeoBundle 'xoria256.vim'
