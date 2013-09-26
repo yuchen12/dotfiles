@@ -236,8 +236,9 @@ function exist() {
 }
 
 if exist ccache; then
-    export CC="ccache gcc"
-    export CXX="ccache g++"
+    #export CC="ccache gcc"
+    #export CXX="ccache g++"
+    export PATH=/usr/lib/ccache:$PATH
 fi
 
 if exist screen; then
