@@ -1,3 +1,5 @@
+add-auto-load-safe-path /home/yuchen/sources/go/src/pkg/runtime/runtime-gdb.py
+
 # all-stop mode: when any thread in your program stops,
 #                all other threads in the program are also stopped.
 #                This is the default mode.
