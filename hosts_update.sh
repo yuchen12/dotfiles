@@ -7,7 +7,7 @@ set -o pipefail
 bj_url="https://raw.github.com/smarthosts/SmartHosts/master/trunk/hosts"  # beijing
 us_url="https://raw.github.com/smarthosts/SmartHosts/master/trunk/hosts_us" # usa
 
-url=$bj_url
+url=$us_url
 hosts=/etc/hosts
 tmp_hosts=/tmp/hosts
 filters="GitHub" # "Google\ Services"

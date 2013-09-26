@@ -75,7 +75,7 @@ hi PMenuSbar guifg=#ededed guibg=#202020 guisp=#202020 gui=NONE ctermfg=255 cter
 hi PMenuThumb guifg=#dbdbdb guibg=#303030 guisp=#303030 gui=NONE ctermfg=253 ctermbg=35 cterm=NONE
 
 " 高亮特殊字符
-hi SpecialKey guifg=#808080 guibg=#343434 guisp=#343434 gui=NONE ctermfg=8 ctermbg=236 cterm=NONE
+"hi SpecialKey guifg=#808080 guibg=#343434 guisp=#343434 gui=NONE ctermfg=8 ctermbg=236 cterm=NONE
 
 "hi WildMenu term=standout cterm=standout ctermfg=95 ctermbg=230 guifg=gray guibg=gray17
 
@@ -104,13 +104,16 @@ au BufEnter,InsertEnter,InsertLeave * 3match ErrorMsg /^\(<\|=\|>\)\{7\}\([^=].\
 " 一般设置 {{{2
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-if has("vms")
-    set nobackup      " do not keep a backup file, use versions instead
-else
-    set backup        " keep a backup file
-endif
+"if has("vms")
+    "set nobackup      " do not keep a backup file, use versions instead
+"else
+    "set backup        " keep a backup file
+"endif
+set nobackup
+set noswapfile
 set ruler           " show the cursor position all the time
 set ttyfast         " smoother changes
+set lazyredraw
 set showcmd         " display incomplete commands
 set incsearch       " do incremental searching
 set ignorecase
@@ -154,6 +157,9 @@ set laststatus=2
 set pastetoggle=<F3>
 set report=0
 set cursorline      " 高亮当前行
+"au WinLeave * setlocal nocursorline
+"au WinEnter,BufRead * setlocal cursorline
+"au TabEnter  * setlocal cursorline
 "set cuc             " 高亮当前列
 set wildignore+=*.o,*.obj
 set wildignore+=*~,*.sw?
@@ -171,7 +177,7 @@ endif
 set completeopt=menu,menuone,longest
 
 autocmd FileType c,cpp,python,sh,go set list
-set listchars=tab:\|-,extends:>,nbsp:.,precedes:<,trail:~ "eol:¶
+set listchars=tab:\|.,extends:>,nbsp:.,precedes:<,trail:~ "eol:¶
 
 autocmd FileType text setlocal textwidth=78 " For all text files set 'textwidth' to 78 characters.
 
@@ -369,7 +375,13 @@ endfunction
 " NERDTree {{{2
 "Used by winmanager
 let g:NERDTree_title = "[NERDTree]"
+let g:NERDTreeShowBookmarks=1
 nmap <silent> wm :NERDTreeToggle <CR>
+
+" close vim if the only window open is nerdtree
+au BufEnter * if (winnr("$") == 1 &&
+            \ exists('b:NERDTreeType') &&
+            \ b:NERDTreeType == 'primary') | q | endif
 
 function! NERDTree_Start()
     exec 'NERDTree'
@@ -701,12 +713,18 @@ nnoremap <Leader>r :YRShow<CR>
 " vim-markdown {{{2
 let g:vim_markdown_folding_disabled=1
 
-" vim git gutter
+" vim git gutter {{{2
 let g:gitgutter_enabled = 0
 let g:gitgutter_escape_grep = 1
 let g:gitgutter_realtime = 0
 "let g:gitgutter_eager = 0
 nmap <leader>gt :GitGutterToggle<CR>
+
+" json {{{2
+au FileType json setlocal foldmethod=syntax
+
+" godef {{{2
+let g:godef_split=2 " use tab
 
 " }}}1
 
