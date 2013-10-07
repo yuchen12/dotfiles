@@ -32,6 +32,7 @@ endif
 
 if $GOPATH != ''
     au filetype go set rtp+=$GOPATH/src/github.com/nsf/gocode/vim
+    au filetype go set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 endif
 
 " }}}1
@@ -174,6 +175,8 @@ if v:version >= 703
     set undodir=~/.vim_tmp
 endif
 
+au BufWritePre *.go Fmt
+au BufWritePost *.go execute 'Lint' | cwindow
 set completeopt=menu,menuone,longest
 
 autocmd FileType c,cpp,python,sh,go set list

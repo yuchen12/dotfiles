@@ -10,6 +10,7 @@ vim_tmpdir=~/.vim_tmp
 
 gorepos="github.com/nsf/gocode \
     github.com/jstemmer/gotags \
+    github.com/golang/lint/golint \
     code.google.com/p/rog-go/exp/cmd/godef"
 
 setup_vim()
