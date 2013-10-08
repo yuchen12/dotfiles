@@ -19,6 +19,8 @@ export GOBIN=$GOROOT/bin
 export GOPATH=$HOME/go/pkg
 export PATH=$GOBIN:$PATH
 
+[ -d /usr/lib/ccache ] && export PATH=/usr/lib/ccache:$PATH
+
 unset LOCAL
 
 # if running bash

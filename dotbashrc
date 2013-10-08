@@ -235,12 +235,6 @@ function exist() {
     type $1 > /dev/null 2>&1
 }
 
-if exist ccache; then
-    #export CC="ccache gcc"
-    #export CXX="ccache g++"
-    export PATH=/usr/lib/ccache:$PATH
-fi
-
 if exist screen; then
     a=`screen -ls 2>/dev/null`
     if ! echo "$a" | grep -q '^No Sockets found in'; then
