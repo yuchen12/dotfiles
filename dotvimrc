@@ -120,7 +120,8 @@ set incsearch       " do incremental searching
 set ignorecase
 set smartcase       " 当搜索字符中包含大写字母时，大小写敏感
 set sw=4            " shiftwidth
-set et              " expandtab
+"set et              " expandtab
+set noexpandtab
 set nu              " show line number
 set wm=4            " wrapmargin
 set ts=4            " tabstop
@@ -130,6 +131,7 @@ set matchpairs+=<:> " show matching <> as well
 set updatetime=1000
 set hidden          " allow buffers to go into the background without needing to save
 set mouse=a         " In many terminal emulators the mouse works just fine, thus enable it.
+set shortmess+=I
 
 if exists('$TMUX')
     set ttymouse=xterm2
