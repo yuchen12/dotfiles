@@ -8,84 +8,84 @@ set -e
 vim_bundle_dir=~/.vim_bundle
 vim_tmpdir=~/.vim_tmp
 
-gorepos="github.com/nsf/gocode \
-    github.com/jstemmer/gotags \
-    github.com/golang/lint/golint \
-    code.google.com/p/rog-go/exp/cmd/godef"
+go_repos="github.com/nsf/gocode \
+	github.com/jstemmer/gotags \
+	github.com/golang/lint/golint \
+	code.google.com/p/rog-go/exp/cmd/godef"
 
 setup_vim()
 {
-    [ ! -d $vim_tmpdir ] && (rm -rf $vim_tmpdir && mkdir $vim_tmpdir)
+	[ ! -d $vim_tmpdir ] && (rm -rf $vim_tmpdir && mkdir -p $vim_tmpdir)
 
-    # neobundle
-    rm -rf $vim_bundle_dir && mkdir $vim_bundle_dir
-    git clone http://github.com/Shougo/neobundle.vim $vim_bundle_dir/neobundle
-    vim  +qa
+	# neobundle
+	rm -rf $vim_bundle_dir && mkdir -p $vim_bundle_dir
+	git clone http://github.com/Shougo/neobundle.vim $vim_bundle_dir/neobundle
+	vim  +qa
 }
 
 update_vim_plugins()
 {
-    vim +NeoBundleUpdate +qa
+	vim +NeoBundleUpdate +qa
 }
 
 make_link()
 {
-    from=$1
-    to=$2
+	from=$1
+	to=$2
 
-    if [ -e $to ]; then
-        rm -rfv $to.old
-        mv -f $to $to.old
-    fi
+	# backup if it exists and is not a symbolic link
+	if [ -e $to -a ! -L $to ]; then
+		rm -rfv $to.old && mv -f $to $to.old
+	fi
 
-    ln -sfv $from $to
+	ln -sfTv $from $to # -T always treat $to as normal files
 }
 
 setup_link()
 {
-    make_link $PWD/dotbashrc               ~/.bashrc
-    make_link $PWD/dotbash_aliases.sh      ~/.bash_aliases.sh
-    make_link $PWD/dotgitconfig            ~/.gitconfig
-    make_link $PWD/dotscreenrc             ~/.screenrc
-    make_link $PWD/dottoprc                ~/.toprc
-    make_link $PWD/dotgdbinit              ~/.gdbinit
-    make_link $PWD/git-completion.bash     ~/.git-completion.bash
-    make_link $PWD/git-prompt.sh           ~/.git-prompt.sh
-    make_link $PWD/dotemacs                ~/.emacs
-    make_link $PWD/dottmux.conf            ~/.tmux.conf
-    make_link $PWD/bash_completion_tmux.sh ~/.bash_completion_tmux.sh
-    make_link $PWD/dircolors.256dark       ~/.dircolors
-    make_link $PWD/dotprofile              ~/.bash_profile
-    make_link $PWD/powerline               ~/.config/powerline
-    make_link $PWD/dotvimrc                ~/.vimrc
-    make_link $PWD/dotvim                  ~/.vim
-    make_link $PWD/dothgrc                 ~/.hgrc
+	make_link $PWD/dotbashrc               ~/.bashrc
+	make_link $PWD/dotbash_aliases.sh      ~/.bash_aliases.sh
+	make_link $PWD/dotgitconfig            ~/.gitconfig
+	make_link $PWD/dotscreenrc             ~/.screenrc
+	make_link $PWD/dottoprc                ~/.toprc
+	make_link $PWD/dotgdbinit              ~/.gdbinit
+	make_link $PWD/git-completion.bash     ~/.git-completion.bash
+	make_link $PWD/git-prompt.sh           ~/.git-prompt.sh
+	make_link $PWD/dotemacs                ~/.emacs
+	make_link $PWD/dottmux.conf            ~/.tmux.conf
+	make_link $PWD/bash_completion_tmux.sh ~/.bash_completion_tmux.sh
+	make_link $PWD/dircolors.256dark       ~/.dircolors
+	make_link $PWD/dotprofile              ~/.bash_profile
+	make_link $PWD/powerline               ~/.config/powerline
+	make_link $PWD/dotvimrc                ~/.vimrc
+	make_link $PWD/dotvim                  ~/.vim
+	make_link $PWD/dothgrc                 ~/.hgrc
 }
 
 update()
 {
-    setup_link
-    echo "go get -u $gorepos"
-    go get -u $gorepos
-    update_vim_plugins
+	setup_link
+	echo "go get -u $go_repos"
+	go get -u $go_repos
+	update_vim_plugins
 }
 
 
 install()
 {
-    mkdir -p ~/.config >/dev/null 2>&1
-    setup_link
-    . ~/.bash_profile
-    echo "go get $gorepos"
-    go get $gorepos
-    setup_vim
+	mkdir -p ~/.config >/dev/null 2>&1 # for powerline config files
+	setup_link
+	. ~/.bash_profile
+	echo "go get $go_repos"
+	go get $go_repos
+	setup_vim
 }
 
 basename=`basename $0`
 
 if [ $basename = "install" ]; then
-    install
+	install
 elif [ $basename = "update" ]; then
-    update
+	update
 fi
 
