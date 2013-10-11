@@ -10,14 +10,17 @@
 
 LOCAL=$HOME/local
 
-export LD_LIBRARY_PATH=$LOCAL/lib64:$LOCAL/lib:$LD_LIBRARY_PATH
-export PATH=$LOCAL/bin:$PATH
-export PKG_CONFIG_PATH=$LOCAL/lib/pkgconfig:$PKG_CONFIG_PATH
+[ -d $LOCAL/lib ]           && export LD_LIBRARY_PATH=$LOCAL/lib:$LD_LIBRARY_PATH
+[ -d $LOCAL/lib64 ]         && export LD_LIBRARY_PATH=$LOCAL/lib64:$LD_LIBRARY_PATH
+[ -d $LOCAL/bin ]           && export PATH=$LOCAL/bin:$PATH
+[ -d $LOCAL/lib/pkgconfig ] && export PKG_CONFIG_PATH=$LOCAL/lib/pkgconfig:$PKG_CONFIG_PATH
 
-export GOROOT=$HOME/go
-export GOBIN=$GOROOT/bin
-export GOPATH=$HOME/go/pkg
-export PATH=$GOBIN:$PATH
+if [ -d $HOME/go ]; then
+    export GOROOT=$HOME/go
+    export GOBIN=$GOROOT/bin
+    export GOPATH=$HOME/go/pkg
+    export PATH=$GOBIN:$PATH
+fi
 
 [ -d /usr/lib/ccache ] && export PATH=/usr/lib/ccache:$PATH
 
@@ -27,7 +30,7 @@ unset LOCAL
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
+        . "$HOME/.bashrc"
     fi
 fi
 
