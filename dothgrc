@@ -6,4 +6,8 @@ merge = internal:merge
 progress=
 graphlog=
 color=
+purge=
+pager=
+[pager]
+pager = LESS='RF' less
 [merge-tools]

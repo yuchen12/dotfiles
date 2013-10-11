@@ -24,8 +24,8 @@ NeoBundle 'Shougo/vimproc', {
 
 NeoBundle 'wincent/Command-T', {
             \'build': {
-            \   'unix': 'cd ruby/command-t && ruby extconf.rb && make -j4',
-            \   'mac': 'cd ruby/command-t && ruby extconf.rb && make -j4',
+            \   'unix': 'bash -c "cd ruby/command-t && ruby extconf.rb && make -j4"',
+            \   'mac': 'bash -c "cd ruby/command-t && ruby extconf.rb && make -j4"',
             \   },
             \}
 
