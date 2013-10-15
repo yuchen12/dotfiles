@@ -3,6 +3,9 @@
 " neobundle 设置 {{{1
 " ===================================
 
+filetype off
+filetype plugin indent off
+
 set nocompatible
 if has('vim_starting')
     set rtp+=~/.vim_bundle/neobundle
@@ -177,8 +180,9 @@ if v:version >= 703
     set undodir=~/.vim_tmp
 endif
 
+au FileType go compiler go
 au BufWritePre *.go Fmt
-au BufWritePost *.go execute 'Lint' | cwindow
+"au BufWritePost *.go execute 'Lint' | cwindow
 set completeopt=menu,menuone,longest
 
 autocmd FileType c,cpp,python,sh,go set list
