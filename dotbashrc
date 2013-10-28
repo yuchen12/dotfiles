@@ -74,11 +74,11 @@ if [ -n "$GOROOT" -a -f "$GOROOT/misc/bash/go" ]; then
     source "$GOROOT/misc/bash/go"
 fi
 
-has_git=no
+function exist() {
+    type $1 > /dev/null 2>&1
+}
 
-if type git > /dev/null 2>&1; then
-    has_git=yes
-
+if exist git; then
     ## see ~/.git-completion.bash && ~/.git-prompt.sh
     GIT_PS1_SHOWDIRTYSTATE=1
     GIT_PS1_SHOWSTASHSTATE=1
@@ -89,8 +89,6 @@ if type git > /dev/null 2>&1; then
     source ~/.git-completion.bash
     source ~/.git-prompt.sh
 fi
-
-source ~/.bash_completion_tmux.sh
 
 if [ "$color_prompt" = yes ]; then
     ## color settings
@@ -169,7 +167,7 @@ if [ "$color_prompt" = yes ]; then
         PS1=${ERROR_COLOR}'$(a=$?;if [ $a -ne 0 ];then echo "[$a]";fi)'
         PS1="${PS1}${CHROOT_COLOR}${debian_chroot:+($debian_chroot)}"
         PS1="${PS1}${USER_NAME_COLOR}\u${AT_COLOR}@${HOST_COLOR}\h${SSH_COLOR}"'$(if [ -n "$SSH_CLIENT" ];then echo "{SSH}";fi)'"${CLEAR_COLOR}:${PWD_COLOR}\w"
-        if [ x$has_git = xyes ]; then
+        if exist git; then
             # show git branch and other informations
             PS1=${PS1}${GIT_COLOR}'$(__git_ps1 "(%s)")'
         fi
@@ -181,8 +179,7 @@ else
 fi
 unset color_prompt force_color_prompt
 unset ERROR_COLOR CHROOT_COLOR USER_NAME_COLOR AT_COLOR \
-    HOST_COLOR PWD_COLOR GIT_COLOR PROMT_CHAR_COLOR \
-    has_git SSH_COLOR
+    HOST_COLOR PWD_COLOR GIT_COLOR PROMT_CHAR_COLOR SSH_COLOR
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -235,10 +232,6 @@ if [ -f ~/.bashrc.local ]; then
     . ~/.bashrc.local
 fi
 
-function exist() {
-    type $1 > /dev/null 2>&1
-}
-
 if exist screen; then
     a=`screen -ls 2>/dev/null`
     if ! echo "$a" | grep -q '^No Sockets found in'; then
@@ -249,6 +242,8 @@ if exist screen; then
 fi
 
 if exist tmux; then
+    source ~/.bash_completion_tmux.sh
+
     a=`tmux ls 2>/dev/null`
     if [ -n "$a" ]; then
         echo ">>> tmux sessions:"
