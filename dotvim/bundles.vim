@@ -41,6 +41,7 @@ NeoBundleLazy 'pythoncomplete', {'autoload': {'filetypes': 'python'}}
 
 NeoBundle 'Lokaltog/powerline', { 'rtp': '~/.vim_bundle/powerline/powerline/bindings/vim' }
 
+NeoBundleLazy 'mattn/emmet-vim',  {'autoload': {'filetypes': ['css', 'html']} }
 NeoBundleLazy 'tangledhelix/vim-octopress', {'autoload': {'filetypes': 'markdown'} }
 NeoBundleLazy "elzr/vim-json", {'autoload': {'filetypes': 'json'}}
 NeoBundleLazy 'jansenm/vim-cmake', {'autoload': {'filetypes': 'cmake'}}

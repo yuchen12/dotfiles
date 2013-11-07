@@ -735,10 +735,27 @@ au FileType json setlocal foldmethod=syntax
 " godef {{{2
 let g:godef_split=2 " use tab
 
+" emmet-vim {{{2
+let g:user_emmet_install_global=0
+au FileType html,css EmmetInstall
+"let g:user_emmet_expandabbr_key='<C-e>'
+let g:user_emmet_settings = {
+			\ 'php' : {
+			\ 'extends' : 'html',
+			\ 'filters' : 'c',
+			\ },
+			\ 'xml' : {
+			\ 'extends' : 'html',
+			\ },
+			\ 'haml' : {
+			\ 'extends' : 'html',
+			\ },
+			\}
+
 " }}}1
 
 " Use local vimrc if available {{{1
 if filereadable(expand("~/.vimrc.local"))
-    source ~/.vimrc.local
+	source ~/.vimrc.local
 endif
 " }}}1
