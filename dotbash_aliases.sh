@@ -5,7 +5,6 @@ alias cp='cp -i'
 alias rm='rm -i'
 alias ..='cd ..'
 alias tree='tree -N'
-alias lf='LANG=zh_CN.UTF-8 leafpad'
 alias gv='gvim'
 alias wine='LANG=zh_CN.utf8 wine'
 alias cl='clang'
@@ -21,6 +20,9 @@ alias em=emacs
 alias ipy=ipython
 alias less='less -R'
 alias sudo='sudo ' # to pass aliases through sudo
+alias g='git '
+complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null \
+	|| complete -o default -o nospace -F _git g
 
 function svndiff()
 {
