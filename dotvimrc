@@ -712,7 +712,7 @@ set noshowmode
 nmap <silent> <leader>j :LustyJuggler<CR>
 
 " yankring {{{2
-let g:yankring_history_dir='~/.vim_tmp'
+let g:yankring_history_dir='$HOME/.vim_tmp'
 nnoremap <Leader>r :YRShow<CR>
 
 " vim-markdown {{{2
