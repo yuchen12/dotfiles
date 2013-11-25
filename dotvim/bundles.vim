@@ -13,7 +13,7 @@ NeoBundleLazy 'scrooloose/nerdtree', { 'autoload': { 'commands': 'NERDTreeToggle
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundleLazy 'Shougo/neocomplete', {'autoload': {'insert': 1}}
-NeoBundleLazy 'Shougo/neosnippet', {'autoload': {'insert': 1}}
+NeoBundleLazy 'Shougo/neosnippet.vim', {'autoload': {'insert': 1}}
 
 NeoBundle 'Shougo/vimproc', {
             \ 'build': {
@@ -53,7 +53,7 @@ NeoBundleLazy 'TaskList.vim', {'autoload': {'commands': 'TaskList'}}
 "NeoBundle 'winmanager'
 "NeoBundle 'bufexplorer.zip'
 
-NeoBundle 'c.vim'
+NeoBundleLazy 'c.vim', {'autoload': {'filetypes': ['c', 'cpp']}}
 NeoBundleLazy 'a.vim', {'autoload': {'filetypes': ['c', 'cpp']}}
 NeoBundleLazy 'Rip-Rip/clang_complete', {'autoload': {'insert': 1, 'filetypes': ['c', 'cpp']}}
 
