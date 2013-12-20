@@ -12,6 +12,7 @@ alias cl++='clang++'
 alias mk='make'
 alias sc=screen
 alias ta='tmux -2 a'
+alias td='tmux -2 a -d'
 alias tml='tmux ls'
 alias tmux='tmux -2'
 alias tmk='tmux kill-session'
