@@ -38,26 +38,26 @@
     email = yuchen12@gmail.com
 [alias]
     a = add -v
-	ad = add -v
+    ad = add -v
     cp = cherry-pick
     co = checkout
     mg = merge --no-edit
     ci = commit -s
     cs = commit -s
     br = branch -vv
-	s = status
+    s = status
     st = status
     ss = status --short
-	d = diff
+    d = diff
     df = diff
-	dc = diff --staged
+    dc = diff --staged
     ;dw = diff --word-diff
     dt = difftool
     mt = mergetool
     cf = config
     lg = log --decorate
-	l = log --decorate
-	oneline = log --oneline --decorate
+    l = log --decorate
+    oneline = log --oneline --decorate
     lp = log --decorate -p
     ;lw = log --decorate -p --word-diff
     last = log --decorate -1
@@ -67,14 +67,14 @@
     glg = log --oneline --graph --decorate
     gl = log --oneline --graph --decorate
     sb = submodule
-	rb = rebase
+    rb = rebase
 [merge]
     tool = kdiff3
 [core]
     quotepath = false
     pager = less -r
 [push]
-	default = simple
+    default = simple
 [log]
-	decorate = true
-	abbrevCommit = true
+    decorate = true
+    abbrevCommit = true

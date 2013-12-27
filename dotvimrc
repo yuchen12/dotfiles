@@ -168,6 +168,7 @@ set wildignore+=*~,*.sw?
 set wildignore+=.git,.svn,CVS,.hg
 set infercase
 set display=lastline " when a line is long, don't omit it in @
+set clipboard=unnamed,unnamedplus
 
 set history=500
 set undolevels=1000

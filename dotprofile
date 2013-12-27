@@ -10,10 +10,17 @@
 
 LOCAL=$HOME/local
 
-[ -d $LOCAL/lib ]           && export LD_LIBRARY_PATH=$LOCAL/lib:$LD_LIBRARY_PATH
-[ -d $LOCAL/lib64 ]         && export LD_LIBRARY_PATH=$LOCAL/lib64:$LD_LIBRARY_PATH
+# LD_LIBRARY_PATH is bad
+# http://xahlee.info/UnixResource_dir/_/ldpath.html
+# http://linuxmafia.com/faq/Admin/ld-lib-path.html
+# https://blogs.oracle.com/ali/entry/avoiding_ld_library_path_the
+# http://stackoverflow.com/questions/882110/gurus-say-that-ld-library-path-is-bad-whats-the-alternative
+#[ -d $LOCAL/lib ]           && export LD_LIBRARY_PATH=$LOCAL/lib:$LD_LIBRARY_PATH
+#[ -d $LOCAL/lib64 ]         && export LD_LIBRARY_PATH=$LOCAL/lib64:$LD_LIBRARY_PATH
+
 [ -d $LOCAL/bin ]           && export PATH=$LOCAL/bin:$PATH
 [ -d $LOCAL/lib/pkgconfig ] && export PKG_CONFIG_PATH=$LOCAL/lib/pkgconfig:$PKG_CONFIG_PATH
+[ -d $LOCAL/share/man ]     && export MANPATH=$LOCAL/share/man:$MANPATH
 
 if [ -d $HOME/go ]; then
     export GOROOT=$HOME/go
@@ -22,7 +29,12 @@ if [ -d $HOME/go ]; then
     export PATH=$GOBIN:$PATH
 fi
 
-[ -d /usr/lib/ccache ] && export PATH=/usr/lib/ccache:$PATH
+for path in $LOCAL /usr; do
+    if [ -d $path/lib/ccache ]; then
+        export PATH=$path/lib/ccache:$PATH
+        break
+    fi
+done
 
 unset LOCAL
 
