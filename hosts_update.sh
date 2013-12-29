@@ -23,6 +23,4 @@ for f in $filters; do
 done
 
 cp -v $hosts $hosts.bak
-cp -v $tmp_hosts $hosts
-
-rm -rf $tmp_file
+mv -v $tmp_hosts $hosts
