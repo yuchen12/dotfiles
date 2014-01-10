@@ -251,3 +251,5 @@ if exist tmux; then
     fi
     unset a
 fi
+
+[ -d $HOME/.rvm/bin ] && PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

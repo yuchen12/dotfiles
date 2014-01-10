@@ -49,12 +49,8 @@ setup_link()
 	make_link $PWD/dotscreenrc             ~/.screenrc
 	make_link $PWD/dottoprc                ~/.toprc
 	make_link $PWD/dotgdbinit              ~/.gdbinit
-	make_link $PWD/git-completion.bash     ~/.git-completion.bash
-	make_link $PWD/git-prompt.sh           ~/.git-prompt.sh
 	make_link $PWD/dotemacs                ~/.emacs
 	make_link $PWD/dottmux.conf            ~/.tmux.conf
-	make_link $PWD/bash_completion_tmux.sh ~/.bash_completion_tmux.sh
-	make_link $PWD/dircolors.256dark       ~/.dircolors
 	make_link $PWD/dotprofile              ~/.bash_profile
 	make_link $PWD/powerline               ~/.config/powerline
 	make_link $PWD/dotvimrc                ~/.vimrc
@@ -62,22 +58,31 @@ setup_link()
 	make_link $PWD/dothgrc                 ~/.hgrc
 }
 
+update_files()
+{
+	./update-dircolor.sh
+	./update-git-files.sh
+	./update-tmux-files.sh
+}
+
 update()
 {
 	setup_link
 	echo "go get -u $go_repos"
 	go get -u $go_repos
+	update_files
 	update_vim_plugins
 }
 
-
 install()
 {
+	[ -f ~/.profile ] && mv -v ~/.profile ~/.profile.bak
 	mkdir -p ~/.config >/dev/null 2>&1 # for powerline config files
 	setup_link
 	. ~/.bash_profile
 	echo "go get $go_repos"
 	go get $go_repos
+	update_files
 	setup_vim
 }
 

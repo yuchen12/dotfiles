@@ -10,7 +10,7 @@ us_url="https://raw.github.com/smarthosts/SmartHosts/master/trunk/hosts_us" # us
 url=$bj_url
 hosts=/etc/hosts
 tmp_hosts=/tmp/hosts
-filters="GitHub" # "Google\ Services"
+filters= # "GitHub" "Google\ Services"
 
 sed '/SmartHosts START/,/SmartHosts END/d' $hosts > $tmp_hosts
 
