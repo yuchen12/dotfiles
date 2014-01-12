@@ -48,24 +48,24 @@
     s = status
     st = status
     ss = status --short
-    d = diff
-    df = diff
-    dc = diff --staged
+    d = diff -D
+    df = diff -D
+    dc = diff -D --staged
     ;dw = diff --word-diff
     dt = difftool
     mt = mergetool
     cf = config
-    lg = log --decorate
-    l = log --decorate
-    oneline = log --oneline --decorate
-    lp = log --decorate -p
+    lg = log --decorate -D
+    l = log --decorate -D
+    oneline = log --pretty=format:\"%C(auto)%h - %s %d %C(8)%an@%ad%Creset\" --date=iso
+    ol = log --pretty=format:\"%C(auto)%h - %s %d %C(8)%an@%ad%Creset\" --date=iso
+    glog = log --pretty=format:\"%C(auto)%h - %s %d %C(8)%an@%ad%Creset\" --date=iso --graph
+    gl = log --pretty=format:\"%C(auto)%h - %s %d %C(8)%an@%ad%Creset\" --date=iso --graph
+    lp = log --decorate -p -D
     ;lw = log --decorate -p --word-diff
     last = log --decorate -1
     lognomerge = log --no-merges --decorate
     lnomerge = log --no-merges --decorate
-    glog = log --oneline --graph --decorate
-    glg = log --oneline --graph --decorate
-    gl = log --oneline --graph --decorate
     sb = submodule
     rb = rebase
 [merge]
