@@ -22,6 +22,7 @@ alias ipy=ipython
 alias less='less -R'
 alias sudo='sudo ' # to pass aliases through sudo
 alias g='git'
+alias dk='docker'
 complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null \
 	|| complete -o default -o nospace -F _git g
 
