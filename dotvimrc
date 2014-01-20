@@ -665,10 +665,10 @@ let g:syntastic_cpp_config_file = '.__config'
 
 nnoremap <silent> <Leader>sk :SyntasticCheck<CR>
 
-" Command-T {{{2
-let g:CommandTMaxHeight = 20
-nnoremap <silent> <Leader>ff :CommandT<CR>
-nnoremap <silent> <Leader>bb :CommandTBuffer<CR>
+" ctrlp {{{2
+nnoremap <silent> <Leader>ff :CtrlP<CR>
+nnoremap <silent> <Leader>bb :CtrlPBuffer<CR>
+nnoremap <silent> <Leader>mm :CtrlPMRUFiles<CR>
 
 " MiniBufExplorer {{{2
 "let g:miniBufExplVSplit=25

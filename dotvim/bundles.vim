@@ -22,12 +22,7 @@ NeoBundle 'Shougo/vimproc', {
             \   },
             \}
 
-NeoBundle 'wincent/Command-T', {
-            \'build': {
-            \   'unix': 'bash -c "cd ruby/command-t && ruby extconf.rb && make -j4"',
-            \   'mac': 'bash -c "cd ruby/command-t && ruby extconf.rb && make -j4"',
-            \   },
-            \}
+NeoBundle 'kien/ctrlp.vim'
 
 NeoBundleLazy 'honza/vim-snippets', {'autoload': {'insert': 1}}
 NeoBundle 'tpope/vim-surround'
