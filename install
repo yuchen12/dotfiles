@@ -52,7 +52,6 @@ setup_link()
 	make_link $PWD/dotemacs                ~/.emacs
 	make_link $PWD/dottmux.conf            ~/.tmux.conf
 	make_link $PWD/dotprofile              ~/.bash_profile
-	make_link $PWD/powerline               ~/.config/powerline
 	make_link $PWD/dotvimrc                ~/.vimrc
 	make_link $PWD/dotvim                  ~/.vim
 	make_link $PWD/dothgrc                 ~/.hgrc
@@ -77,7 +76,6 @@ update()
 install()
 {
 	[ -f ~/.profile ] && mv -v ~/.profile ~/.profile.bak
-	mkdir -p ~/.config >/dev/null 2>&1 # for powerline config files
 	setup_link
 	. ~/.bash_profile
 	echo "go get $go_repos"
