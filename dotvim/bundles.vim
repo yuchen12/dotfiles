@@ -58,7 +58,6 @@ NeoBundle 'YankRing.vim'
 NeoBundle 'Align'
 NeoBundleLazy 'DrawIt', {'autoload': {'commands': 'DrawIt'}}
 NeoBundle 'VisIncr'
-NeoBundle 'mru.vim'
 "NeoBundle 'sudo.vim'
 NeoBundleLazy 'SudoEdit.vim', {'autoload': {'commands': ['SudoRead', 'SudoEdit']}}
 "NeoBundle 'FuzzyFinder'
