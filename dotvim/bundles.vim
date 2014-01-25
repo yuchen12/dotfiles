@@ -1,8 +1,8 @@
 NeoBundle 'tpope/vim-fugitive', { 'external_commands': 'git' }
 NeoBundle 'gregsexton/gitv', { 'external_commands': 'git' }
 NeoBundle 'airblade/vim-gitgutter', { 'external_commands': 'git' }
-NeoBundle 'kshenoy/vim-signature', { 'external_commands': 'git' }
 NeoBundleLazy 'nathanaelkane/vim-indent-guides', {'autoload': {'commands': 'IndentGuidesToggle'} }
+NeoBundle 'kshenoy/vim-signature'
 
 NeoBundle 'Lokaltog/vim-easymotion'
 
@@ -14,6 +14,7 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundleLazy 'Shougo/neocomplete', {'autoload': {'insert': 1}}
 NeoBundleLazy 'Shougo/neosnippet.vim', {'autoload': {'insert': 1}}
+NeoBundleLazy 'Shougo/neosnippet-snippets', {'autoload': {'insert': 1}}
 
 NeoBundle 'Shougo/vimproc', {
             \ 'build': {
