@@ -689,12 +689,12 @@ nnoremap <Leader>r :YRShow<CR>
 " vim-markdown {{{2
 let g:vim_markdown_folding_disabled=1
 
-" vim git gutter {{{2
-let g:gitgutter_enabled = 0
-let g:gitgutter_escape_grep = 1
-let g:gitgutter_realtime = 0
-"let g:gitgutter_eager = 0
-nmap <leader>gt :GitGutterToggle<CR>
+" vim-signify
+let g:signify_mapping_toggle = '<leader>gt'
+"let g:signify_disable_by_default = 1
+let g:signify_mapping_next_hunk = '<leader>gj'
+let g:signify_mapping_prev_hunk = '<leader>gk'
+let g:signify_mapping_toggle_highlight = '<leader>gh'
 
 " json {{{2
 au FileType json setlocal foldmethod=syntax
