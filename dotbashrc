@@ -164,7 +164,7 @@ if [ "$color_prompt" = yes ]; then
         PS1=${PS1}'\[\033[1;41;37m\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$\[\033[0m\] '
     else
         # show return value of the last command if it's not zero
-        PS1=${ERROR_COLOR}'$(a=$?;if [ $a -ne 0 ];then echo "[$a]";fi)'
+        PS1=${ERROR_COLOR}'$(a=$?;if [ $a -ne 0 ];then echo "<$a>";fi)'
         PS1="${PS1}${CHROOT_COLOR}${debian_chroot:+($debian_chroot)}"
         PS1="${PS1}${USER_NAME_COLOR}\u${AT_COLOR}@${HOST_COLOR}\h${SSH_COLOR}"'$(if [ -n "$SSH_CLIENT" ];then echo "{SSH}";fi)'"${CLEAR_COLOR}:${PWD_COLOR}\w"
         if exist git; then
