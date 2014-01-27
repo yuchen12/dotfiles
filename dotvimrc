@@ -281,6 +281,9 @@ let python_highlight_all = 1
 " shell {{{2
 autocmd BufNewFile *.sh 0r ~/.vim/templates/main.sh
 
+" ruby {{{2
+au FileType ruby set sw=2
+
 " quickfix {{{2
 au QuickfixCmdPost make call QfMakeConv() " 编码转换
 " 在有错误时自动打开quickfix窗口
