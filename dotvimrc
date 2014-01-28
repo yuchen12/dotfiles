@@ -283,6 +283,7 @@ autocmd BufNewFile *.sh 0r ~/.vim/templates/main.sh
 
 " ruby {{{2
 au FileType ruby set sw=2
+autocmd BufNewFile *.rb 0r ~/.vim/templates/main.rb
 
 " quickfix {{{2
 au QuickfixCmdPost make call QfMakeConv() " 编码转换
