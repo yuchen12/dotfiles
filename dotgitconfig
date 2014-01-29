@@ -72,7 +72,7 @@
     tool = kdiff3
 [core]
     quotepath = false
-    pager = less -r
+    pager = less -+S
     excludesfile = ~/.gitignore
 [push]
     default = simple
