@@ -651,7 +651,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=95
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=150
 
 " airline {{{2
-let g:airline_theme='powerlineish'
+let g:airline_theme='kalisi'
 set noshowmode
 let g:airline_inactive_collapse=1
 if !exists('g:airline_symbols')
@@ -671,9 +671,9 @@ let g:airline_powerline_fonts=1
 
 let g:airline_theme_patch_func = 'AirlineThemePatch'
 function! AirlineThemePatch(palette)
-    if g:airline_theme == 'powerlineish'
+    if g:airline_theme == 'kalisi'
         let a:palette.normal_modified = {
-                    \ 'airline_c': ['#ffffff', '#ff3535', 'white', 197, ''],
+                    \ 'airline_c': ['#ff3535', '', 197, '', ''],
                     \}
         let a:palette.insert_modified = a:palette.normal_modified
         let a:palette.replace_modified = a:palette.normal_modified
