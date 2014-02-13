@@ -23,8 +23,10 @@ alias less='less -R'
 alias sudo='sudo ' # to pass aliases through sudo
 alias g='git'
 alias dk='docker'
+#if dir,cd into it. if file ,cd into where the file is
+goto(){ [ -d "$1" ] && cd "$1" || cd "$(dirname "$1")"; }
 complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null \
-	|| complete -o default -o nospace -F _git g
+    || complete -o default -o nospace -F _git g
 
 function svndiff()
 {

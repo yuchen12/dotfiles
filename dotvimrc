@@ -163,12 +163,15 @@ set cursorline      " 高亮当前行
 "au WinEnter,BufRead * setlocal cursorline
 "au TabEnter  * setlocal cursorline
 "set cuc             " 高亮当前列
-set wildignore+=*.o,*.obj
+set wildignore+=*.o,*.obj,*.pyc,*.class
 set wildignore+=*~,*.sw?
 set wildignore+=.git,.svn,CVS,.hg
 set infercase
 set display=lastline " when a line is long, don't omit it in @
 set clipboard=unnamed,unnamedplus
+
+"When joining lines, don't insert a space between two multi-byte characters.
+set formatoptions+=B
 
 set history=500
 set undolevels=1000
@@ -640,6 +643,10 @@ nnoremap <silent> <Leader>sk :SyntasticCheck<CR>
 nnoremap <silent> <Leader>ff :CtrlP<CR>
 nnoremap <silent> <Leader>bb :CtrlPBuffer<CR>
 nnoremap <silent> <Leader>mm :CtrlPMRUFiles<CR>
+let g:ctrlp_custom_ignore = {
+            \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+            \ 'file': '\v\.(exe|so|dll|o|a|d|jpg|jpeg|png|bmp|gif)$',
+            \ }
 
 " Indent Guides {{{2
 nmap <silent> <leader>ig <Plug>IndentGuidesToggle
