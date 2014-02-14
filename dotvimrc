@@ -501,18 +501,6 @@ if g:neocomplete#enable_complete_select
     set completeopt+=noinsert
 endif
 
-" Define Dictionary
-" need to run :NeoCompleteDictionaryMakeCache c
-" and :NeoCompleteDictionaryMakeCache cpp
-let g:neocomplete#sources#dictionary#dictionaries = {
-            \'default':'',
-            \'cpp':'~/.vim_bundle/c.vim/c-support/wordlists/c-c++-keywords.list,
-            \~/.vim_bundle/c.vim/c-support/wordlists/k+r.list,
-            \~/.vim_bundle/c.vim/c-support/wordlists/stl_index.list',
-            \'c':'~/.vim_bundle/c.vim/c-support/wordlists/c-c++-keywords.list,
-            \~/.vim_bundle/c.vim/c-support/wordlists/k+r.list,
-            \~/.vim_bundle/c.vim/c-support/wordlists/stl_index.list'}
-
 let g:neocomplete#force_overwrite_completefunc = 1
 
 if !exists('g:neocomplete#sources#omni#input_patterns')

@@ -1,6 +1,5 @@
 NeoBundle 'tpope/vim-fugitive', { 'external_commands': 'git' }
 NeoBundle 'gregsexton/gitv', { 'external_commands': 'git' }
-NeoBundleLazy 'nathanaelkane/vim-indent-guides', {'autoload': {'commands': 'IndentGuidesToggle'} }
 NeoBundle 'kshenoy/vim-signature'
 NeoBundle 'mhinz/vim-signify'
 
@@ -49,7 +48,6 @@ NeoBundleLazy 'TaskList.vim', {'autoload': {'commands': 'TaskList'}}
 "NeoBundle 'winmanager'
 "NeoBundle 'bufexplorer.zip'
 
-NeoBundleLazy 'c.vim', {'autoload': {'filetypes': ['c', 'cpp']}}
 NeoBundleLazy 'a.vim', {'autoload': {'filetypes': ['c', 'cpp']}}
 NeoBundleLazy 'Rip-Rip/clang_complete', {'autoload': {'insert': 1, 'filetypes': ['c', 'cpp']}}
 
