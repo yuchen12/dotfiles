@@ -61,6 +61,7 @@ NeoBundle 'VisIncr'
 "NeoBundle 'sudo.vim'
 NeoBundleLazy 'SudoEdit.vim', {'autoload': {'commands': ['SudoRead', 'SudoEdit']}}
 "NeoBundle 'FuzzyFinder'
+NeoBundle 'bronson/vim-trailing-whitespace'
 
 " color scheme
 "NeoBundle 'desert-warm-256'
