@@ -27,7 +27,6 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundleLazy 'honza/vim-snippets', {'autoload': {'insert': 1}}
 NeoBundle 'tpope/vim-surround'
 "NeoBundle 'fholgado/minibufexpl.vim'
-NeoBundle 'sjbach/lusty'
 
 NeoBundleLazy 'klen/python-mode', {'autoload': {'filetypes': 'python'}}
 NeoBundleLazy 'python.vim', {'autoload': {'filetypes': 'python'}}

@@ -677,10 +677,6 @@ function! AirlineThemePatch(palette)
     endif
 endfunction
 
-" lusty {{{2
-",lj ,lf, lb
-nmap <silent> <leader>j :LustyJuggler<CR>
-
 " yankring {{{2
 let g:yankring_history_dir='$HOME/.vim_tmp'
 nnoremap <Leader>r :YRShow<CR>
