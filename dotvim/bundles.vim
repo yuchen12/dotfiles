@@ -40,7 +40,7 @@ NeoBundleLazy 'tangledhelix/vim-octopress', {'autoload': {'filetypes': 'markdown
 NeoBundleLazy "elzr/vim-json", {'autoload': {'filetypes': 'json'}}
 NeoBundleLazy 'jansenm/vim-cmake', {'autoload': {'filetypes': 'cmake'}}
 
-NeoBundleLazy 'dgryski/vim-godef', {'autoload': {'filetypes': 'go'}}
+NeoBundleLazy 'fatih/vim-go', {'autoload': {'filetypes': 'go'}}
 
 " vim-scripts repos
 NeoBundleLazy 'TaskList.vim', {'autoload': {'commands': 'TaskList'}}

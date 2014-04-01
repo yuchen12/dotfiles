@@ -18,10 +18,6 @@ if filereadable(expand("~/.vim/bundles.vim"))
     source ~/.vim/bundles.vim
 endif
 
-if $GOROOT != ''
-    set rtp+=$GOROOT/misc/vim
-endif
-
 filetype plugin indent on
 syntax enable
 syntax on
@@ -31,11 +27,6 @@ NeoBundleCheck
 if !has('vim_starting')
     " Call on_source hook when reloading .vimrc.
     call neobundle#call_hook('on_source')
-endif
-
-if $GOPATH != ''
-    au filetype go set rtp+=$GOPATH/src/github.com/nsf/gocode/vim
-    au filetype go set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 endif
 
 " }}}1
@@ -180,8 +171,6 @@ if v:version >= 703
     set undodir=~/.vim_tmp
 endif
 
-au FileType go compiler go
-au FileType go au BufWritePre <buffer> Fmt
 "au BufWritePost *.go execute 'Lint' | cwindow
 set completeopt=menu,menuone,longest
 
@@ -552,8 +541,6 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-let g:neocomplete#sources#omni#functions.go = 'gocomplete#Complete'
-
 let g:neocomplete#sources#tags#cache_limit_size = 500000
 
 " key maps {{{3
@@ -694,8 +681,10 @@ let g:signify_mapping_toggle_highlight = '<leader>gh'
 " json {{{2
 au FileType json setlocal foldmethod=syntax
 
-" godef {{{2
-let g:godef_split=2 " use tab
+" vim-go {{{2
+au Filetype go nnoremap <leader>gv :vsp <CR>:exe "GoDef" <CR>
+au Filetype go nnoremap <leader>gs :sp <CR>:exe "GoDef"<CR>
+au Filetype go nnoremap <leader>gd :tab split <CR>:exe "GoDef"<CR>
 
 " emmet-vim {{{2
 let g:user_emmet_install_global=0

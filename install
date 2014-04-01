@@ -8,10 +8,7 @@ set -e
 vim_bundle_dir=~/.vim_bundle
 vim_tmpdir=~/.vim_tmp
 
-go_repos="github.com/nsf/gocode \
-	github.com/jstemmer/gotags \
-	github.com/golang/lint/golint \
-	code.google.com/p/rog-go/exp/cmd/godef"
+go_repos="github.com/jstemmer/gotags"
 
 setup_vim()
 {
