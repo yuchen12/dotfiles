@@ -66,7 +66,7 @@ hi PMenuSbar guifg=#ededed guibg=#202020 guisp=#202020 gui=NONE ctermfg=255 cter
 hi PMenuThumb guifg=#dbdbdb guibg=#303030 guisp=#303030 gui=NONE ctermfg=253 ctermbg=35 cterm=NONE
 
 " 高亮特殊字符
-"hi SpecialKey guifg=#808080 guibg=#343434 guisp=#343434 gui=NONE ctermfg=8 ctermbg=236 cterm=NONE
+hi SpecialKey guifg=#30302b guibg=NONE guisp=#343434 gui=NONE ctermfg=236 ctermbg=NONE cterm=NONE
 
 "hi WildMenu term=standout cterm=standout ctermfg=95 ctermbg=230 guifg=gray guibg=gray17
 
