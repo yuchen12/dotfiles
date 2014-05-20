@@ -36,7 +36,6 @@ NeoBundleLazy 'pythoncomplete', {'autoload': {'filetypes': 'python'}}
 NeoBundle 'bling/vim-airline'
 
 NeoBundleLazy 'mattn/emmet-vim',  {'autoload': {'filetypes': ['css', 'html']} }
-NeoBundleLazy 'tangledhelix/vim-octopress', {'autoload': {'filetypes': 'markdown'} }
 NeoBundleLazy "elzr/vim-json", {'autoload': {'filetypes': 'json'}}
 NeoBundleLazy 'jansenm/vim-cmake', {'autoload': {'filetypes': 'cmake'}}
 

@@ -85,9 +85,6 @@ hi PreCondit cterm=bold ctermfg=160
 "au BufEnter,InsertEnter,InsertLeave * 2match WhitespaceEOL /\s\+$/
 "highlight WhitespaceEOL ctermbg=red guibg=red
 
-" Highlight VCS conflict markers
-au BufEnter,InsertEnter,InsertLeave * 3match ErrorMsg /^\(<\|=\|>\)\{7\}\([^=].\+\)\?$/
-
 " }}}1
 
 " set相关 {{{1
@@ -95,11 +92,6 @@ au BufEnter,InsertEnter,InsertLeave * 3match ErrorMsg /^\(<\|=\|>\)\{7\}\([^=].\
 " 一般设置 {{{2
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-"if has("vms")
-    "set nobackup      " do not keep a backup file, use versions instead
-"else
-    "set backup        " keep a backup file
-"endif
 set nobackup
 set noswapfile
 set ruler           " show the cursor position all the time
@@ -133,8 +125,7 @@ set nopaste
 set smartindent
 set title " change the terminal's title
 set wildmenu
-"set wildmode=longest:full,full
-set wildmode=longest,list,full
+set wildmode=list:longest,full
 set autowrite
 set hlsearch
 set ai              " autoindent
@@ -150,24 +141,34 @@ set laststatus=2
 set pastetoggle=<F3>
 set report=0
 set cursorline      " 高亮当前行
-"au WinLeave * setlocal nocursorline
-"au WinEnter,BufRead * setlocal cursorline
-"au TabEnter  * setlocal cursorline
-"set cuc             " 高亮当前列
 set wildignore+=*.o,*.obj,*.pyc,*.class
 set wildignore+=*~,*.sw?
 set wildignore+=.git,.svn,CVS,.hg
 set infercase
 set display=lastline " when a line is long, don't omit it in @
-set clipboard=unnamed,unnamedplus
+
+if has('clipboard')
+    if has('unnamedplus')  " When possible use + register for copy-paste
+        set clipboard=unnamedplus
+    else         " On mac and Windows, use * register for copy-paste
+        set clipboard=unnamed
+    endif
+endif
+
+" Instead of reverting the cursor to the last position in the buffer, we
+" set it to the first line when editing a git commit message
+au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+
 
 "When joining lines, don't insert a space between two multi-byte characters.
 set formatoptions+=B
 
-set history=500
-set undolevels=1000
-if v:version >= 703
-    set undofile
+set history=1000
+
+if has('persistent_undo')
+    set undofile                " So is persistent undo ...
+    set undolevels=1000         " Maximum number of changes that can be undone
+    set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
     set undodir=~/.vim_tmp
 endif
 
@@ -216,7 +217,9 @@ nnoremap <Leader>q :q<CR>
 
 "nnoremap j gj
 "nnoremap k gk
-cmap w!! w !sudo tee % >/dev/null<CR>:e!<CR><CR>
+"
+" For when you forget to sudo.. Really Write the file.
+cmap w!! w !sudo tee % >/dev/null
 
 " delete trailing whitespaces
 nmap <silent><Leader>et :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
@@ -226,11 +229,12 @@ nnoremap <Leader>al :left<CR>
 nnoremap <Leader>ar :right<CR>
 nnoremap <Leader>ac :center<CR>
 
-" Conflict markers {{{2
-" highlight conflict markers
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-" shortcut to jump to next conflict marker
-nnoremap <silent> <leader>k /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
+" Find merge conflict markers
+map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
+
+" Change Working Directory to that of the current file
+cmap cwd lcd %:p:h
+cmap cd. lcd %:p:h
 
 nmap <silent> <leader>df :DiffOrig<cr>
 
@@ -238,11 +242,17 @@ nmap <silent> <leader>df :DiffOrig<cr>
 nmap <silent> <leader>n :silent noh<CR>
 nmap <silent> <leader>rr :redraw!<cr> " Fast redraw
 
-" Smart way to move btw. windows
-"nmap <C-j> <C-W>j
-"nmap <C-k> <C-W>k
-"nmap <C-h> <C-W>h
-"nmap <C-l> <C-W>l
+" Easier moving in tabs and windows
+" The lines conflict with the default digraph mapping of <C-K>
+nmap <C-J> <C-W>j<C-W>_
+nmap <C-K> <C-W>k<C-W>_
+nmap <C-L> <C-W>l<C-W>_
+nmap <C-H> <C-W>h<C-W>_
+
+" Visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
+
 
 map Q gq            " Don't use Ex mode, use Q for formatting
 
@@ -385,9 +395,10 @@ let NERDTreeShowBookmarks=1
 let NERDChristmasTree=1
 "let NERDTreeKeepTreeInNewTab=1
 nmap <silent> wm :NERDTreeToggle <CR>
+nmap <leader>nt :NERDTreeFind<CR>
 
 " Tagbar {{{2
-nmap tg :TagbarToggle<cr>
+nmap tt :TagbarToggle<cr>
 " open Tabbar automatically on Vim startup only if opening Vim with a supported file/files
 "autocmd VimEnter * nested :call tagbar#autoopen()
 let g:tagbar_auto_showtag=1
@@ -398,31 +409,15 @@ let g:tagbar_sort=0
 " support gotags
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
+    \ 'kinds'     : [  'p:package', 'i:imports:1', 'c:constants', 'v:variables',
+        \ 't:types',  'n:interfaces', 'w:fields', 'e:embedded', 'm:methods',
+        \ 'r:constructor', 'f:functions' ],
     \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
+    \ 'kind2scope' : { 't' : 'ctype', 'n' : 'ntype' },
+    \ 'scope2kind' : { 'ctype' : 't', 'ntype' : 'n' },
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
-\ }
+    \ }
 
 " clang_complete {{{2
 let g:clang_auto_select=0
@@ -452,9 +447,6 @@ map <leader>td :TaskList<CR>
 " Gundo {{{2
 map <leader>gu :GundoToggle<CR>
 
-" csupport {{{2
-" csupport templates path
-let g:C_LocalTemplateFile=$HOME."/.vim/templates/Templates"
 
 " python-mode {{{2
 let g:pymode_lint_checker = "pyflakes"
@@ -623,15 +615,6 @@ let g:ctrlp_custom_ignore = {
             \ 'file': '\v\.(exe|so|dll|o|a|d|jpg|jpeg|png|bmp|gif)$',
             \ }
 
-" Indent Guides {{{2
-nmap <silent> <leader>ig <Plug>IndentGuidesToggle
-"let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
-let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=95
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=150
-
 " airline {{{2
 let g:airline_theme='kalisi'
 set noshowmode
@@ -668,9 +651,6 @@ endfunction
 let g:yankring_history_dir='$HOME/.vim_tmp'
 nnoremap <Leader>r :YRShow<CR>
 
-" vim-markdown {{{2
-let g:vim_markdown_folding_disabled=1
-
 " vim-signify
 let g:signify_mapping_toggle = '<leader>gt'
 "let g:signify_disable_by_default = 1
@@ -685,6 +665,8 @@ au FileType json setlocal foldmethod=syntax
 au Filetype go nnoremap <leader>gv :vsp <CR>:exe "GoDef" <CR>
 au Filetype go nnoremap <leader>gs :sp <CR>:exe "GoDef"<CR>
 au Filetype go nnoremap <leader>gd :tab split <CR>:exe "GoDef"<CR>
+let g:go_snippet_engine = 'neosnippet'
+let g:go_fmt_fail_silently = 1 " use syntasitic to check errors
 
 " emmet-vim {{{2
 let g:user_emmet_install_global=0
@@ -702,9 +684,6 @@ let g:user_emmet_settings = {
             \ 'extends' : 'html',
             \ },
             \}
-" vim-go {{{2
-let g:go_snippet_engine = 'neosnippet'
-let g:go_fmt_fail_silently = 1 " use syntasitic to check errors
 
 " }}}1
 
