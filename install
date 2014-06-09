@@ -8,8 +8,6 @@ set -e
 vim_bundle_dir=~/.vim_bundle
 vim_tmpdir=~/.vim_tmp
 
-go_repos="github.com/jstemmer/gotags"
-
 setup_vim()
 {
 	[ ! -d $vim_tmpdir ] && (rm -rf $vim_tmpdir && mkdir -p $vim_tmpdir)
@@ -17,12 +15,14 @@ setup_vim()
 	# neobundle
 	rm -rf $vim_bundle_dir && mkdir -p $vim_bundle_dir
 	git clone http://github.com/Shougo/neobundle.vim $vim_bundle_dir/neobundle
-	vim  +qa
+	. ~/.vim_bundle/neobundle/bin/neoinstall
+	vi /tmp/a.go +qa!
 }
 
 update_vim_plugins()
 {
 	vim +NeoBundleUpdate +qa
+	vim /tmp/a.go +GoUpdateBinaries +qa!
 }
 
 make_link()
@@ -65,8 +65,6 @@ update_files()
 update()
 {
 	setup_link
-	echo "go get -u $go_repos"
-	go get -u $go_repos
 	update_files
 	update_vim_plugins
 }
@@ -76,8 +74,6 @@ install()
 	[ -f ~/.profile ] && mv -v ~/.profile ~/.profile.bak
 	setup_link
 	. ~/.bash_profile
-	echo "go get $go_repos"
-	go get $go_repos
 	update_files
 	setup_vim
 }
