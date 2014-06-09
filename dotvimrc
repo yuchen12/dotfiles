@@ -517,8 +517,6 @@ endif
 
 let g:neocomplete#keyword_patterns._ = '[0-9a-zA-Z:#_]\+'
 
-call neocomplete#custom#source('look', 'min_pattern_length', 4)
-
 " Enable omni completion
 if has('python3')
     au FileType python setlocal omnifunc=python3complete#Complete
