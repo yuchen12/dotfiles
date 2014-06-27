@@ -1,21 +1,23 @@
 #!/bin/bash
 
 set -e
-
 set -o pipefail
 
-bj_url="https://raw.github.com/smarthosts/SmartHosts/master/trunk/hosts"  # beijing
-us_url="https://raw.github.com/smarthosts/SmartHosts/master/trunk/hosts_us" # usa
+bj_url="https://smarthosts.googlecode.com/svn/trunk/hosts"
+us_url="https://smarthosts.googlecode.com/svn/trunk/hosts_us"
+begin_marker="SmartHosts START"
+end_marker="SmartHosts END"
 
 url=$bj_url
 hosts=/etc/hosts
-tmp_hosts=/tmp/hosts
+tmp_hosts=$(mktemp)
+chmod 644 $tmp_hosts
 filters= # "GitHub" "Google\ Services"
 
-sed '/SmartHosts START/,/SmartHosts END/d' $hosts > $tmp_hosts
+sed "/$begin_marker/,/$end_marker/d" $hosts > $tmp_hosts
 
 echo "Downloading hosts from $url"
-wget --quiet $url -O - | dos2unix -q | sed -n '/SmartHosts START/,/SmartHosts END/p' >> $tmp_hosts
+wget --quiet $url -O - | dos2unix -q | sed -n "/$begin_marker/,/$end_marker/p" >> $tmp_hosts
 
 for f in $filters; do
     sed -i '/'"$f"' START/,/'"$f"' END/d' $tmp_hosts

@@ -15,13 +15,14 @@ setup_vim()
 	# neobundle
 	rm -rf $vim_bundle_dir && mkdir -p $vim_bundle_dir
 	git clone http://github.com/Shougo/neobundle.vim $vim_bundle_dir/neobundle
-	. ~/.vim_bundle/neobundle/bin/neoinstall
+	~/.vim_bundle/neobundle/bin/neoinstall
 	vi /tmp/a.go +qa!
 }
 
 update_vim_plugins()
 {
-	vim +NeoBundleUpdate +qa
+	#vim +NeoBundleUpdate +qa
+	~/.vim_bundle/neobundle/bin/neoinstall
 	vim /tmp/a.go +GoUpdateBinaries +qa!
 }
 
