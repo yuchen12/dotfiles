@@ -666,6 +666,7 @@ au Filetype go nnoremap <leader>gd :tab split <CR>:exe "GoDef"<CR>
 let g:go_snippet_engine = 'neosnippet'
 let g:go_fmt_fail_silently = 1 " use syntasitic to check errors
 let g:go_auto_type_info = 1
+let g:go_bin_path = expand("$GOBIN")
 
 " emmet-vim {{{2
 let g:user_emmet_install_global=0

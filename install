@@ -16,7 +16,7 @@ setup_vim()
 	rm -rf $vim_bundle_dir && mkdir -p $vim_bundle_dir
 	git clone http://github.com/Shougo/neobundle.vim $vim_bundle_dir/neobundle
 	~/.vim_bundle/neobundle/bin/neoinstall
-	vi /tmp/a.go +qa!
+	vim /tmp/a.go +GoUpdateBinaries +qa!
 }
 
 update_vim_plugins()
