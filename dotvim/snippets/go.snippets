@@ -1,4 +1,38 @@
-snippet httphandler
+snippet httphandlerfunc
     func ${1}(w http.ResponseWriter, r *http.Request) {
         ${2}
     }${0}
+
+snippet errpanic
+    if err != nil {
+        panic(err)
+    }
+    ${0}
+
+snippet errfatal
+    if err != nil {
+        log.Fatal(err)
+    }
+    ${0}
+
+snippet errreturn
+    if err != nil {
+        return err
+    }
+    ${0}
+
+snippet panicIf
+    func panicIf(err error) {
+        if err != nil {
+            panic(err)
+        }
+    }
+    ${0}
+
+snippet fatalIf
+    func fatalIf(err error) {
+        if err != nil {
+            panic(err)
+        }
+    }
+    ${0}
