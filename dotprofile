@@ -23,8 +23,7 @@ LOCAL=$HOME/local
 [ -d $LOCAL/share/man ]     && export MANPATH=$LOCAL/share/man:$MANPATH
 
 if [ -d $HOME/go ]; then
-    export GOROOT=$HOME/go
-    export GOBIN=$GOROOT/bin
+    export GOBIN=$HOME/go/bin
     export GOPATH=$HOME/go/pkg
     export PATH=$GOPATH/bin:$GOBIN:$PATH
 fi

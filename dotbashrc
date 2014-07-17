@@ -70,10 +70,6 @@ if ! shopt -oq posix; then
     fi
 fi
 
-if [ -n "$GOROOT" -a -f "$GOROOT/misc/bash/go" ]; then
-    source "$GOROOT/misc/bash/go"
-fi
-
 function exist() {
     type $1 > /dev/null 2>&1
 }
