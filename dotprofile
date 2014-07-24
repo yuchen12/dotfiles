@@ -35,6 +35,8 @@ for path in $LOCAL /usr; do
     fi
 done
 
+export CDPATH=.:$GOPATH/src
+
 unset LOCAL
 
 # if running bash
