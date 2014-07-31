@@ -244,10 +244,10 @@ nmap <silent> <leader>rr :redraw!<cr> " Fast redraw
 
 " Easier moving in tabs and windows
 " The lines conflict with the default digraph mapping of <C-K>
-nmap <C-J> <C-W>j<C-W>_
-nmap <C-K> <C-W>k<C-W>_
-nmap <C-L> <C-W>l<C-W>_
-nmap <C-H> <C-W>h<C-W>_
+nmap <C-J> <C-W>j
+nmap <C-K> <C-W>k
+nmap <C-L> <C-W>l
+nmap <C-H> <C-W>h
 
 " Visual shifting (does not exit Visual mode)
 vnoremap < <gv
