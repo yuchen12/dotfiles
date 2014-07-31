@@ -397,6 +397,11 @@ let NERDChristmasTree=1
 nmap <silent> wm :NERDTreeToggle <CR>
 nmap <leader>nt :NERDTreeFind<CR>
 
+" NERDCommenter {{{2
+let g:NERDCustomDelimiters = {
+    \ 'c': { 'left': '//' },
+    \ }
+
 " Tagbar {{{2
 nmap tt :TagbarToggle<cr>
 " open Tabbar automatically on Vim startup only if opening Vim with a supported file/files
@@ -598,7 +603,7 @@ endif
 " syntastic {{{2
 let g:syntastic_auto_loc_list=1
 let g:syntastic_mode_map = { 'mode': 'active',
-            \ 'passive_filetypes': ['c', 'cpp', 'python'] }
+            \ 'passive_filetypes': ['c', 'cpp', 'python', 'java'] }
 let g:syntastic_cpp_compiler_options=' -std=c++11 -Wall -Wextra'
 let g:syntastic_cpp_config_file = '.__config'
 
@@ -655,6 +660,8 @@ let g:signify_mapping_toggle = '<leader>gt'
 let g:signify_mapping_next_hunk = '<leader>gj'
 let g:signify_mapping_prev_hunk = '<leader>gk'
 let g:signify_mapping_toggle_highlight = '<leader>gh'
+let g:signify_vcs_list = [ 'git', 'hg' ]
+let g:signify_sign_overwrite = 1
 
 " json {{{2
 au FileType json setlocal foldmethod=syntax
@@ -684,6 +691,8 @@ let g:user_emmet_settings = {
             \ 'extends' : 'html',
             \ },
             \}
+" vim-markdown {{{2
+let g:vim_markdown_folding_disabled=1
 
 " }}}1
 

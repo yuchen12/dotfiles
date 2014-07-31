@@ -58,10 +58,10 @@
     lg = log --decorate -D
     l = log --decorate -D
     lr = log --oneline --left-right --cherry-pick
-    oneline = log --pretty=format:\"%C(auto)%h - %s %d %C(8)%an@%ad%Creset\" --date=iso
-    ol = log --pretty=format:\"%C(auto)%h - %s %d %C(8)%an@%ad%Creset\" --date=iso
-    glog = log --pretty=format:\"%C(auto)%h - %s %d %C(8)%an@%ad%Creset\" --date=iso --graph
-    gl = log --pretty=format:\"%C(auto)%h - %s %d %C(8)%an@%ad%Creset\" --date=iso --graph
+    oneline = log --pretty=format:\"%C(auto)%h - %s %d  %C(60)%an@%ad%Creset\" --date=iso
+    ol = log --pretty=format:\"%C(auto)%h - %s %d  %C(60)%an@%ad%Creset\" --date=iso
+    glog = log --pretty=format:\"%C(auto)%h - %s %d  %C(60)%an@%ad%Creset\" --date=iso --graph
+    gl = log --pretty=format:\"%C(auto)%h - %s %d  %C(60)%an@%ad%Creset\" --date=iso --graph
     lp = log --decorate -p -D
     ;lw = log --decorate -p --word-diff
     last = log --decorate -1

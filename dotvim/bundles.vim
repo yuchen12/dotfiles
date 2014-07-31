@@ -41,6 +41,7 @@ NeoBundleLazy "elzr/vim-json", {'autoload': {'filetypes': 'json'}}
 NeoBundleLazy 'jansenm/vim-cmake', {'autoload': {'filetypes': 'cmake'}}
 
 NeoBundleLazy 'fatih/vim-go', {'autoload': {'filetypes': 'go'}}
+NeoBundleLazy 'plasticboy/vim-markdown', {'autoload': {'filetypes': 'markdown'}}
 
 " vim-scripts repos
 NeoBundleLazy 'TaskList.vim', {'autoload': {'commands': 'TaskList'}}
