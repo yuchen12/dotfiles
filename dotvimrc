@@ -394,7 +394,7 @@ let NERDTreeDirArrows=0
 let NERDTreeShowBookmarks=1
 let NERDChristmasTree=1
 "let NERDTreeKeepTreeInNewTab=1
-nmap <silent> wm :NERDTreeToggle <CR>
+nmap <silent> <leader>ww :NERDTreeToggle <CR>
 nmap <leader>nt :NERDTreeFind<CR>
 
 " NERDCommenter {{{2
@@ -403,7 +403,7 @@ let g:NERDCustomDelimiters = {
     \ }
 
 " Tagbar {{{2
-nmap tt :TagbarToggle<cr>
+nnoremap <silent> <leader>gg :TagbarToggle<CR>
 " open Tabbar automatically on Vim startup only if opening Vim with a supported file/files
 "autocmd VimEnter * nested :call tagbar#autoopen()
 let g:tagbar_auto_showtag=1
