@@ -23,7 +23,7 @@ NeoBundle 'Shougo/vimproc', {
             \   },
             \}
 
-NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'ctrlpvim/ctrlp.vim'
 
 NeoBundleLazy 'honza/vim-snippets', {'autoload': {'insert': 1}}
 NeoBundle 'tpope/vim-surround'

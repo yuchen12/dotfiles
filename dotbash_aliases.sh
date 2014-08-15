@@ -53,3 +53,8 @@ function print_color_table()
         echo #New line
     done
 }
+
+function httpless {
+    # pip install httpie
+    http --pretty=all --print=hb "$@" | less -R
+}

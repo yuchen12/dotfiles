@@ -214,6 +214,7 @@ let g:mapleader=','
 nnoremap ; :
 nnoremap <Leader>; ;
 nnoremap <Leader>q :q<CR>
+nnoremap <Leader>Q :q!<CR>
 
 "nnoremap j gj
 "nnoremap k gk
