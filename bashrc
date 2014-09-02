@@ -59,18 +59,24 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-    if [ -f /usr/share/bash-completion/bash_completion ]; then
-        . /usr/share/bash-completion/bash_completion
-    elif [ -f /etc/bash_completion ]; then
-        . /etc/bash_completion
+if [[ $OSTYPE =~ darwin* ]]; then
+    if [ -f /usr/local/etc/bash_completion ]; then
+        . /usr/local/etc/bash_completion
+    fi
+else
+    # enable programmable completion features (you don't need to enable
+    # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+    # sources /etc/bash.bashrc).
+    if ! shopt -oq posix; then
+        if [ -f /usr/share/bash-completion/bash_completion ]; then
+            . /usr/share/bash-completion/bash_completion
+        elif [ -f /etc/bash_completion ]; then
+            . /etc/bash_completion
+        fi
     fi
 fi
 
-function exist() {
+exist() {
     type $1 > /dev/null 2>&1
 }
 
@@ -156,7 +162,7 @@ if [ "$color_prompt" = yes ]; then
 
     if [ $UID -eq 0 ]; then
         # for root, make it more explicitly
-        PS1='\[\033[1;41;32m\]$(a=$?;if [ $a -ne 0 ];then echo "<$a>";fi)'
+        PS1=${ERROR_COLOR}'$(a=$?;if [ $a -ne 0 ];then echo "<$a>";fi)'
         PS1=${PS1}'\[\033[1;41;37m\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$\[\033[0m\] '
     else
         # show return value of the last command if it's not zero
@@ -167,7 +173,7 @@ if [ "$color_prompt" = yes ]; then
             # show git branch and other informations
             PS1=${PS1}${GIT_COLOR}'$(__git_ps1 "(%s)")'
         fi
-        PS1=${PS1}${JOBS_COLOR}'$(j=`jobs | wc -l`;if [ $j -gt 0 ];then echo "[$j]";fi)'
+        PS1=${PS1}${JOBS_COLOR}'$(j=`jobs | wc -l | tr -d " "`;if [ $j -gt 0 ];then echo "[$j]";fi)'
         PS1="${PS1}${PROMT_CHAR_COLOR}\$ ${CLEAR_COLOR}"
     fi
 else
@@ -183,8 +189,8 @@ case "$TERM" in
         PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
         ;;
     screen*)
-            ## for screen, make the following work in ~/.screenrc
-            ## shelltitle "$ |bash"
+        ## for screen, make the following work in ~/.screenrc
+        ## shelltitle "$ |bash"
         [ -z "$TMUX" ] && PS1='\[\033k\033\\\]'$PS1
         ;;
     *)
@@ -192,7 +198,8 @@ case "$TERM" in
 esac
 
 # enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
+#if [ -x /usr/bin/dircolors ]; then
+if exist dircolors; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
@@ -212,11 +219,12 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-if [ -f ~/.bash_aliases.sh ]; then
-    . ~/.bash_aliases.sh
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
 fi
 
-export LANG=en_US.utf8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 export GTK_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
 export QT_IM_MODULE=fcitx
@@ -247,5 +255,3 @@ if exist tmux; then
     fi
     unset a
 fi
-
-[ -d $HOME/.rvm/bin ] && PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

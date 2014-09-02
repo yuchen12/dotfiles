@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# install go, git, tmux, clang, libclang, ruby-dev
+# ubuntu: install go, git, tmux, clang, libclang, ruby-dev
 # vim should be built with python/ruby/lua support
+# mac: install brew, http://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
 
 set -e
 
 vim_bundle_dir=~/.vim_bundle
 vim_tmpdir=~/.vim_tmp
 
-setup_vim()
-{
+setup_vim() {
 	[ ! -d $vim_tmpdir ] && (rm -rf $vim_tmpdir && mkdir -p $vim_tmpdir)
 
 	# neobundle
@@ -19,59 +19,59 @@ setup_vim()
 	vim /tmp/a.go +GoUpdateBinaries +qa!
 }
 
-update_vim_plugins()
-{
+update_vim_plugins() {
 	#vim +NeoBundleUpdate +qa
 	~/.vim_bundle/neobundle/bin/neoinstall
 	vim /tmp/a.go +GoUpdateBinaries +qa!
 }
 
-make_link()
-{
+make_link() {
 	from=$1
 	to=$2
 
-	# backup if it exists and is not a symbolic link
-	if [ -e $to -a ! -L $to ]; then
-		rm -rfv $to.old && mv -f $to $to.old
+	if [ -e $to ]; then
+		rm -rf $to.old && mv -f $to $to.old
 	fi
 
-	ln -sfTv $from $to # -T always treat $to as normal files
+	ln -sfv $from $to
 }
 
-setup_link()
-{
-	make_link $PWD/dotbashrc               ~/.bashrc
-	make_link $PWD/dotbash_aliases.sh      ~/.bash_aliases.sh
-	make_link $PWD/dotgitconfig            ~/.gitconfig
-	make_link $PWD/dotscreenrc             ~/.screenrc
-	make_link $PWD/dottoprc                ~/.toprc
-	make_link $PWD/dotgdbinit              ~/.gdbinit
-	make_link $PWD/dotemacs                ~/.emacs
-	make_link $PWD/dottmux.conf            ~/.tmux.conf
-	make_link $PWD/dotprofile              ~/.bash_profile
-	make_link $PWD/dotvimrc                ~/.vimrc
-	make_link $PWD/dotvim                  ~/.vim
-	make_link $PWD/dothgrc                 ~/.hgrc
+files=" \
+	bashrc \
+	bash_aliases \
+	gitconfig \
+	screenrc \
+	toprc \
+	gdbinit \
+	emacs \
+	tmux.conf \
+	bash_profile \
+	vimrc \
+	vim \
+	hgrc \
+	tmux-mac.conf \
+	tmux-linux.conf \
+	"
+
+setup_link() {
+	for f in $files; do
+		make_link $PWD/$f ~/.$f
+	done
 }
 
-update_files()
-{
+update_files() {
 	./update-dircolor.sh
 	./update-git-files.sh
 	./update-tmux-files.sh
-	./update-powerline-fonts.sh
 }
 
-update()
-{
+update() {
 	setup_link
 	update_files
 	update_vim_plugins
 }
 
-install()
-{
+install() {
 	[ -f ~/.profile ] && mv -v ~/.profile ~/.profile.bak
 	setup_link
 	. ~/.bash_profile

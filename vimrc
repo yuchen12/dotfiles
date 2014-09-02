@@ -438,7 +438,19 @@ let g:clang_trailing_placeholder=0
 "let g:clang_exec="clang"
 let g:clang_user_options="-std=c++11"
 let g:clang_use_library=1
-let g:clang_library_path="/usr/local/lib"
+if has('mac')
+    let s:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
+    if isdirectory(s:clang_library_path)
+        let g:clang_library_path=s:clang_library_path
+    endif
+else
+    for dir in ['/usr/local/lib', '/usr/lib']
+        if filereadable(dir . '/libclang.so')
+            let g:clang_library_path=dir
+            break
+        endif
+    endfor
+endif
 let g:clang_complete_macros=1
 let g:clang_complete_patterns=1
 let g:clang_auto_user_options="path, .clang_complete, compile_commands.json"
@@ -628,15 +640,15 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-"let g:airline_right_alt_sep = '#'
-"let g:airline_left_alt_sep=">"
-"let g:airline_symbols.branch = '⎇'
-"let g:airline_symbols.linenr = 'LN'
-"let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_right_alt_sep = '<'
+let g:airline_left_alt_sep=">"
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.linenr = 'LN'
+let g:airline_symbols.whitespace = 'Ξ'
 let g:airline#extensions#tagbar#flags='f'
 let g:airline#extensions#whitespace#trailing_format = 'trail[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'mix[%s]'
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
 
 let g:airline_theme_patch_func = 'AirlineThemePatch'
 function! AirlineThemePatch(palette)
