@@ -683,6 +683,10 @@ au FileType json setlocal foldmethod=syntax
 au Filetype go nnoremap <leader>gv :vsp <CR>:exe "GoDef" <CR>
 au Filetype go nnoremap <leader>gs :sp <CR>:exe "GoDef"<CR>
 au Filetype go nnoremap <leader>gd :tab split <CR>:exe "GoDef"<CR>
+let g:go_highlight_functions = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
 let g:go_snippet_engine = 'neosnippet'
 let g:go_fmt_fail_silently = 1 " use syntasitic to check errors
 let g:go_auto_type_info = 1
