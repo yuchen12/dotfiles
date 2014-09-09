@@ -114,6 +114,8 @@ set updatetime=1000
 set hidden          " allow buffers to go into the background without needing to save
 set mouse=a         " In many terminal emulators the mouse works just fine, thus enable it.
 set shortmess+=I
+set ttimeout
+set ttimeoutlen=100
 
 if exists('$TMUX')
     set ttymouse=xterm2
@@ -146,6 +148,7 @@ set wildignore+=*~,*.sw?
 set wildignore+=.git,.svn,CVS,.hg
 set infercase
 set display=lastline " when a line is long, don't omit it in @
+set autoread
 
 if has('clipboard')
     if has('unnamedplus')  " When possible use + register for copy-paste
@@ -223,7 +226,7 @@ nnoremap <Leader>Q :q!<CR>
 cmap w!! w !sudo tee % >/dev/null
 
 " delete trailing whitespaces
-nmap <silent><Leader>et :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+"nmap <silent><Leader>et :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " Quick alignment of text
 nnoremap <Leader>al :left<CR>
@@ -254,8 +257,8 @@ nmap <C-H> <C-W>h
 vnoremap < <gv
 vnoremap > >gv
 
-
-map Q gq            " Don't use Ex mode, use Q for formatting
+" Don't use Ex mode, use Q for formatting
+map Q gq
 
 au BufNewFile,BufRead *.json set ft=json
 
@@ -307,74 +310,6 @@ nmap <leader>cn :cn<cr>
 nmap <leader>cp :cp<cr>
 nmap <leader>cw :cw 10<cr>
 
-" cscope {{{2
-
-if has("cscope")
-    "set csprg=/usr/local/bin/cscope
-    set csto=0
-    set cst
-    set nocsverb
-    " add any database in current directory
-    if filereadable("cscope.out")
-        cs add cscope.out
-        " else add database pointed to by environment
-    elseif $CSCOPE_DB != ""
-        cs add $CSCOPE_DB
-    endif
-    set csverb
-endif
-
-set cscopequickfix=s-,c-,d-,i-,t-,e-
-map <F12> :call Do_CsTag()<CR>
-nmap <leader>sfs :cs find s <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-nmap <leader>sfg :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>sfc :cs find c <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-nmap <leader>sft :cs find t <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-nmap <leader>sfe :cs find e <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-nmap <leader>sff :cs find f <C-R>=expand("<cfile>")<CR><CR>:copen<CR>
-nmap <leader>sfi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>:copen<CR>
-nmap <leader>sfd :cs find d <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-" Do_CsTag {{{3
-function! Do_CsTag()
-    let dir = getcwd()
-    if filereadable("tags")
-        let tagsdeleted=delete("./"."tags")
-        if(tagsdeleted!=0)
-            echohl WarningMsg | echo "Fail to do tags! I cannot delete the tags" | echohl None
-            return
-        endif
-    endif
-    if has("cscope")
-        silent! execute "cs kill -1"
-    endif
-    if filereadable("cscope.files")
-        let csfilesdeleted=delete("./"."cscope.files")
-        if(csfilesdeleted!=0)
-            echohl WarningMsg | echo "Fail to do cscope! I cannot delete the cscope.files" | echohl None
-            return
-        endif
-    endif
-    if filereadable("cscope.out")
-        let csoutdeleted=delete("./"."cscope.out")
-        if(csoutdeleted!=0)
-            echohl WarningMsg | echo "Fail to do cscope! I cannot delete the cscope.out" | echohl None
-            return
-        endif
-    endif
-    if(executable('ctags'))
-        "silent! execute "!ctags -R --c-types=+p --fields=+S *"
-        "silent! execute "!ctags -R --c++-kinds=+pl --fields=+iaS --extra=+q ."
-        silent! execute "!ctags -R --sort=yes --c++-kinds=+plx --fields=+iaS --extra=+q ."
-    endif
-    if(executable('cscope') && has("cscope") )
-        silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files"
-        silent! execute "!cscope -b"
-        execute "normal :"
-        if filereadable("cscope.out")
-            execute "cs add cscope.out"
-        endif
-    endif
-endfunction
 " }}}1
 
 " 插件设置 {{{1
@@ -408,7 +343,7 @@ nnoremap <silent> <leader>gg :TagbarToggle<CR>
 " open Tabbar automatically on Vim startup only if opening Vim with a supported file/files
 "autocmd VimEnter * nested :call tagbar#autoopen()
 let g:tagbar_auto_showtag=1
-"let g:tagbar_autofocus=1
+let g:tagbar_autofocus=1
 let g:tagbar_usearrows=1
 let g:tagbar_sort=0
 "let g:tagbar_ctags_bin='/usr/bin/ctags'
@@ -475,6 +410,7 @@ let g:pymode_rope=0
 let g:neocomplete#disable_auto_complete=0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#enable_camel_case = 1
 let g:neocomplete#enable_fuzzy_completion = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#auto_completion_start_length = 2
@@ -490,15 +426,20 @@ let g:neocomplete#data_directory = '~/.vim_tmp/.neocon'
 let g:neocomplete#max_list = 100
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplete#enable_auto_close_preview = 1
-let g:neocomplete#enable_complete_select = 0
 let g:neocomplete#enable_auto_select = 1
 let g:neocomplete#enable_refresh_always = 1
 let g:neocomplete#diable_auto_select_buffer_name_pattern = '\[Command Line\]'
 
-if g:neocomplete#enable_complete_select
-    set completeopt-=noselect
-    set completeopt+=noinsert
-endif
+" For auto select.
+let g:neocomplete#enable_complete_select = 1
+try
+	let completeopt_save = &completeopt
+	set completeopt+=noinsert,noselect
+catch
+	let g:neocomplete#enable_complete_select = 0
+finally
+	let &completeopt = completeopt_save
+endtry
 
 let g:neocomplete#force_overwrite_completefunc = 1
 
@@ -690,7 +631,6 @@ let g:go_highlight_structs = 1
 let g:go_snippet_engine = 'neosnippet'
 let g:go_fmt_fail_silently = 1 " use syntasitic to check errors
 let g:go_auto_type_info = 1
-let g:go_bin_path = expand("$GOBIN")
 
 " emmet-vim {{{2
 let g:user_emmet_install_global=0

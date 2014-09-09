@@ -1,8 +1,12 @@
 #!/bin/bash
 
-# ubuntu: install go, git, tmux, clang, libclang, ruby-dev
-# vim should be built with python/ruby/lua support
-# mac: install brew, http://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
+# ubuntu:
+#	- install go, git, tmux, clang, libclang, ruby-dev
+#	- vim should be built with python/ruby/lua support
+# mac:
+#	- install brew
+#	- install coreutils: http://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
+#	- install vim: brew install macvim --with-cscope --with-lua --HEAD --override-system-vim
 
 set -e
 
