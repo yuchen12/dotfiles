@@ -114,8 +114,9 @@ set updatetime=1000
 set hidden          " allow buffers to go into the background without needing to save
 set mouse=a         " In many terminal emulators the mouse works just fine, thus enable it.
 set shortmess+=I
+set notimeout
 set ttimeout
-set ttimeoutlen=100
+set ttimeoutlen=10
 
 if exists('$TMUX')
     set ttymouse=xterm2
@@ -145,6 +146,8 @@ set report=0
 set cursorline      " 高亮当前行
 set wildignore+=*.o,*.obj,*.pyc,*.class
 set wildignore+=*~,*.sw?
+set wildignore+=*.DS_Store
+set wildignore+=*.jpg,*.jpeg,*.bmp,*.gif,*.png
 set wildignore+=.git,.svn,CVS,.hg
 set infercase
 set display=lastline " when a line is long, don't omit it in @
@@ -164,7 +167,7 @@ au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 
 
 "When joining lines, don't insert a space between two multi-byte characters.
-set formatoptions+=B
+set formatoptions+=Blj
 
 set history=1000
 
@@ -631,6 +634,7 @@ let g:go_highlight_structs = 1
 let g:go_snippet_engine = 'neosnippet'
 let g:go_fmt_fail_silently = 1 " use syntasitic to check errors
 let g:go_auto_type_info = 1
+let g:go_fmt_command = "goimports"
 
 " emmet-vim {{{2
 let g:user_emmet_install_global=0
