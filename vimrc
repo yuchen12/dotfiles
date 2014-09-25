@@ -6,6 +6,8 @@
 filetype off
 filetype plugin indent off
 
+let g:neobundle#install_process_timeout = 900
+
 set nocompatible
 if has('vim_starting')
     set rtp+=~/.vim_bundle/neobundle
