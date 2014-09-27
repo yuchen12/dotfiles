@@ -67,6 +67,7 @@ update_files() {
 	./update-dircolor.sh
 	./update-git-files.sh
 	./update-tmux-files.sh
+	./update-hosts.sh
 }
 
 update() {
