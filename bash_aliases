@@ -1,3 +1,8 @@
+# vim: ft=sh et
+
+alias ll='ls -lF'
+alias la='ls -A'
+alias l='ls -CF'
 alias vi=vim
 alias diff='diff -u'
 alias mv='mv -i'
@@ -17,6 +22,11 @@ alias ipy=ipython
 alias less='less -R'
 alias sudo='sudo ' # to pass aliases through sudo
 alias g='git'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
 #if dir,cd into it. if file ,cd into where the file is
 goto(){ [ -d "$1" ] && cd "$1" || cd "$(dirname "$1")"; }
 complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null \
@@ -27,11 +37,6 @@ svndiff() {
 }
 
 print_color_table() {
-    # This program is free software. It comes without any warranty, to
-    # the extent permitted by applicable law. You can redistribute it
-    # and/or modify it under the terms of the Do What The Fuck You Want
-    # To Public License, Version 2, as published by Sam Hocevar. See
-    # http://sam.zoy.org/wtfpl/COPYING for more details.
     for fgbg in 38 48 ; do #Foreground/Background
         for color in {0..256} ; do #Colors
             #Display the color

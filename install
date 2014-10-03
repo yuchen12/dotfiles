@@ -20,13 +20,17 @@ setup_vim() {
 	rm -rf $vim_bundle_dir && mkdir -p $vim_bundle_dir
 	git clone http://github.com/Shougo/neobundle.vim $vim_bundle_dir/neobundle
 	~/.vim_bundle/neobundle/bin/neoinstall
-	vim /tmp/a.go +GoUpdateBinaries +qa!
+	#vim /tmp/a.go +GoUpdateBinaries +qa!
+	vim -N -u ~/.vimrc /tmp/a.go -c "GoUpdateBinaries" -c 'qa!' -U NONE -i NONE -V1 -e -s || true
+	echo
 }
 
 update_vim_plugins() {
 	#vim +NeoBundleUpdate +qa
 	~/.vim_bundle/neobundle/bin/neoinstall
-	vim /tmp/a.go +GoUpdateBinaries +qa!
+	#vim /tmp/a.go +GoUpdateBinaries +qa!
+	vim -N -u ~/.vimrc /tmp/a.go -c "GoUpdateBinaries" -c 'qa!' -U NONE -i NONE -V1 -e -s || true
+	echo
 }
 
 make_link() {
@@ -42,6 +46,7 @@ make_link() {
 
 files=" \
 	bashrc \
+	bash_prompt \
 	bash_aliases \
 	gitconfig \
 	screenrc \
@@ -64,10 +69,10 @@ setup_link() {
 }
 
 update_files() {
+	./update-hosts.sh
 	./update-dircolor.sh
 	./update-git-files.sh
 	./update-tmux-files.sh
-	./update-hosts.sh
 }
 
 update() {
@@ -85,6 +90,9 @@ install() {
 }
 
 basename=`basename $0`
+
+# Ask for the administrator password upfront
+sudo -v
 
 if [ $basename = "install" ]; then
 	install

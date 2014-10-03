@@ -1,3 +1,5 @@
+# vim: ft=sh et
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -30,43 +32,21 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+exist() {
+    type $1 > /dev/null 2>&1
+}
+
+if [[ $TERM =~ xterm* ]]; then
+    export TERM='xterm-256color'
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm*)
-        color_prompt=yes
-        export TERM='xterm-256color'
-        ;;
-esac
+[ `tput colors 2>/dev/null` = "256" ] && is256color=yes || is256color=no
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-        # We have color support; assume it's compliant with Ecma-48
-        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-        # a case would tend to support setf rather than setaf.)
-        color_prompt=yes
-    else
-        color_prompt=
-    fi
-fi
+. ~/.bash_prompt
 
 if [[ $OSTYPE =~ darwin* ]]; then
-    if [ -f /usr/local/etc/bash_completion ]; then
-        . /usr/local/etc/bash_completion
-    fi
+    [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 else
-    # enable programmable completion features (you don't need to enable
-    # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-    # sources /etc/bash.bashrc).
     if ! shopt -oq posix; then
         if [ -f /usr/share/bash-completion/bash_completion ]; then
             . /usr/share/bash-completion/bash_completion
@@ -76,131 +56,12 @@ else
     fi
 fi
 
-exist() {
-    type $1 > /dev/null 2>&1
-}
-
-if exist git; then
-    ## see ~/.git-completion.bash && ~/.git-prompt.sh
-    GIT_PS1_SHOWDIRTYSTATE=1
-    GIT_PS1_SHOWSTASHSTATE=1
-    GIT_PS1_SHOWUNTRACKEDFILES=1
-    GIT_PS1_SHOWUPSTREAM="auto"
-    GIT_PS1_SHOWCOLORHINTS=1
-
-    source ~/.git-completion.bash
-    source ~/.git-prompt.sh
-fi
-
-if [ "$color_prompt" = yes ]; then
-    ## color settings
-    # \e[1;3x;4ymTEXT
-    # \[\033[1;3x;4ym\]TEXT
-    #   1 bold, 4 underline
-    #   3x foreground color
-    #   4y background color
-    #   m end block
-    # \e[0m \[\033[0m\] clear
-    # Black       0;30     Dark Gray     1;30
-    # Blue        0;34     Light Blue    1;34
-    # Green       0;32     Light Green   1;32
-    # Cyan        0;36     Light Cyan    1;36
-    # Red         0;31     Light Red     1;31
-    # Purple      0;35     Light Purple  1;35
-    # Brown       0;33     Yellow        1;33
-    # Light Gray  0;37     White         1;37
-    # 38;5;xxxm 256color fg
-    # 48;5;xxxm 256color bg
-
-    CLEAR_COLOR='\[\e[0m\]'
-    case "$TERM" in
-        screen*|xterm*)
-            # 256 color
-            ERROR_COLOR='\[\e[1;37;41m\]'
-            CHROOT_COLOR='\[\e[0;1m\]'
-            USER_NAME_COLOR='\[\e[1;38;5;197m\]'
-            AT_COLOR='\[\e[1;38;5;185m\]'
-            HOST_COLOR='\[\e[1;38;5;202m\]'
-            PWD_COLOR='\[\e[1;38;5;25m\]'
-            GIT_COLOR='\[\e[1;38;5;154m\]'
-            PROMT_CHAR_COLOR='\[\e[1;38;5;47m\]'
-            SSH_COLOR='\[\e[1;38;5;113m\]'
-            JOBS_COLOR='\[\e[1;38;5;157m\]'
-
-            # make man pages colorful
-            export LESS_TERMCAP_mb=$'\E[01;31m'              # begin blinking
-            export LESS_TERMCAP_md=$'\E[01;38;5;161m'        # begin bold
-            export LESS_TERMCAP_me=$'\E[0m'                  # end mode
-            export LESS_TERMCAP_se=$'\E[0m'                  # end standout-mode
-            export LESS_TERMCAP_so=$'\E[1;48;5;117;38;5;16m' # begin standout-mode - info box
-            export LESS_TERMCAP_ue=$'\E[0m'                  # end underline
-            export LESS_TERMCAP_us=$'\E[01;38;5;51m'         # begin underline
-
-            export GREP_COLOR='1;38;5;221'
-            export GREP_COLORS='fn=38;5;138:ln=38;5;36:ms=1;38;5;221:mt=1;38;5;221:mc=1;38;5;221'
-            ;;
-        *)
-            ERROR_COLOR='\[\e[1;37;41m\]'
-            CHROOT_COLOR='\[\e[0;1m\]'
-            USER_NAME_COLOR='\[\e[1;31m\]'
-            AT_COLOR='\[\e[1;33m\]'
-            HOST_COLOR='\[\e[1;35m\]'
-            PWD_COLOR='\[\e[1;34m\]'
-            GIT_COLOR='\[\e[1;32m\]'
-            PROMT_CHAR_COLOR='\[\e[1;32m\]'
-            SSH_COLOR='\[\e[1;35m\]'
-
-            export LESS_TERMCAP_mb=$'\E[01;31m'
-            export LESS_TERMCAP_md=$'\E[01;31m'
-            export LESS_TERMCAP_me=$'\E[0m'
-            export LESS_TERMCAP_se=$'\E[0m'
-            export LESS_TERMCAP_so=$'\E[01;44;33m'
-            export LESS_TERMCAP_ue=$'\E[0m'
-            export LESS_TERMCAP_us=$'\E[01;32m'
-            ;;
-    esac
-
-    if [ $UID -eq 0 ]; then
-        # for root, make it more explicitly
-        PS1=${ERROR_COLOR}'$(a=$?;if [ $a -ne 0 ];then echo "<$a>";fi)'
-        PS1=${PS1}'\[\033[1;41;37m\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$\[\033[0m\] '
-    else
-        # show return value of the last command if it's not zero
-        PS1=${ERROR_COLOR}'$(a=$?;if [ $a -ne 0 ];then echo "<$a>";fi)'
-        PS1="${PS1}${CHROOT_COLOR}${debian_chroot:+($debian_chroot)}"
-        PS1="${PS1}${USER_NAME_COLOR}\u${AT_COLOR}@${HOST_COLOR}\h${SSH_COLOR}"'$(if [ -n "$SSH_CLIENT" ];then echo "{SSH}";fi)'"${CLEAR_COLOR}:${PWD_COLOR}\w"
-        if exist git; then
-            # show git branch and other informations
-            PS1=${PS1}${GIT_COLOR}'$(__git_ps1 "(%s)")'
-        fi
-        PS1=${PS1}${JOBS_COLOR}'$(j=`jobs | wc -l | tr -d " "`;if [ $j -gt 0 ];then echo "[$j]";fi)'
-        PS1="${PS1}${PROMT_CHAR_COLOR}\$ ${CLEAR_COLOR}"
-    fi
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-unset ERROR_COLOR CHROOT_COLOR USER_NAME_COLOR AT_COLOR \
-    HOST_COLOR PWD_COLOR GIT_COLOR PROMT_CHAR_COLOR SSH_COLOR
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-    xterm*|rxvt*)
-        PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-        ;;
-    screen*)
-        ## for screen, make the following work in ~/.screenrc
-        ## shelltitle "$ |bash"
-        [ -z "$TMUX" ] && PS1='\[\033k\033\\\]'$PS1
-        ;;
-    *)
-        ;;
-esac
-
 # enable color support of ls and also add handy aliases
 #if [ -x /usr/bin/dircolors ]; then
 if exist dircolors; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    if [ x$is256color = xyes ]; then
+        test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    fi
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
@@ -210,25 +71,19 @@ if exist dircolors; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-alias ll='ls -lF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-export GTK_IM_MODULE=fcitx
-export XMODIFIERS="@im=fcitx"
-export QT_IM_MODULE=fcitx
 export EDITOR=vim
+
+if [[ $OSTYPE =~ "linux" ]]; then
+    export GTK_IM_MODULE=fcitx
+    export XMODIFIERS="@im=fcitx"
+    export QT_IM_MODULE=fcitx
+fi
 
 ulimit -c unlimited
 
@@ -247,7 +102,6 @@ fi
 
 if exist tmux; then
     source ~/.bash_completion_tmux.sh
-
     a=`tmux ls 2>/dev/null`
     if [ -n "$a" ]; then
         echo ">>> tmux sessions:"

@@ -1,0 +1,112 @@
+# vim: ft=sh et
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+if exist git; then
+    ## see ~/.git-completion.bash && ~/.git-prompt.sh
+    GIT_PS1_SHOWDIRTYSTATE=1
+    GIT_PS1_SHOWSTASHSTATE=1
+    GIT_PS1_SHOWUNTRACKEDFILES=1
+    GIT_PS1_SHOWUPSTREAM="auto"
+    GIT_PS1_SHOWCOLORHINTS=1
+
+    source ~/.git-completion.bash
+    source ~/.git-prompt.sh
+fi
+
+## color settings
+# http://misc.flogisoft.com/bash/tip_colors_and_formatting
+# http://bitmote.com/index.php?post/2012/11/19/Using-ANSI-Color-Codes-to-Colorize-Your-Bash-Prompt-on-Linux
+color_prompt=no
+if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+    color_prompt=yes
+fi
+if [ "$color_prompt" = yes ]; then
+    CLEAR_COLOR='\[\e[0m\]'
+    if [ x$is256color = xyes ]; then
+        # 256 color
+        ERROR_COLOR='\[\e[1;37;41m\]'
+        CHROOT_COLOR='\[\e[0;1m\]'
+        USER_NAME_COLOR='\[\e[1;38;5;197m\]'
+        AT_COLOR='\[\e[1;38;5;185m\]'
+        HOST_COLOR='\[\e[1;38;5;202m\]'
+        PWD_COLOR='\[\e[1;38;5;25m\]'
+        GIT_COLOR='\[\e[1;38;5;154m\]'
+        PROMT_CHAR_COLOR='\[\e[1;38;5;47m\]'
+        SSH_COLOR='\[\e[1;38;5;113m\]'
+        JOBS_COLOR='\[\e[1;38;5;157m\]'
+
+        # make man pages colorful
+        export LESS_TERMCAP_mb=$'\E[01;31m'              # begin blinking
+        export LESS_TERMCAP_md=$'\E[01;38;5;161m'        # begin bold
+        export LESS_TERMCAP_me=$'\E[0m'                  # end mode
+        export LESS_TERMCAP_se=$'\E[0m'                  # end standout-mode
+        export LESS_TERMCAP_so=$'\E[1;48;5;117;38;5;16m' # begin standout-mode - info box
+        export LESS_TERMCAP_ue=$'\E[0m'                  # end underline
+        export LESS_TERMCAP_us=$'\E[01;38;5;51m'         # begin underline
+
+        export GREP_COLOR='1;38;5;221'
+        export GREP_COLORS='fn=38;5;138:ln=38;5;36:ms=1;38;5;221:mt=1;38;5;221:mc=1;38;5;221'
+    else
+        ERROR_COLOR='\[\e[1;37;41m\]'
+        CHROOT_COLOR='\[\e[0;1m\]'
+        USER_NAME_COLOR='\[\e[1;31m\]'
+        AT_COLOR='\[\e[1;33m\]'
+        HOST_COLOR='\[\e[1;35m\]'
+        PWD_COLOR='\[\e[1;34m\]'
+        GIT_COLOR='\[\e[1;32m\]'
+        PROMT_CHAR_COLOR='\[\e[1;32m\]'
+        SSH_COLOR='\[\e[1;35m\]'
+
+        export LESS_TERMCAP_mb=$'\E[01;31m'
+        export LESS_TERMCAP_md=$'\E[01;31m'
+        export LESS_TERMCAP_me=$'\E[0m'
+        export LESS_TERMCAP_se=$'\E[0m'
+        export LESS_TERMCAP_so=$'\E[01;44;33m'
+        export LESS_TERMCAP_ue=$'\E[0m'
+        export LESS_TERMCAP_us=$'\E[01;32m'
+    fi
+
+    if [ $UID -eq 0 ]; then
+        # for root, make it more explicitly
+        PS1=${ERROR_COLOR}'$(a=$?;[ $a -ne 0 ] && echo "<$a>")'
+        PS1=${PS1}'\[\033[1;41;37m\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$\[\033[0m\] '
+    else
+        # show return value of the last command if it's not zero
+        PS1="${GIT_COLOR}# ${ERROR_COLOR}"'$(a=$?;[ $a -ne 0 ] && echo "<$a>")'
+        PS1+="${CHROOT_COLOR}${debian_chroot:+($debian_chroot)}"
+        PS1+="${USER_NAME_COLOR}\u${AT_COLOR} at ${HOST_COLOR}\h${SSH_COLOR}"'$([ -n "$SSH_CLIENT" ] && echo "{SSH}")'
+        PS1+="${AT_COLOR} in ${PWD_COLOR}\w"
+        if exist git; then
+            # show git branch and other informations
+            PS1+='$(__git_ps1 "'${AT_COLOR}' on '${GIT_COLOR}'(%s)")'
+        fi
+        PS1+=${JOBS_COLOR}'$(j=`jobs | wc -l | tr -d " "`;[ $j -gt 0 ] && echo "[$j]")'
+        PS1+="\n${GIT_COLOR}└── ${PROMT_CHAR_COLOR}\$ ${CLEAR_COLOR}"
+    fi
+    PS2="\[\e[1;33m\]→ \[${CLEAR_COLOR}\]";
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+    xterm*|rxvt*)
+        PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+        ;;
+    screen*)
+        ## for screen, make the following work in ~/.screenrc
+        ## shelltitle "$ |bash"
+        [ -z "$TMUX" ] && PS1='\[\033k\033\\\]'$PS1
+        ;;
+    *)
+        ;;
+esac
+
+unset color_prompt force_color_prompt
+unset ERROR_COLOR CHROOT_COLOR USER_NAME_COLOR AT_COLOR \
+    HOST_COLOR PWD_COLOR GIT_COLOR PROMT_CHAR_COLOR SSH_COLOR
