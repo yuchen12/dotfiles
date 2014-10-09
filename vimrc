@@ -12,7 +12,7 @@ set nocompatible
 if has('vim_starting')
     set rtp+=~/.vim_bundle/neobundle
 endif
-call neobundle#rc(expand('~/.vim_bundle'))
+call neobundle#begin(expand('~/.vim_bundle'))
 
 NeoBundleFetch 'Shougo/neobundle.vim', {'name': 'neobundle'}
 
@@ -20,16 +20,13 @@ if filereadable(expand("~/.vim/bundles.vim"))
     source ~/.vim/bundles.vim
 endif
 
+call neobundle#end()
+
 filetype plugin indent on
 syntax enable
 syntax on
 
 NeoBundleCheck
-
-if !has('vim_starting')
-    " Call on_source hook when reloading .vimrc.
-    call neobundle#call_hook('on_source')
-endif
 
 " }}}1
 
