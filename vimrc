@@ -557,11 +557,16 @@ if has('conceal')
 endif
 
 " syntastic {{{2
+let g:syntastic_error_symbol = "✗"
+let g:syntastic_warning_symbol = "⚠"
 let g:syntastic_auto_loc_list=1
 let g:syntastic_mode_map = { 'mode': 'active',
             \ 'passive_filetypes': ['c', 'cpp', 'python', 'java'] }
 let g:syntastic_cpp_compiler_options=' -std=c++11 -Wall -Wextra'
 let g:syntastic_cpp_config_file = '.__config'
+
+hi SyntasticErrorSign cterm=bold ctermfg=160
+hi SyntasticWarningSign cterm=bold ctermfg=11
 
 nnoremap <silent> <Leader>sk :SyntasticCheck<CR>
 
@@ -575,7 +580,7 @@ let g:ctrlp_custom_ignore = {
             \ }
 
 " airline {{{2
-let g:airline_theme='kalisi'
+let g:airline_theme='powerlineish'
 set noshowmode
 let g:airline_inactive_collapse=1
 if !exists('g:airline_symbols')
