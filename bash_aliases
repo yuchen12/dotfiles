@@ -55,3 +55,5 @@ httpless() {
     # pip install httpie
     http --pretty=all --print=hb "$@" | less -R
 }
+
+gocd() { cd `go list -f '{{.Dir}}' $1`; }

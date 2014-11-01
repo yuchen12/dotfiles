@@ -43,9 +43,11 @@ else
 fi
 
 if [ -d $HOME/go ]; then
-    export GOBIN=$HOME/go/bin
-    export GOPATH=$HOME/go/pkg
-    export PATH=$GOPATH/bin:$GOBIN:$PATH
+    # http://golang.org/doc/install/source#environment
+    #export GOROOT=$HOME/go
+    #export GOBIN=$HOME/go/bin
+    export GOPATH=$HOME/gopath
+    export PATH=$HOME/go/bin:$GOPATH/bin:$PATH
     export CDPATH=.:$GOPATH/src
 fi
 
