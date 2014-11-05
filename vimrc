@@ -580,7 +580,7 @@ let g:ctrlp_custom_ignore = {
             \ }
 
 " airline {{{2
-let g:airline_theme='powerlineish'
+let g:airline_theme='kalisi'
 set noshowmode
 let g:airline_inactive_collapse=1
 if !exists('g:airline_symbols')
@@ -598,18 +598,20 @@ let g:airline#extensions#whitespace#trailing_format = 'trail[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'mix[%s]'
 let g:airline_powerline_fonts=0
 
-let g:airline_theme_patch_func = 'AirlineThemePatch'
-function! AirlineThemePatch(palette)
-    if g:airline_theme == 'kalisi'
-        let a:palette.normal_modified = {
-                    \ 'airline_c': ['#ff3535', '', 197, '', ''],
-                    \}
-        let a:palette.insert_modified = a:palette.normal_modified
-        let a:palette.replace_modified = a:palette.normal_modified
-        let a:palette.visual_modified = a:palette.normal_modified
-        let a:palette.inactive_modified = a:palette.normal_modified
-    endif
-endfunction
+if !has("gui_running")
+	let g:airline_theme_patch_func = 'AirlineThemePatch'
+	function! AirlineThemePatch(palette)
+		if g:airline_theme == 'kalisi'
+			let a:palette.normal_modified = {
+						\ 'airline_c': ['', '', 197, '', ''],
+						\}
+			let a:palette.insert_modified = a:palette.normal_modified
+			let a:palette.replace_modified = a:palette.normal_modified
+			let a:palette.visual_modified = a:palette.normal_modified
+			let a:palette.inactive_modified = a:palette.normal_modified
+		endif
+	endfunction
+endif
 
 " yankring {{{2
 let g:yankring_history_dir='$HOME/.vim_tmp'
