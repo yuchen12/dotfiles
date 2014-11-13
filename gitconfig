@@ -76,7 +76,13 @@
     pager = less -+S
     excludesfile = ~/.gitignore
 [push]
-    default = simple
+    default = nothing
 [log]
     decorate = true
     abbrevCommit = true
+[diff]
+    submodule = log
+[status]
+    submodulesummary = true
+[rerere]
+    enabled = true
