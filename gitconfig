@@ -47,7 +47,7 @@
     br = branch -vv
     s = status
     st = status
-    ss = status --short
+    ss = status -sb
     d = diff -D
     df = diff -D
     dc = diff -D --staged
