@@ -69,7 +69,7 @@ setup_link() {
 }
 
 update_files() {
-	./update-hosts.sh
+	#./update-hosts.sh
 	./update-dircolor.sh
 	./update-git-files.sh
 	./update-tmux-files.sh
@@ -92,7 +92,7 @@ install() {
 basename=`basename $0`
 
 # Ask for the administrator password upfront
-sudo -v
+#sudo -v
 
 if [ $basename = "install" ]; then
 	install
