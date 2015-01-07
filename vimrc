@@ -615,7 +615,7 @@ endif
 
 " yankring {{{2
 let g:yankring_history_dir='$HOME/.vim_tmp'
-nnoremap <Leader>r :YRShow<CR>
+nnoremap <Leader>yr :YRShow<CR>
 
 " vim-signify
 let g:signify_mapping_toggle = '<leader>gt'
