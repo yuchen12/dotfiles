@@ -332,7 +332,8 @@ let NERDTreeDirArrows=0
 let NERDTreeShowBookmarks=1
 let NERDChristmasTree=1
 "let NERDTreeKeepTreeInNewTab=1
-nmap <silent> <leader>ww :NERDTreeToggle <CR>
+"nmap <silent> <leader>ww :NERDTreeToggle <CR>
+nmap <silent> <leader>ww :NERDTreeTabsToggle <CR>
 nmap <leader>nt :NERDTreeFind<CR>
 
 " NERDCommenter {{{2

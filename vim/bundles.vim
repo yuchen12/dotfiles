@@ -9,7 +9,8 @@ NeoBundle 'Lokaltog/vim-easymotion'
 
 NeoBundleLazy 'majutsushi/tagbar', { 'autoload': { 'commands': 'TagbarToggle' } }
 "NeoBundleLazy 'sjl/gundo.vim', { 'autoload': { 'commands': 'GundoToggle' } }
-NeoBundleLazy 'scrooloose/nerdtree', { 'autoload': { 'commands': 'NERDTreeToggle' } }
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'christoomey/vim-tmux-navigator'
 
 NeoBundle 'scrooloose/syntastic'
@@ -62,7 +63,7 @@ NeoBundle 'VisIncr'
 "NeoBundle 'sudo.vim'
 NeoBundleLazy 'SudoEdit.vim', {'autoload': {'commands': ['SudoRead', 'SudoEdit']}}
 "NeoBundle 'FuzzyFinder'
-NeoBundle 'bronson/vim-trailing-whitespace'
+NeoBundle 'ntpeters/vim-better-whitespace'
 
 " color scheme
 "NeoBundle 'desert-warm-256'
