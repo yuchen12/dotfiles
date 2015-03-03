@@ -54,7 +54,7 @@ files=" \
 	gdbinit \
 	emacs \
 	tmux.conf \
-	bash_profile \
+	profile \
 	vimrc \
 	vim \
 	hgrc \
@@ -84,7 +84,7 @@ update() {
 install() {
 	[ -f ~/.profile ] && mv -v ~/.profile ~/.profile.bak
 	setup_link
-	. ~/.bash_profile
+	. ~/.profile
 	update_files
 	setup_vim
 }
