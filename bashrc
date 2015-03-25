@@ -87,10 +87,6 @@ fi
 
 ulimit -c unlimited
 
-if [ -f ~/.bashrc.local ]; then
-    . ~/.bashrc.local
-fi
-
 if exist screen; then
     a=`screen -ls 2>/dev/null`
     if ! echo "$a" | grep -q '^No Sockets found in'; then
