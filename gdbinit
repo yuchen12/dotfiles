@@ -44,14 +44,14 @@ set print demangle on
 set demangle-style gnu-v3
 set print sevenbit-strings off
 
-#                                                                                                        
+#
 #   STL GDB evaluators/views/utilities - 1.03
 #
-#   The new GDB commands:                                                         
-# 	    are entirely non instrumental                                             
+#   The new GDB commands:
+# 	    are entirely non instrumental
 # 	    do not depend on any "inline"(s) - e.g. size(), [], etc
 #       are extremely tolerant to debugger settings
-#                                                                                 
+#
 #   This file should be "included" in .gdbinit as following:
 #   source stl-views.gdb or just paste it into your .gdbinit file
 #
@@ -75,7 +75,7 @@ set print sevenbit-strings off
 #   Make sure your debugger supports $argc
 #
 #   Simple GDB Macros writen by Dan Marinescu (H-PhD) - License GPL
-#   Inspired by intial work of Tom Malnar, 
+#   Inspired by intial work of Tom Malnar,
 #     Tony Novac (PhD) / Cornell / Stanford,
 #     Gilad Mishne (PhD) and Many Many Others.
 #   Contact: dan_c_marinescu@yahoo.com (Subject: STL)
@@ -149,7 +149,7 @@ document pvector
 	pvector v - Prints vector content, size, capacity and T typedef
 	pvector v 0 - Prints element[idx] from vector
 	pvector v 1 2 - Prints elements in range [idx1..idx2] from vector
-end 
+end
 
 #
 # std::list<>
@@ -703,7 +703,7 @@ document pstring
 	Syntax: pstring <string>
 	Example:
 	pstring s - Prints content, size/length, capacity and ref-count of string s
-end 
+end
 
 #
 # std::wstring
@@ -725,5 +725,5 @@ document pwstring
 	Syntax: pwstring <wstring>
 	Example:
 	pwstring s - Prints content, size/length, capacity and ref-count of wstring s
-end 
+end
 

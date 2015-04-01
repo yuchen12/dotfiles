@@ -52,7 +52,6 @@ files=" \
 	screenrc \
 	toprc \
 	gdbinit \
-	emacs \
 	tmux.conf \
 	profile \
 	vimrc \
@@ -69,7 +68,6 @@ setup_link() {
 }
 
 update_files() {
-	#./update-hosts.sh
 	./update-dircolor.sh
 	./update-git-files.sh
 	./update-tmux-files.sh
@@ -82,7 +80,6 @@ update() {
 }
 
 install() {
-	[ -f ~/.profile ] && mv -v ~/.profile ~/.profile.bak
 	setup_link
 	. ~/.profile
 	update_files
