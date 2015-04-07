@@ -1,90 +1,90 @@
 [color]
-    showbranch = auto
-    interactive = auto
-    branch = auto
-    diff = auto
-    status = auto
-    grep = auto
-    ui = auto
+	showbranch = auto
+	interactive = auto
+	branch = auto
+	diff = auto
+	status = auto
+	grep = auto
+	ui = auto
 [color "branch"]
-    current = 209 reverse bold
-    local = 38
-    remote = 203
+	current = 209 reverse bold
+	local = 38
+	remote = 203
 [color "diff"]
-    ;plain
-    func = 249 reverse
-    whitespace = 160 reverse
-    meta = 223 bold
-    frag = 48
-    old = 168
-    new = 44
-    commit = 172 bold
+	;plain
+	func = 249 reverse
+	whitespace = 160 reverse
+	meta = 223 bold
+	frag = 48
+	old = 168
+	new = 44
+	commit = 172 bold
 [color "grep"]
-    ;selected = 187
-    ;context = 187
-    function = 44
-    match = 221 bold
-    filename = 138
-    linenumber = 36
+	;selected = 187
+	;context = 187
+	function = 44
+	match = 221 bold
+	filename = 138
+	linenumber = 36
 [color "status"]
-    header = 223
-    added = 6 bold
-    changed = red bold
-    branch = 223 reverse bold
-    nobranch = 209 reverse
-    untracked = 184 bold
+	header = 223
+	added = 6 bold
+	changed = red bold
+	branch = 223 reverse bold
+	nobranch = 209 reverse
+	untracked = 184 bold
 [user]
-    name = Wang Zhen
-    email = lazybetrayer@gmail.com
+	name = Wang Zhen
+	email = lazybetrayer@gmail.com
 [alias]
-    a = add -v
-    ad = add -v
-    cp = cherry-pick -x
-    co = checkout
-    mg = merge --no-edit
-    ci = commit -s
-    cs = commit -s
-    br = branch -vv
-    s = status
-    st = status
-    ss = status -sb
-    d = diff -D
-    df = diff -D
-    dc = diff -D --staged
-    ;dw = diff --word-diff
-    dt = difftool
-    mt = mergetool
-    cf = config
-    lg = log --decorate -D
-    l = log --decorate -D
-    lr = log --oneline --left-right --cherry-pick
-    oneline = log --pretty=format:\"%C(auto)%h - %s %d  %C(60)%an@%ad%Creset\" --date=iso
-    ol = log --pretty=format:\"%C(auto)%h - %s %d  %C(60)%an@%ad%Creset\" --date=iso
-    glog = log --pretty=format:\"%C(auto)%h - %s %d  %C(60)%an@%ad%Creset\" --date=iso --graph
-    gl = log --pretty=format:\"%C(auto)%h - %s %d  %C(60)%an@%ad%Creset\" --date=iso --graph
-    lp = log --decorate -p -D
-    ;lw = log --decorate -p --word-diff
-    last = log --decorate -1
-    lognomerge = log --no-merges --decorate
-    lnomerge = log --no-merges --decorate
-    sb = submodule
-    rb = rebase
+	a = add -v
+	ad = add -v
+	cp = cherry-pick -x
+	co = checkout
+	mg = merge --no-edit
+	ci = commit -s
+	cs = commit -s
+	br = branch -vv
+	s = status
+	st = status
+	ss = status -sb
+	d = diff -D
+	df = diff -D
+	dc = diff -D --staged
+	;dw = diff --word-diff
+	dt = difftool
+	mt = mergetool
+	cf = config
+	lg = log --decorate -D
+	l = log --decorate -D
+	lr = log --oneline --left-right --cherry-pick
+	oneline = log --pretty=format:\"%C(auto)%h - %s %d  %C(60)%an@%ad%Creset\" --date=iso
+	ol = log --pretty=format:\"%C(auto)%h - %s %d  %C(60)%an@%ad%Creset\" --date=iso
+	glog = log --pretty=format:\"%C(auto)%h - %s %d  %C(60)%an@%ad%Creset\" --date=iso --graph
+	gl = log --pretty=format:\"%C(auto)%h - %s %d  %C(60)%an@%ad%Creset\" --date=iso --graph
+	lp = log --decorate -p -D
+	;lw = log --decorate -p --word-diff
+	last = log --decorate -1
+	lognomerge = log --no-merges --decorate
+	lnomerge = log --no-merges --decorate
+	sb = submodule
+	rb = rebase
 [merge]
-    tool = kdiff3
+	tool = kdiff3
 [core]
-    quotepath = false
-    pager = less -+S
-    excludesfile = ~/.gitignore
+	quotepath = false
+	pager = less -+S
+	excludesfile = ~/.gitignore
 [push]
-    default = nothing
+	default = nothing
 [log]
-    decorate = true
-    abbrevCommit = true
+	decorate = true
+	abbrevCommit = true
 [diff]
-    mnemonicprefix = true
-    submodule = log
-    algorithm = histogram
+	mnemonicprefix = true
+	submodule = log
+	algorithm = histogram
 [status]
-    submodulesummary = true
+	submodulesummary = true
 [rerere]
-    enabled = true
+	enabled = true
