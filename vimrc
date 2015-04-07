@@ -127,6 +127,7 @@ set nopaste
 set smartindent
 set title " change the terminal's title
 set wildmenu
+set wildignorecase
 set wildmode=list:longest,full
 set autowrite
 set hlsearch
