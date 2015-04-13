@@ -43,8 +43,8 @@ if has("gui_running")
     "set background=dark
     silent! colorscheme molokai
     set guioptions-=T
-    set guifont=Droid\ Sans\ Mono\ 12
-    set guifontwide=Microsoft\ Yahei\ 12,WenQuanYi\ Zen\ Hei\ 12
+    "set guifont=Droid\ Sans\ Mono\ 12
+    "set guifontwide=Microsoft\ Yahei\ 12,WenQuanYi\ Zen\ Hei\ 12
 elseif &t_Co == 256
     set background=dark
     "let g:molokai_original = 1
