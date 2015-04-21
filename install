@@ -44,25 +44,25 @@ make_link() {
 	ln -sfv $from $to
 }
 
-files=" \
-	bashrc \
-	bash_prompt \
-	bash_aliases \
-	gitconfig \
-	screenrc \
-	toprc \
-	gdbinit \
-	tmux.conf \
-	profile \
-	vimrc \
-	vim \
-	hgrc \
-	tmux-mac.conf \
-	tmux-linux.conf \
-	"
+files=(
+	bashrc
+	bash_prompt
+	bash_aliases
+	gitconfig
+	screenrc
+	toprc
+	gdbinit
+	tmux.conf
+	profile
+	vimrc
+	vim
+	hgrc
+	tmux-mac.conf
+	tmux-linux.conf
+)
 
 setup_link() {
-	for f in $files; do
+	for f in "${files[@]}"; do
 		make_link $PWD/$f ~/.$f
 	done
 }
