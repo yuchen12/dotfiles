@@ -144,6 +144,8 @@ set laststatus=2
 set pastetoggle=<F3>
 set report=0
 set cursorline      " 高亮当前行
+au WinLeave * set nocursorline
+au WinEnter * set cursorline
 set wildignore+=*.o,*.obj,*.pyc,*.class
 set wildignore+=*~,*.sw?
 set wildignore+=*.DS_Store
@@ -566,6 +568,7 @@ let g:syntastic_mode_map = { 'mode': 'active',
             \ 'passive_filetypes': ['c', 'cpp', 'python', 'java'] }
 let g:syntastic_cpp_compiler_options=' -std=c++11 -Wall -Wextra'
 let g:syntastic_cpp_config_file = '.__config'
+let g:syntastic_check_on_wq = 0
 
 hi SyntasticErrorSign cterm=bold ctermfg=160
 hi SyntasticWarningSign cterm=bold ctermfg=11
