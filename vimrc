@@ -143,9 +143,13 @@ set foldlevelstart=999
 set laststatus=2
 set pastetoggle=<F3>
 set report=0
-set cursorline      " 高亮当前行
-au WinLeave * set nocursorline
-au WinEnter * set cursorline
+"set cursorline      " 高亮当前行
+augroup CursorLineOnlyInActiveWindow
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END
+
 set wildignore+=*.o,*.obj,*.pyc,*.class
 set wildignore+=*~,*.sw?
 set wildignore+=*.DS_Store
