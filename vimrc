@@ -412,9 +412,18 @@ map <leader>gu :GundoToggle<CR>
 
 
 " python-mode {{{2
-let g:pymode_lint_checker = "pyflakes"
+let g:pymode_lint_checker = "pyflakes,pep8"
 let g:pymode_rope_guess_project = 0
 let g:pymode_rope=0
+let g:pymode_doc = 0
+
+" jedi=vim {{{2
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#goto_definitions_command = '<leader>gd'
+let g:jedi#usages_command = '<leader>gu'
+let g:jedi#goto_assignments_command = '<leader>ga'
+let g:jedi#rename_command = '<leader>gr'
 
 " neocomplete {{{2
 let g:neocomplete#disable_auto_complete=0
@@ -464,21 +473,15 @@ if !exists('g:neocomplete#force_omni_input_patterns')
 endif
 
 let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::\w*'
-let g:neocomplete#sources#omni#input_patterns.php =
-            \ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
-let g:neocomplete#sources#omni#input_patterns.c =
-            \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
-let g:neocomplete#sources#omni#input_patterns.cpp =
-            \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
+let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 
-let g:neocomplete#force_omni_input_patterns.c =
-            \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-let g:neocomplete#force_omni_input_patterns.cpp =
-            \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-let g:neocomplete#force_omni_input_patterns.objc =
-            \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-let g:neocomplete#force_omni_input_patterns.objcpp =
-            \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+let g:neocomplete#force_omni_input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+let g:neocomplete#force_omni_input_patterns.objc = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+let g:neocomplete#force_omni_input_patterns.objcpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
 
 if !exists('g:neocomplete#keyword_patterns')
     let g:neocomplete#keyword_patterns = {}
@@ -487,16 +490,16 @@ endif
 let g:neocomplete#keyword_patterns._ = '[0-9a-zA-Z:#_]\+'
 
 " Enable omni completion
-if has('python3')
-    au FileType python setlocal omnifunc=python3complete#Complete
-else
-    au FileType python setlocal omnifunc=pythoncomplete#Complete
-endif
+au FileType python setlocal omnifunc=jedi#completions
+"if has('python3')
+"    au FileType python setlocal omnifunc=python3complete#Complete
+"else
+"    au FileType python setlocal omnifunc=pythoncomplete#Complete
+"endif
 
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 

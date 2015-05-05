@@ -32,10 +32,10 @@ NeoBundleLazy 'honza/vim-snippets', {'autoload': {'insert': 1}}
 NeoBundle 'tpope/vim-surround'
 "NeoBundle 'fholgado/minibufexpl.vim'
 
+NeoBundleLazy 'davidhalter/jedi-vim',  {'autoload': {'filetypes': 'python'}}
 NeoBundleLazy 'klen/python-mode', {'autoload': {'filetypes': 'python'}}
 NeoBundleLazy 'python.vim', {'autoload': {'filetypes': 'python'}}
 NeoBundleLazy 'python_match.vim', {'autoload': {'filetypes': 'python'}}
-NeoBundleLazy 'pythoncomplete', {'autoload': {'filetypes': 'python'}}
 
 NeoBundle 'bling/vim-airline'
 
