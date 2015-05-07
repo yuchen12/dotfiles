@@ -581,6 +581,7 @@ hi SyntasticErrorSign cterm=bold ctermfg=160
 hi SyntasticWarningSign cterm=bold ctermfg=11
 
 nnoremap <silent> <Leader>sk :SyntasticCheck<CR>
+autocmd FileType qf setlocal wrap
 
 " ctrlp {{{2
 nnoremap <silent> <Leader>ff :CtrlP<CR>
