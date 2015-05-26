@@ -43,7 +43,7 @@ NeoBundleLazy 'mattn/emmet-vim',  {'autoload': {'filetypes': ['css', 'html']} }
 NeoBundleLazy "elzr/vim-json", {'autoload': {'filetypes': 'json'}}
 NeoBundleLazy 'jansenm/vim-cmake', {'autoload': {'filetypes': 'cmake'}}
 
-NeoBundleLazy 'fatih/vim-go', {'autoload': {'filetypes': 'go'}}
+NeoBundleLazy 'fatih/vim-go', {'autoload': {'filetypes': ['go', 'gohtmltmpl']}}
 NeoBundleLazy 'plasticboy/vim-markdown', {'autoload': {'filetypes': 'markdown'}}
 NeoBundleLazy 'wting/rust.vim', {'autoload': {'filetypes': 'rust'}}
 

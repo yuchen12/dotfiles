@@ -37,11 +37,11 @@ make_link() {
 	from=$1
 	to=$2
 
-	if [ -e $to ]; then
-		rm -rf $to.old && mv -f $to $to.old
+	if [ -e "$to" ]; then
+		rm -rf "$to.old" && mv -f "$to" "$to.old"
 	fi
 
-	ln -sfv $from $to
+	ln -sfv "$from" "$to"
 }
 
 files=(
@@ -63,7 +63,7 @@ files=(
 
 setup_link() {
 	for f in "${files[@]}"; do
-		make_link $PWD/$f ~/.$f
+		make_link "$PWD/$f" ~/."$f"
 	done
 }
 
@@ -86,14 +86,14 @@ install() {
 	setup_vim
 }
 
-basename=`basename $0`
+basename=$(basename "$0")
 
 # Ask for the administrator password upfront
 #sudo -v
 
-if [ $basename = "install" ]; then
+if [ "$basename" = "install" ]; then
 	install
-elif [ $basename = "update" ]; then
+elif [ "$basename" = "update" ]; then
 	update
 fi
 

@@ -12,7 +12,7 @@ esac
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-HISTCONTROL=ignoreboth
+#HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -20,6 +20,7 @@ shopt -s histappend
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
+HISTTIMEFORMAT='%F %T%t'
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -33,14 +34,14 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 exist() {
-    type $1 > /dev/null 2>&1
+    type "$1" > /dev/null 2>&1
 }
 
 if [[ $TERM =~ xterm* ]]; then
     export TERM='xterm-256color'
 fi
 
-[ `tput colors 2>/dev/null` = "256" ] && is256color=yes || is256color=no
+[ "$(tput colors 2>/dev/null)" = "256" ] && is256color=yes || is256color=no
 
 . ~/.bash_prompt
 
@@ -79,7 +80,7 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export EDITOR=vim
 
-if [[ $OSTYPE =~ "linux" ]]; then
+if [[ $OSTYPE =~ linux ]]; then
     export GTK_IM_MODULE=fcitx
     export XMODIFIERS="@im=fcitx"
     export QT_IM_MODULE=fcitx
@@ -88,7 +89,7 @@ fi
 ulimit -c unlimited
 
 if exist screen; then
-    a=`screen -ls 2>/dev/null`
+    a=$(screen -ls 2>/dev/null)
     if ! echo "$a" | grep -q '^No Sockets found in'; then
         echo ">>> screen sessions:"
         echo "$a"
@@ -98,7 +99,7 @@ fi
 
 if exist tmux; then
     source ~/.bash_completion_tmux.sh
-    a=`tmux ls 2>/dev/null`
+    a=$(tmux ls 2>/dev/null)
     if [ -n "$a" ]; then
         echo ">>> tmux sessions:"
         echo "$a"
