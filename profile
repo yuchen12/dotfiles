@@ -42,14 +42,18 @@ else
     unset LOCAL
 fi
 
-if [ -d $HOME/go ]; then
-    # http://golang.org/doc/install/source#environment
-    #export GOROOT=$HOME/go
-    #export GOBIN=$HOME/go/bin
+if [ -d $HOME/gopath ]; then
     export GOPATH=$HOME/gopath
-    export PATH=$HOME/go/bin:$GOPATH/bin:$PATH
+    export PATH=$GOPATH/bin:$PATH
     export CDPATH=.:$GOPATH/src
 fi
+
+for dir in $HOME/go /usr/local/go; do
+    if [ -f $dir/bin/go ]; then
+        export PATH=$dir/bin:$PATH
+        break
+    fi
+done
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then

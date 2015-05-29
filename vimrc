@@ -269,6 +269,8 @@ vnoremap > >gv
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
+nnoremap Y y$
+
 au BufNewFile,BufRead *.json set ft=json
 
 " C/C++ 相关设置 {{{2
