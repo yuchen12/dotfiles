@@ -39,6 +39,7 @@
 	name = Wang Zhen
 	email = lazybetrayer@gmail.com
 [alias]
+	f = fetch
 	a = add -v
 	ad = add -v
 	cp = cherry-pick -x
@@ -46,6 +47,7 @@
 	mg = merge --no-edit
 	ci = commit -s
 	cs = commit -s
+	b = branch -vv
 	br = branch -vv
 	s = status
 	st = status
