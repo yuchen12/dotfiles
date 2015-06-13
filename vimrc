@@ -101,9 +101,10 @@ set incsearch       " do incremental searching
 set ignorecase
 set smartcase       " 当搜索字符中包含大写字母时，大小写敏感
 set sw=4            " shiftwidth
-"set et              " expandtab
-set noexpandtab
+set et              " expandtab
+au FileType go set noet
 set nu              " show line number
+set relativenumber
 set wm=4            " wrapmargin
 set ts=4            " tabstop
 set smarttab        " smarttab
@@ -155,8 +156,9 @@ set wildignore+=*~,*.sw?
 set wildignore+=*.DS_Store
 set wildignore+=*.jpg,*.jpeg,*.bmp,*.gif,*.png
 set wildignore+=.git,.svn,CVS,.hg
+
 set infercase
-set display=lastline " when a line is long, don't omit it in @
+set display=lastline,uhex " when a line is long, don't omit it in @
 set autoread
 
 if has('clipboard')
@@ -522,7 +524,7 @@ inoremap <expr><C-e> pumvisible() ? neocomplete#cancel_popup() : "\<End>"
 
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
 " <C-n>:
 inoremap <expr><C-n> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>\<C-p>\<Down>"
@@ -533,10 +535,17 @@ inoremap <expr><C-p> pumvisible() ? "\<C-p>" : "\<C-p>\<C-n>"
 inoremap <expr><C-x><C-f> neocomplete#start_manual_complete('file')
 
 " <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
     return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
+inoremap <silent> <expr><CR> delimitMate#WithinEmptyPair() ?
+            \ "\<C-R>=delimitMate#ExpandReturn()\<CR>" :
+            \ "\<C-r>=<SID>my_cr_function()<CR>"
+
+inoremap <silent> <expr><BS> delimitMate#WithinEmptyPair() ?
+            \ "\<C-R>=delimitMate#BS()\<CR>" :
+            \ neocomplete#smart_close_popup() . '<BS>'
 
 function! s:check_back_space() "{{{
     let col = col('.') - 1
@@ -593,6 +602,17 @@ let g:ctrlp_custom_ignore = {
             \ 'dir':  '\v[\/]\.(git|hg|svn)$',
             \ 'file': '\v\.(exe|so|dll|o|a|d|jpg|jpeg|png|bmp|gif)$',
             \ }
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
 
 " airline {{{2
 let g:airline_theme='kalisi'
@@ -675,6 +695,13 @@ let g:user_emmet_settings = {
             \}
 " vim-markdown {{{2
 let g:vim_markdown_folding_disabled=1
+
+" delimitMate {{{2
+let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 1
+let delimitMate_balance_matchpairs = 1
+let delimitMate_matchpairs = "(:),[:],{:}"
+"imap <C-f> <Plug>delimitMateS-Tab
 
 " }}}1
 

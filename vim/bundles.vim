@@ -64,6 +64,7 @@ NeoBundle 'VisIncr'
 NeoBundleLazy 'SudoEdit.vim', {'autoload': {'commands': ['SudoRead', 'SudoEdit']}}
 "NeoBundle 'FuzzyFinder'
 NeoBundle 'ntpeters/vim-better-whitespace'
+NeoBundle 'Raimondi/delimitMate'
 
 " color scheme
 "NeoBundle 'desert-warm-256'
