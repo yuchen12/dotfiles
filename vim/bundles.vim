@@ -45,7 +45,7 @@ NeoBundleLazy 'jansenm/vim-cmake', {'autoload': {'filetypes': 'cmake'}}
 
 NeoBundleLazy 'fatih/vim-go', {'autoload': {'filetypes': ['go', 'gohtmltmpl']}}
 NeoBundleLazy 'plasticboy/vim-markdown', {'autoload': {'filetypes': 'markdown'}}
-NeoBundleLazy 'wting/rust.vim', {'autoload': {'filetypes': 'rust'}}
+NeoBundleLazy 'rust-lang/rust.vim', {'autoload': {'filetypes': 'rust'}}
 
 " vim-scripts repos
 NeoBundleLazy 'TaskList.vim', {'autoload': {'commands': 'TaskList'}}
