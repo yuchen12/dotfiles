@@ -385,7 +385,7 @@ let g:clang_snippets_engine="clang_complete"
 let g:clang_close_preview=1
 let g:clang_trailing_placeholder=0
 "let g:clang_exec="clang"
-let g:clang_user_options="-std=c++11"
+let g:clang_user_options="-std=c++14"
 let g:clang_use_library=1
 if has('mac')
     let s:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
