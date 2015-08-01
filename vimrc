@@ -103,8 +103,12 @@ set smartcase       " 当搜索字符中包含大写字母时，大小写敏感
 set sw=4            " shiftwidth
 set et              " expandtab
 au FileType go set noet
+
 set nu              " show line number
-set relativenumber
+set rnu
+au WinEnter,InsertLeave * setlocal rnu
+au WinLeave,InsertEnter * setlocal nornu
+
 set wm=4            " wrapmargin
 set ts=4            " tabstop
 set smarttab        " smarttab
