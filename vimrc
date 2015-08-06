@@ -378,6 +378,21 @@ let g:tagbar_type_go = {
     \ 'ctagsargs' : '-sort -silent'
     \ }
 
+" https://github.com/majutsushi/tagbar/wiki#rust
+ let g:tagbar_type_rust = {
+    \ 'ctagstype' : 'rust',
+    \ 'kinds' : [
+        \'T:types,type definitions',
+        \'f:functions,function definitions',
+        \'g:enum,enumeration names',
+        \'s:structure names',
+        \'m:modules,module names',
+        \'c:consts,static constants',
+        \'t:traits,traits',
+        \'i:impls,trait implementations',
+    \]
+    \}
+
 " clang_complete {{{2
 let g:clang_auto_select=0
 let g:clang_complete_auto=0
@@ -680,6 +695,10 @@ let g:go_snippet_engine = 'neosnippet'
 let g:go_fmt_fail_silently = 1 " use syntasitic to check errors
 let g:go_auto_type_info = 1
 let g:go_fmt_command = "goimports"
+
+" racer {{{2
+let g:racer_cmd = expand("~/.vim_bundle/racer/target/release/racer")
+let $RUST_SRC_PATH = expand("~/sources/rust/src")
 
 " emmet-vim {{{2
 let g:user_emmet_install_global=0
