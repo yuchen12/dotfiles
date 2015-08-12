@@ -700,6 +700,10 @@ let g:go_fmt_command = "goimports"
 let g:racer_cmd = expand("~/.vim_bundle/racer/target/release/racer")
 let $RUST_SRC_PATH = expand("~/sources/rust/src")
 
+" rust {{{2
+let g:rust_recommanded_style = 1
+let g:rust_fold = 1
+
 " emmet-vim {{{2
 let g:user_emmet_install_global=0
 au FileType html,css EmmetInstall
