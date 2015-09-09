@@ -30,6 +30,9 @@ NeoBundleCheck
 
 " }}}1
 
+" avoid sourcing stupid menu.vim
+let g:did_install_default_menus = 1
+
 " 颜色相关设置 {{{1
 " ===================================
 if &term =~ "xterm\\|screen"
