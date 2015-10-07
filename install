@@ -65,6 +65,8 @@ setup_link() {
 	for f in "${files[@]}"; do
 		make_link "$PWD/$f" ~/."$f"
 	done
+
+    touch ~/.bash_sessions_disable
 }
 
 update_files() {
