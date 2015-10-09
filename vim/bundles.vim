@@ -6,6 +6,7 @@ NeoBundle 'mhinz/vim-signify'
 NeoBundle 'rking/ag.vim', {'autoload': {'commands': 'Ag'}}
 
 NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'myusuf3/numbers.vim'
 
 NeoBundleLazy 'majutsushi/tagbar', { 'autoload': { 'commands': 'TagbarToggle' } }
 "NeoBundleLazy 'sjl/gundo.vim', { 'autoload': { 'commands': 'GundoToggle' } }

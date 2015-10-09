@@ -1,6 +1,8 @@
+" vim: fdm=marker foldlevel=0
+
 " Author: Wang Zhen
 
-" neobundle 设置 {{{1
+" neobundle settings {{{1
 " ===================================
 
 filetype off
@@ -28,12 +30,7 @@ syntax on
 
 NeoBundleCheck
 
-" }}}1
-
-" avoid sourcing stupid menu.vim
-let g:did_install_default_menus = 1
-
-" 颜色相关设置 {{{1
+" colors {{{1
 " ===================================
 if &term =~ "xterm\\|screen"
     " 256 color
@@ -41,36 +38,30 @@ if &term =~ "xterm\\|screen"
     set t_AB=[48;5;%dm
     set t_AF=[38;5;%dm
 endif
-" 主题设置 {{{2
+
 if has("gui_running")
     "set background=dark
     silent! colorscheme molokai
     set guioptions-=T
-    "set guifont=Droid\ Sans\ Mono\ 12
-    "set guifontwide=Microsoft\ Yahei\ 12,WenQuanYi\ Zen\ Hei\ 12
 elseif &t_Co == 256
     set background=dark
     "let g:molokai_original = 1
     let g:rehash256=1
     silent! colorscheme molokai
 end
-" hi设置 {{{2
+
+" hi {{{2
 hi diffAdded ctermfg=31 guifg=#268bd2
 hi diffRemoved ctermfg=161 guifg=#d30102
-"hi cursorline term=standout,bold cterm=bold ctermfg=None ctermbg=23 gui=bold " 高亮光标所在行
-"hi Normal ctermbg=None
 hi ToDo cterm=bold ctermfg=9 ctermbg=226 gui=standout guibg=#eeee00 guifg=#ff4500
 
-" 自动补全弹出菜单颜色设置
+" popup menu
 hi Pmenu term=standout cterm=none ctermfg=0 ctermbg=250 guifg=#000000 guibg=#bcbcbc
 hi PmenuSel cterm=bold ctermfg=234 ctermbg=174 gui=bold guifg=bg guibg=#df8787
 hi PMenuSbar guifg=#ededed guibg=#202020 guisp=#202020 gui=NONE ctermfg=255 ctermbg=255 cterm=NONE
 hi PMenuThumb guifg=#dbdbdb guibg=#303030 guisp=#303030 gui=NONE ctermfg=253 ctermbg=35 cterm=NONE
 
-" 高亮特殊字符
 hi SpecialKey guifg=#30302b guibg=NONE guisp=#343434 gui=NONE ctermfg=236 ctermbg=NONE cterm=NONE
-
-"hi WildMenu term=standout cterm=standout ctermfg=95 ctermbg=230 guifg=gray guibg=gray17
 
 hi cMathOperator            cterm=bold ctermfg=6 guifg=#3EFFE2
 hi cPointerOperator         cterm=bold ctermfg=6 guifg=#3EFFE2
@@ -83,39 +74,30 @@ hi cLogicalOperatorError    cterm=bold ctermfg=6 guifg=#3EFFE2
 hi! link cFunction Function
 hi PreCondit cterm=bold ctermfg=160
 
-" 高亮行尾的空格
-"au BufEnter,InsertEnter,InsertLeave * 2match WhitespaceEOL /\s\+$/
-"highlight WhitespaceEOL ctermbg=red guibg=red
-
-" }}}1
-
-" set相关 {{{1
+" set {{{1
 " ===================================
-" 一般设置 {{{2
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
+let g:did_install_default_menus = 1 " avoid sourcing stupid menu.vim
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab
+set autoindent smartindent
+set wrapmargin=4
+
+set backspace=indent,eol,start  " allow backspacing over everything in insert mode
 set nobackup
 set noswapfile
 set ruler           " show the cursor position all the time
 set ttyfast         " smoother changes
 set lazyredraw
 set showcmd         " display incomplete commands
-set incsearch       " do incremental searching
-set ignorecase
-set smartcase       " 当搜索字符中包含大写字母时，大小写敏感
-set sw=4            " shiftwidth
-set et              " expandtab
-au FileType go set noet
+set incsearch hlsearch
+set ignorecase smartcase
 
-set nu              " show line number
-set rnu
-au WinEnter,InsertLeave * setlocal rnu
-au WinLeave,InsertEnter * setlocal nornu
+set number          " use myusuf3/numbers.vim to intelligently toggling line numbers
 
-set wm=4            " wrapmargin
-set ts=4            " tabstop
-set smarttab        " smarttab
-set softtabstop=4
 set matchpairs+=<:> " show matching <> as well
 set updatetime=1000
 set hidden          " allow buffers to go into the background without needing to save
@@ -125,37 +107,30 @@ set notimeout
 set ttimeout
 set ttimeoutlen=10
 
-if exists('$TMUX')
-    set ttymouse=xterm2
-endif
-
 set fileformat=unix
 set fileformats=unix,dos,mac
 set nopaste
-set smartindent
-set title " change the terminal's title
+set title           " change the terminal's title
 set wildmenu
 set wildignorecase
 set wildmode=list:longest,full
 set autowrite
-set hlsearch
-set ai              " autoindent
-set si              " smartindent
 set tags=tags;/
 set nowrap
-set so=5            " Set 5 lines to curors - when moving vertical..
-set fdm=marker
-auto FileType c,cpp,python,go set fdm=syntax
-auto FileType diff set fdm=diff
-set foldlevelstart=999
+set scrolloff=5
+set foldenable
+set foldlevelstart=10
+set foldnestmax=10
+set fdm=syntax
 set laststatus=2
 set pastetoggle=<F3>
 set report=0
-"set cursorline      " 高亮当前行
+
+"set cursorline
 augroup CursorLineOnlyInActiveWindow
-  autocmd!
-  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  autocmd WinLeave * setlocal nocursorline
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
 augroup END
 
 set wildignore+=*.o,*.obj,*.pyc,*.class
@@ -176,11 +151,6 @@ if has('clipboard')
     endif
 endif
 
-" Instead of reverting the cursor to the last position in the buffer, we
-" set it to the first line when editing a git commit message
-au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
-
-
 "When joining lines, don't insert a space between two multi-byte characters.
 set formatoptions+=Blj
 
@@ -193,58 +163,55 @@ if has('persistent_undo')
     set undodir=~/.vim_tmp
 endif
 
-"au BufWritePost *.go execute 'Lint' | cwindow
 set completeopt=menu,menuone,longest
 
 set list
 set listchars=tab:\|.,extends:>,nbsp:.,precedes:<,trail:• "eol:¶
 
-autocmd FileType text setlocal textwidth=78 " For all text files set 'textwidth' to 78 characters.
-
-" 打开文件时自动跳到上次退出时光标所在位置
-autocmd BufReadPost *
+au BufReadPost *
             \ if line("'\"") > 0 && line("'\"") <= line("$") |
             \   exe "normal! g`\"" |
             \ endif
 
-"autocmd BufEnter * lcd %:p:h " 自动切换到当前文件所在目录
-
 " automatically rebalance windows on vim resize
-autocmd VimResized * :wincmd =
+au VimResized * :wincmd =
 
 " Convenient command to see the difference between the current buffer and the file it was loaded from, thus the changes you made.
 command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
             \ | wincmd p | diffthis
 
 :runtime! ftplugin/man.vim " :Man 3 printf
-" 编码设置 {{{2
+
+" change cursor shape in insert mode
+if exists('$TMUX')
+    set ttymouse=xterm2
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
+" encoding {{{2
 let &termencoding=&encoding
-" vim解析文件时尝试的编码格式顺序列表
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr
-set encoding=utf-8  " vim内部使用的字符编码格式
-set fileencoding=utf-8  " vim识别出来的文件的编码格式
+set encoding=utf-8
+set fileencoding=utf-8
 "set termencoding=utf-8
 
-" map leader {{{2
 let g:C_MapLeader=','
 let C_MapLeader=','
 let mapleader=','
 let g:mapleader=','
 
-" map {{{2
+" map {{{1
 nnoremap ; :
 nnoremap <Leader>; ;
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>Q :q!<CR>
 
-"nnoremap j gj
-"nnoremap k gk
-"
 " For when you forget to sudo.. Really Write the file.
 cmap w!! w !sudo tee % >/dev/null
-
-" delete trailing whitespaces
-"nmap <silent><Leader>et :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " Quick alignment of text
 nnoremap <Leader>al :left<CR>
@@ -252,7 +219,7 @@ nnoremap <Leader>ar :right<CR>
 nnoremap <Leader>ac :center<CR>
 
 " Find merge conflict markers
-map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
+noremap <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 
 " Change Working Directory to that of the current file
 cmap cwd lcd %:p:h
@@ -260,8 +227,7 @@ cmap cd. lcd %:p:h
 
 nmap <silent> <leader>df :DiffOrig<cr>
 
-" use ,n to turn off highlighting
-nmap <silent> <leader>n :silent noh<CR>
+nmap <silent> <esc><esc> :silent nohlsearch<CR>
 nmap <silent> <leader>rr :redraw!<cr> " Fast redraw
 
 " Easier moving in tabs and windows
@@ -279,17 +245,20 @@ vnoremap > >gv
 map Q gq
 
 nnoremap Y y$
+nnoremap <space> za
 
-au BufNewFile,BufRead *.json set ft=json
+" select last inserted text
+nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
 
-" C/C++ 相关设置 {{{2
+" quickfix
+nmap <leader>cn :cn<cr>
+nmap <leader>cp :cp<cr>
+nmap <leader>cw :cw 10<cr>
+
+" file type {{{1
 set cinoptions=:0,g0,l1,(0,w0,W4,t0,N-s
-autocmd BufNewFile *.c 0r ~/.vim/templates/main.c
-autocmd BufNewFile *.go 0r ~/.vim/templates/main.go
-autocmd BufNewFile *.{cpp,cc} 0r ~/.vim/templates/main.cpp
-autocmd BufNewFile *.{h,hpp} call <SID>insert_include_guard() " C/C++ include guard
 
-" c/c++ include guard {{{3
+" c/c++ header include guard
 function! s:insert_include_guard()
     let guard_name = substitute(toupper(expand("%:t")), "\\-\\|\\.", "_", "g") . '_' . "INCLUDED__"
     execute "normal! i#ifndef " . guard_name
@@ -299,40 +268,38 @@ function! s:insert_include_guard()
     normal! kk
 endfunction
 
-" python 相关设置 {{{2
-autocmd BufNewFile *.py 0r ~/.vim/templates/main.py
-au FileType python setlocal foldmethod=indent
-let python_highlight_all = 1
+augroup configgroup
+    au!
+    au FileType text setlocal textwidth=78 " For all text files set 'textwidth' to 78 characters.
 
-" shell {{{2
-autocmd BufNewFile *.sh 0r ~/.vim/templates/main.sh
+    " Instead of reverting the cursor to the last position in the buffer, we
+    " set it to the first line when editing a git commit message
+    au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 
-" ruby {{{2
-au FileType ruby set sw=2
-autocmd BufNewFile *.rb 0r ~/.vim/templates/main.rb
+    au FileType diff setlocal fdm=diff
 
-" quickfix {{{2
-au QuickfixCmdPost make call QfMakeConv() " 编码转换
-" 在有错误时自动打开quickfix窗口
-"au QuickFixCmdPost [^l]* nested cwindow
-"au QuickFixCmdPost l* nested cwindow
-" QfMakeConv {{{3
-function! QfMakeConv()
-    let qflist = getqflist()
-    for i in qflist
-        let i.text = iconv(i.text, "C", "utf-8")
-    endfor
-    call setqflist(qflist)
-endfunction
-nmap <F6> :cn <cr>
-nmap <F7> :cp <cr>
-nmap <leader>cn :cn<cr>
-nmap <leader>cp :cp<cr>
-nmap <leader>cw :cw 10<cr>
+    au FileType json setlocal foldmethod=syntax
 
-" }}}1
+    au FileType qf setlocal wrap
 
-" 插件设置 {{{1
+    au BufNewFile *.c 0r ~/.vim/templates/main.c
+    au BufNewFile *.{cpp,cc} 0r ~/.vim/templates/main.cpp
+    au BufNewFile *.{h,hpp} call <SID>insert_include_guard()
+
+    au BufNewFile *.py 0r ~/.vim/templates/main.py
+    au FileType python setlocal foldmethod=indent
+    let python_highlight_all = 1
+
+    au BufNewFile *.sh 0r ~/.vim/templates/main.sh
+
+    au FileType ruby setlocal sw=2
+    au BufNewFile *.rb 0r ~/.vim/templates/main.rb
+
+    au FileType go setlocal noexpandtab
+    au BufNewFile *.go 0r ~/.vim/templates/main.go
+augroup END
+
+" plugins {{{1
 " ===================================
 " NERDTree {{{2
 "Used by winmanager
@@ -361,8 +328,6 @@ let g:NERDCustomDelimiters = {
 
 " Tagbar {{{2
 nnoremap <silent> <leader>gg :TagbarToggle<CR>
-" open Tabbar automatically on Vim startup only if opening Vim with a supported file/files
-"autocmd VimEnter * nested :call tagbar#autoopen()
 let g:tagbar_auto_showtag=1
 let g:tagbar_autofocus=1
 let g:tagbar_usearrows=1
@@ -408,12 +373,12 @@ let g:clang_close_preview=1
 let g:clang_trailing_placeholder=0
 "let g:clang_exec="clang"
 let g:clang_user_options="-std=c++14"
+let g:clang_complete_macros=1
+let g:clang_complete_patterns=1
+let g:clang_auto_user_options="path, .clang_complete, compile_commands.json"
 let g:clang_use_library=1
 if has('mac')
-    let s:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
-    if isdirectory(s:clang_library_path)
-        let g:clang_library_path=s:clang_library_path
-    endif
+    let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
 else
     for dir in ['/usr/local/lib', '/usr/lib']
         if filereadable(dir . '/libclang.so')
@@ -422,9 +387,6 @@ else
         endif
     endfor
 endif
-let g:clang_complete_macros=1
-let g:clang_complete_patterns=1
-let g:clang_auto_user_options="path, .clang_complete, compile_commands.json"
 
 if has('conceal')
     let g:clang_conceal_snippets=1
@@ -432,10 +394,6 @@ endif
 
 " TaskList {{{2
 map <leader>td :TaskList<CR>
-
-" Gundo {{{2
-map <leader>gu :GundoToggle<CR>
-
 
 " python-mode {{{2
 let g:pymode_lint_checker = "pyflakes,pep8"
@@ -478,12 +436,12 @@ let g:neocomplete#diable_auto_select_buffer_name_pattern = '\[Command Line\]'
 " For auto select.
 let g:neocomplete#enable_complete_select = 1
 try
-	let completeopt_save = &completeopt
-	set completeopt+=noinsert,noselect
+    let completeopt_save = &completeopt
+    set completeopt+=noinsert,noselect
 catch
-	let g:neocomplete#enable_complete_select = 0
+    let g:neocomplete#enable_complete_select = 0
 finally
-	let &completeopt = completeopt_save
+    let &completeopt = completeopt_save
 endtry
 
 let g:neocomplete#force_overwrite_completefunc = 1
@@ -523,11 +481,11 @@ au FileType python setlocal omnifunc=jedi#completions
 "    au FileType python setlocal omnifunc=pythoncomplete#Complete
 "endif
 
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+au FileType css setlocal omnifunc=csscomplete#CompleteCSS
+au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+au FileType ruby setlocal omnifunc=rubycomplete#Complete
+au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 let g:neocomplete#sources#tags#cache_limit_size = 500000
 
@@ -569,17 +527,11 @@ inoremap <silent> <expr><BS> delimitMate#WithinEmptyPair() ?
             \ "\<C-R>=delimitMate#BS()\<CR>" :
             \ neocomplete#smart_close_popup() . '<BS>'
 
-function! s:check_back_space() "{{{
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1] =~ '\s'
-endfunction "}}}
-
 " <S-TAB>: completion back.
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <expr><s-CR> pumvisible() ? neocomplete#close_popup() "\<CR>" : "\<CR>"
 
 " }}}3
-
 " neosnippet {{{2
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory = '~/.vim_bundle/vim-snippets/snippets,~/.vim/snippets'
@@ -614,7 +566,6 @@ hi SyntasticErrorSign cterm=bold ctermfg=160
 hi SyntasticWarningSign cterm=bold ctermfg=11
 
 nnoremap <silent> <Leader>sk :SyntasticCheck<CR>
-autocmd FileType qf setlocal wrap
 
 " ctrlp {{{2
 nnoremap <silent> <Leader>ff :CtrlP<CR>
@@ -656,25 +607,25 @@ let g:airline#extensions#whitespace#mixed_indent_format = 'mix[%s]'
 let g:airline_powerline_fonts=0
 
 if !has("gui_running")
-	let g:airline_theme_patch_func = 'AirlineThemePatch'
-	function! AirlineThemePatch(palette)
-		if g:airline_theme == 'kalisi'
-			let a:palette.normal_modified = {
-						\ 'airline_c': ['', '', 197, '', ''],
-						\}
-			let a:palette.insert_modified = a:palette.normal_modified
-			let a:palette.replace_modified = a:palette.normal_modified
-			let a:palette.visual_modified = a:palette.normal_modified
-			let a:palette.inactive_modified = a:palette.normal_modified
-		endif
-	endfunction
+    let g:airline_theme_patch_func = 'AirlineThemePatch'
+    function! AirlineThemePatch(palette)
+        if g:airline_theme == 'kalisi'
+            let a:palette.normal_modified = {
+                        \ 'airline_c': ['', '', 197, '', ''],
+                        \}
+            let a:palette.insert_modified = a:palette.normal_modified
+            let a:palette.replace_modified = a:palette.normal_modified
+            let a:palette.visual_modified = a:palette.normal_modified
+            let a:palette.inactive_modified = a:palette.normal_modified
+        endif
+    endfunction
 endif
 
 " yankring {{{2
 let g:yankring_history_dir='$HOME/.vim_tmp'
 nnoremap <Leader>yr :YRShow<CR>
 
-" vim-signify
+" vim-signify {{{2
 let g:signify_mapping_toggle = '<leader>gt'
 "let g:signify_disable_by_default = 1
 let g:signify_mapping_next_hunk = '<leader>gj'
@@ -682,9 +633,6 @@ let g:signify_mapping_prev_hunk = '<leader>gk'
 let g:signify_mapping_toggle_highlight = '<leader>gh'
 let g:signify_vcs_list = [ 'git', 'hg' ]
 let g:signify_sign_overwrite = 1
-
-" json {{{2
-au FileType json setlocal foldmethod=syntax
 
 " vim-go {{{2
 au Filetype go nnoremap <leader>gv :vsp <CR>:exe "GoDef" <CR>
@@ -733,10 +681,4 @@ let delimitMate_balance_matchpairs = 1
 let delimitMate_matchpairs = "(:),[:],{:}"
 "imap <C-f> <Plug>delimitMateS-Tab
 
-" }}}1
-
-" Use local vimrc if available {{{1
-if filereadable(expand("~/.vimrc.local"))
-    source ~/.vimrc.local
-endif
 " }}}1
