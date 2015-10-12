@@ -675,4 +675,8 @@ let delimitMate_balance_matchpairs = 1
 let delimitMate_matchpairs = "(:),[:],{:}"
 "imap <C-f> <Plug>delimitMateS-Tab
 
+" numbers {{{2
+let g:numbers_exclude = ['unite', 'tagbar', 'startify', 'gundo', 'vimshell', 'w3m', 'nerdtree', 'help']
+au FileType help setlocal nonu nornu
+
 " }}}1
