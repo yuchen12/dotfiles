@@ -59,6 +59,7 @@ files=(
 	hgrc
 	tmux-mac.conf
 	tmux-linux.conf
+	inputrc
 )
 
 setup_link() {
@@ -98,4 +99,6 @@ if [ "$basename" = "install" ]; then
 elif [ "$basename" = "update" ]; then
 	update
 fi
+
+# vim: noet
 

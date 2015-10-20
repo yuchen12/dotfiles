@@ -22,10 +22,12 @@ alias ipy=ipython
 alias less='less -R'
 alias sudo='sudo ' # to pass aliases through sudo
 alias g='git'
+alias hd='hexdump -C'
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+# URL-encode strings
+alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
+
+alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 #if dir,cd into it. if file ,cd into where the file is
 goto(){ [ -d "$1" ] && cd "$1" || cd "$(dirname "$1")"; }
@@ -43,7 +45,7 @@ print_color_table() {
             printf "\e[0;${fgbg};5;${color}m%4d\e[0m" ${color}
             printf "\e[1;${fgbg};5;${color}m%4d\e[0m" ${color}
             #Display 10 colors per lines
-            if [ $((($color + 1) % 10)) == 0 ] ; then
+            if [ $(((color + 1) % 10)) == 0 ] ; then
                 echo #New line
             fi
         done
@@ -57,3 +59,13 @@ httpless() {
 }
 
 gocd() { cd `go list -f '{{.Dir}}' $1`; }
+
+# Create a data URL from a file
+dataurl() {
+	local typ=$(file -b --mime-type "$1");
+	if [[ $typ == text/* ]]; then
+		typ="${typ};charset=utf-8";
+	fi
+	echo "data:${typ};base64,$(openssl base64 -in "$1" | tr -d '\n')";
+}
+
