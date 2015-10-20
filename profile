@@ -14,7 +14,9 @@ if [[ "$OSTYPE" =~ darwin* ]]; then
     # for mac brew coreutils
     COREUTILS_PREFIX=$(brew --prefix coreutils)
     PATH="$COREUTILS_PREFIX/libexec/gnubin:$PATH"
-    export MANPATH="$COREUTILS_PREFIX/libexec/gnuman:$MANPATH"
+    #export MANPATH="$COREUTILS_PREFIX/libexec/gnuman:$MANPATH"
+    # add follow line to /etc/man.conf
+    #MANPATH_MAP /usr/local/opt/coreutils/libexec/gnubin /usr/local/opt/coreutils/libexec/gnuman
 
     # ccache
     PATH=/usr/local/opt/ccache/libexec:$PATH
