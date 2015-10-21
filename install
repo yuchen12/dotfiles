@@ -17,18 +17,10 @@ setup_vim() {
 	[ ! -d $vim_tmpdir ] && (rm -rf $vim_tmpdir && mkdir -p $vim_tmpdir)
 
 	# neobundle
-	rm -rf $vim_bundle_dir && mkdir -p $vim_bundle_dir
-	git clone http://github.com/Shougo/neobundle.vim $vim_bundle_dir/neobundle
+	[ ! -d $vim_bundle_dir ] && (rm -rf $vim_bundle_dir && mkdir -p $vim_bundle_dir)
+	[ ! -d $vim_bundle_dir/neobundle ] && git clone http://github.com/Shougo/neobundle.vim $vim_bundle_dir/neobundle
 	~/.vim_bundle/neobundle/bin/neoinstall
-	#vim /tmp/a.go +GoUpdateBinaries +qa!
-	vim -N -u ~/.vimrc /tmp/a.go -c "GoUpdateBinaries" -c 'qa!' -U NONE -i NONE -V1 -e -s || true
-	echo
-}
 
-update_vim_plugins() {
-	#vim +NeoBundleUpdate +qa
-	~/.vim_bundle/neobundle/bin/neoinstall
-	#vim /tmp/a.go +GoUpdateBinaries +qa!
 	vim -N -u ~/.vimrc /tmp/a.go -c "GoUpdateBinaries" -c 'qa!' -U NONE -i NONE -V1 -e -s || true
 	echo
 }
@@ -76,29 +68,14 @@ update_files() {
 	./update-tmux-files.sh
 }
 
-update() {
-	setup_link
-	update_files
-	update_vim_plugins
-}
-
-install() {
+install_or_update() {
 	setup_link
 	. ~/.profile
 	update_files
 	setup_vim
 }
 
-basename=$(basename "$0")
-
-# Ask for the administrator password upfront
-#sudo -v
-
-if [ "$basename" = "install" ]; then
-	install
-elif [ "$basename" = "update" ]; then
-	update
-fi
+install_or_update
 
 # vim: noet
 
