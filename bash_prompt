@@ -84,7 +84,7 @@ if [ "$color_prompt" = yes ]; then
             # show git branch and other informations
             PS1+='$(__git_ps1 "'${AT_COLOR}' on '${GIT_COLOR}'(%s)")'
         fi
-        PS1+=${JOBS_COLOR}'$(j=`jobs | wc -l | tr -d " "`;[ $j -gt 0 ] && echo "[$j]")'
+        PS1+=${JOBS_COLOR}'$(j=`jobs | grep -c "^\\[[0-9]\\+\\]"`;[ $j -gt 0 ] && echo "[$j]")'
         PS1+="\n${GIT_COLOR}└── ${PROMT_CHAR_COLOR}\$ ${CLEAR_COLOR}"
     fi
     PS2="\[\e[1;33m\]→ \[${CLEAR_COLOR}\]";
