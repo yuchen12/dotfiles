@@ -62,20 +62,13 @@ setup_link() {
     touch ~/.bash_sessions_disable
 }
 
-update_files() {
-	./update-dircolor.sh
-	./update-git-files.sh
-	./update-tmux-files.sh
-}
-
 install_or_update() {
 	setup_link
 	. ~/.profile
-	update_files
+	./update-files
 	setup_vim
 }
 
 install_or_update
 
 # vim: noet
-
