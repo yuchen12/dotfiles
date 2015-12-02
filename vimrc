@@ -222,7 +222,7 @@ cmap cd. lcd %:p:h
 nmap <silent> <leader>df :DiffOrig<cr>
 
 nmap <silent> <esc><esc> :silent nohlsearch<CR>
-nmap <silent> <leader>rr :redraw!<cr> " Fast redraw
+nmap <silent> <leader>rr :redraw!<cr>
 
 " Easier moving in tabs and windows
 " The lines conflict with the default digraph mapping of <C-K>
