@@ -46,14 +46,6 @@ NeoBundleLazy 'jansenm/vim-cmake', {'autoload': {'filetypes': 'cmake'}}
 
 NeoBundleLazy 'fatih/vim-go', {'autoload': {'filetypes': ['go', 'gohtmltmpl']}}
 NeoBundleLazy 'plasticboy/vim-markdown', {'autoload': {'filetypes': 'markdown'}}
-NeoBundleLazy 'rust-lang/rust.vim', {'autoload': {'filetypes': 'rust'}}
-NeoBundleLazy 'phildawes/racer', {
-            \ 'autoload': {'filetypes': 'rust'},
-            \   'build' : {
-            \     'mac': 'cargo build --release',
-            \     'unix': 'cargo build --release',
-            \   }
-            \ }
 
 " vim-scripts repos
 NeoBundleLazy 'TaskList.vim', {'autoload': {'commands': 'TaskList'}}
