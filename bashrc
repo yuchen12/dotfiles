@@ -83,9 +83,9 @@ export LC_ALL=en_US.UTF-8
 export EDITOR=vim
 
 if [[ $OSTYPE =~ linux ]]; then
-    export GTK_IM_MODULE=fcitx
-    export XMODIFIERS="@im=fcitx"
-    export QT_IM_MODULE=fcitx
+    export GTK_IM_MODULE=ibus
+    export XMODIFIERS="@im=ibus"
+    export QT_IM_MODULE=ibus
 fi
 
 ulimit -c unlimited
