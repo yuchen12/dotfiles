@@ -40,6 +40,7 @@ files=(
 	bashrc
 	bash_prompt
 	bash_aliases
+	bash_profile
 	gitconfig
 	screenrc
 	toprc
