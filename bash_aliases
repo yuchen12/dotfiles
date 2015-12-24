@@ -30,6 +30,11 @@ alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.
 
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 
+ipip() {
+    curl "http://freeapi.ipip.net/$1"
+    echo
+}
+
 #if dir,cd into it. if file ,cd into where the file is
 goto(){ [ -d "$1" ] && cd "$1" || cd "$(dirname "$1")"; }
 complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null \
