@@ -59,3 +59,5 @@ done
 
 [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
 [ -f "$HOME/.bashrc.local" ] && . "$HOME/.bashrc.local"
+
+true
