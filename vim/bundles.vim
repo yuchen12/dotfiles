@@ -39,6 +39,7 @@ NeoBundleLazy 'python.vim', {'autoload': {'filetypes': 'python'}}
 NeoBundleLazy 'python_match.vim', {'autoload': {'filetypes': 'python'}}
 
 NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 
 NeoBundleLazy 'mattn/emmet-vim',  {'autoload': {'filetypes': ['css', 'html']} }
 NeoBundleLazy "elzr/vim-json", {'autoload': {'filetypes': 'json'}}
