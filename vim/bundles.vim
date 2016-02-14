@@ -16,7 +16,13 @@ NeoBundle 'christoomey/vim-tmux-navigator'
 
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'scrooloose/nerdcommenter'
-NeoBundleLazy 'Shougo/neocomplete', {'autoload': {'insert': 1}}
+
+if has('nvim')
+	NeoBundle 'Shougo/deoplete.nvim'
+	NeoBundle 'zchee/deoplete-go', { 'build': 'make', 'autoload': {'filetypes': 'go'} }
+else
+	NeoBundle 'Shougo/neocomplete'
+endif
 NeoBundleLazy 'Shougo/neosnippet.vim', {'autoload': {'insert': 1}}
 NeoBundleLazy 'Shougo/neosnippet-snippets', {'autoload': {'insert': 1}}
 
