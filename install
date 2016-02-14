@@ -16,6 +16,9 @@ vim_tmpdir=~/.vim_tmp
 setup_vim() {
 	[ ! -d $vim_tmpdir ] && (rm -rf $vim_tmpdir && mkdir -p $vim_tmpdir)
 
+	rm -rf ~/.config/nvim && ln -s ~/.vim ~/.config/nvim
+	ln -s ~/.vimrc ~/.config/nvim/init.vim
+
 	# neobundle
 	[ ! -d $vim_bundle_dir ] && (rm -rf $vim_bundle_dir && mkdir -p $vim_bundle_dir)
 	[ ! -d $vim_bundle_dir/neobundle ] && git clone http://github.com/Shougo/neobundle.vim $vim_bundle_dir/neobundle

@@ -182,7 +182,7 @@ command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 
 :runtime! ftplugin/man.vim " :Man 3 printf
 
-if exists('$TMUX')
+if exists('$TMUX') && !has('nvim')
     set ttymouse=xterm2
 endif
 
@@ -625,8 +625,6 @@ let g:go_snippet_engine = 'neosnippet'
 let g:go_fmt_fail_silently = 1 " use syntasitic to check errors
 let g:go_auto_type_info = 1
 let g:go_fmt_command = "goimports"
-
-
 
 " emmet-vim {{{2
 let g:user_emmet_install_global=0
