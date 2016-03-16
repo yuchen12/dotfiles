@@ -23,6 +23,7 @@ alias less='less -R'
 alias sudo='sudo ' # to pass aliases through sudo
 alias g='git'
 alias hd='hexdump -C'
+alias curl-trace='curl -w "@$HOME/.curl-format" -o /dev/null -s'
 
 # URL-encode strings
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1] if len(sys.argv) > 1 else raw_input());"'
