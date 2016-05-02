@@ -29,7 +29,8 @@ alias curl-trace='curl -w "@$HOME/.curl-format" -o /dev/null -s'
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1] if len(sys.argv) > 1 else raw_input());"'
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1] if len(sys.argv) > 1 else raw_input());"'
 
-alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
+#alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias myip="nc ns1.dnspod.net 6666; echo"
 
 ipip() {
     curl "http://freeapi.ipip.net/$1"
