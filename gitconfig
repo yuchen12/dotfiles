@@ -61,6 +61,7 @@
 	cf = config
 	lg = log --decorate -D
 	l = log --decorate -D
+	ll = log --date=local --decorate -D
 	lr = log --oneline --left-right --cherry-pick
 	oneline = log --pretty=format:\"%C(auto)%h - %s %d  %C(60)%an@%ad%Creset\" --date=iso
 	ol = log --pretty=format:\"%C(auto)%h - %s %d  %C(60)%an@%ad%Creset\" --date=iso
