@@ -28,6 +28,9 @@ alias curl-trace='curl -w "@$HOME/.curl-format" -o /dev/null -s'
 # URL-encode strings
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1] if len(sys.argv) > 1 else raw_input());"'
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1] if len(sys.argv) > 1 else raw_input());"'
+#alias htmldecode='python -c "import sys; from HTMLParser import HTMLParser; print(HTMLParser().unescape(sys.argv[1] if len(sys.argv) > 1 else raw_input()));"'
+alias htmlencode='python3 -c "import sys, html; print(html.escape(sys.argv[1] if len(sys.argv) > 1 else input()));"'
+alias htmldecode='python3 -c "import sys, html; print(html.unescape(sys.argv[1] if len(sys.argv) > 1 else input()));"'
 
 #alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias myip="nc ns1.dnspod.net 6666; echo"
