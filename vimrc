@@ -695,7 +695,7 @@ let g:signify_vcs_list = [ 'git', 'hg' ]
 let g:signify_sign_overwrite = 1
 
 " vim-go {{{2
-let g:go_fmt_fail_silently = 1 " use syntasitic to check errors
+let g:go_fmt_fail_silently = 0
 let g:go_fmt_command = "goimports"
 let g:go_autodetect_gopath = 1
 let g:go_term_enabled = 1
@@ -710,6 +710,7 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_interfaces = 1
 let g:go_auto_type_info = 1
+let g:go_list_type = "quickfix"
 
 au FileType go nmap <Leader>gs <Plug>(go-def-split)
 au FileType go nmap <Leader>gv <Plug>(go-def-vertical)
