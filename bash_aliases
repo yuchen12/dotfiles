@@ -26,8 +26,8 @@ alias hd='hexdump -C'
 alias curl-trace='curl -w "@$HOME/.curl-format" -o /dev/null -s'
 
 # URL-encode strings
-alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1] if len(sys.argv) > 1 else raw_input());"'
-alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1] if len(sys.argv) > 1 else raw_input());"'
+alias urlencode='python3 -c "import sys, urllib.parse as parse; print(parse.quote_plus(sys.argv[1] if len(sys.argv) > 1 else input()));"'
+alias urldecode='python3 -c "import sys, urllib.parse as parse; print(parse.unquote_plus(sys.argv[1] if len(sys.argv) > 1 else input()));"'
 #alias htmldecode='python -c "import sys; from HTMLParser import HTMLParser; print(HTMLParser().unescape(sys.argv[1] if len(sys.argv) > 1 else raw_input()));"'
 alias htmlencode='python3 -c "import sys, html; print(html.escape(sys.argv[1] if len(sys.argv) > 1 else input()));"'
 alias htmldecode='python3 -c "import sys, html; print(html.unescape(sys.argv[1] if len(sys.argv) > 1 else input()));"'
@@ -41,7 +41,7 @@ ipip() {
 }
 
 #if dir,cd into it. if file ,cd into where the file is
-goto(){ [ -d "$1" ] && cd "$1" || cd "$(dirname "$1")"; }
+goto(){ [ -d "$1" ] && cd "$1" || cd "$(dirname "$1")" || exit; }
 complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null \
     || complete -o default -o nospace -F _git g
 
@@ -69,14 +69,15 @@ httpless() {
     http --pretty=all --print=hb "$@" | less -R
 }
 
-gocd() { cd `go list -f '{{.Dir}}' $1`; }
+gocd() { cd "$(go list -f '{{.Dir}}' "$1")" || exit; }
 
 # Create a data URL from a file
 dataurl() {
-	local typ=$(file -b --mime-type "$1");
-	if [[ $typ == text/* ]]; then
-		typ="${typ};charset=utf-8";
-	fi
-	echo "data:${typ};base64,$(openssl base64 -in "$1" | tr -d '\n')";
+    local typ
+    typ=$(file -b --mime-type "$1");
+    if [[ $typ == text/* ]]; then
+        typ="${typ};charset=utf-8";
+    fi
+    echo "data:${typ};base64,$(openssl base64 -in "$1" | tr -d '\n')";
 }
 
