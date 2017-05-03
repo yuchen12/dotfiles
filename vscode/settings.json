@@ -1,0 +1,86 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "editor.fontSize": 14,
+    "workbench.colorTheme": "One Dark Pro",
+    "editor.minimap.enabled": true,
+    "terminal.external.osxExec": "iTerm.app",
+    "workbench.iconTheme": "vs-seti",
+    "extensions.autoUpdate": true,
+    "editor.renderLineHighlight": "all",
+    "editor.renderWhitespace": "boundary",
+
+    "vim.leader": ",",
+    "vim.useSystemClipboard": true,
+    "vim.easymotion": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["<C-f>"],
+            "after": ["<right>"]
+        },
+        {
+            "before": ["<C-a>"],
+            "after": ["<C-o>", "^"]
+        },
+        {
+            "before": ["<C-e>"],
+            "after": ["<C-o>", "$"]
+        }
+    ],
+    "vim.otherModesKeyBindingsNonRecursive": [
+        {
+            "before": [";"],
+            "after": [":"]
+        },
+        {
+            "before": ["leader", "f"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.showAllEditors",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "s"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.gotoSymbol",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "d"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.action.previewDeclaration",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "h"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.action.showHover",
+                    "args": []
+                }
+            ]
+        }
+    ],
+
+    "go.formatTool": "goimports",
+    "go.useCodeSnippetsOnFunctionSuggest": true,
+
+    "python.pythonPath": "python3",
+    "[cpp]": {
+        "editor.quickSuggestions": false
+    },
+    "[c]": {
+        "editor.quickSuggestions": false
+    }
+}

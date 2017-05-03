@@ -63,6 +63,10 @@ setup_link() {
 		make_link "$PWD/$f" ~/."$f"
 	done
 
+	for f in vscode/*; do
+		make_link "$PWD/$f" ~/"Library/Application Support/Code/User/$(basename $f)"
+	done
+
     touch ~/.bash_sessions_disable
 }
 
