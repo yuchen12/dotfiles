@@ -29,25 +29,25 @@
         "key": "ctrl+space",
         "command": "-editor.action.triggerSuggest",
         "when": "editorHasCompletionItemProvider && editorTextFocus && !editorReadonly"
-    },
-    {
-        "key": "ctrl+f",
-        "command": "selectNextPageSuggestion",
-        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
-    },
-    {
-        "key": "pagedown",
-        "command": "-selectNextPageSuggestion",
-        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
-    },
-    {
-        "key": "ctrl+b",
-        "command": "selectPrevPageSuggestion",
-        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
-    },
-    {
-        "key": "alt+pageup",
-        "command": "-selectPrevPageSuggestion",
-        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+    // },
+    // {
+    //     "key": "ctrl+f",
+    //     "command": "selectNextPageSuggestion",
+    //     "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+    // },
+    // {
+    //     "key": "pagedown",
+    //     "command": "-selectNextPageSuggestion",
+    //     "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+    // },
+    // {
+    //     "key": "ctrl+b",
+    //     "command": "selectPrevPageSuggestion",
+    //     "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+    // },
+    // {
+    //     "key": "alt+pageup",
+    //     "command": "-selectPrevPageSuggestion",
+    //     "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
     }
 ]
