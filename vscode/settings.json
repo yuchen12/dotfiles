@@ -76,11 +76,5 @@
     "go.formatTool": "goimports",
     "go.useCodeSnippetsOnFunctionSuggest": true,
 
-    "python.pythonPath": "python3",
-    "[cpp]": {
-        "editor.quickSuggestions": false
-    },
-    "[c]": {
-        "editor.quickSuggestions": false
-    }
+    "python.pythonPath": "python3"
 }
