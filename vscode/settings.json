@@ -10,6 +10,7 @@
     "editor.renderWhitespace": "boundary",
 
     "vim.leader": ",",
+    "vim.enableNeovim": true,
     "vim.useSystemClipboard": true,
     "vim.easymotion": true,
     "vim.insertModeKeyBindings": [
@@ -76,5 +77,6 @@
     "go.formatTool": "goimports",
     "go.useCodeSnippetsOnFunctionSuggest": true,
 
-    "python.pythonPath": "python3"
+    "python.pythonPath": "python3",
+    "vim.disableAnnoyingNeovimMessage": true
 }
