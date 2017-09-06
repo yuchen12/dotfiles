@@ -315,6 +315,8 @@ augroup configgroup
 
     au FileType go setlocal noexpandtab
     au BufNewFile *.go 0r ~/.vim/templates/main.go
+
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 augroup END
 
 " plugins {{{1
