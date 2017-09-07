@@ -46,7 +46,7 @@ fi
 
 if [ -d $HOME/gopath ]; then
     export GOPATH=$HOME/gopath
-    export PATH=$GOPATH/bin:$PATH
+    export PATH=$PATH:$GOPATH/bin
     export CDPATH=.:$GOPATH/src
 fi
 
