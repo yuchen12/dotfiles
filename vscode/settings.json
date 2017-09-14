@@ -76,7 +76,10 @@
 
     "go.formatTool": "goimports",
     "go.useCodeSnippetsOnFunctionSuggest": true,
+    "python.formatting.formatOnSave": true,
 
     "python.pythonPath": "python3",
+    "python.formatting.provider": "yapf",
+
     "vim.disableAnnoyingNeovimMessage": true
 }
