@@ -19,7 +19,7 @@ if [[ "$OSTYPE" =~ darwin* ]]; then
     #MANPATH_MAP /usr/local/opt/coreutils/libexec/gnubin /usr/local/opt/coreutils/libexec/gnuman
 
     # ccache
-    PATH=/usr/local/opt/ccache/libexec:$PATH
+    #PATH=/usr/local/opt/ccache/libexec:$PATH
 else
     LOCAL=$HOME/local
 
@@ -35,12 +35,12 @@ else
     [ -d $LOCAL/lib/pkgconfig ] && export PKG_CONFIG_PATH=$LOCAL/lib/pkgconfig:$PKG_CONFIG_PATH
     [ -d $LOCAL/share/man ]     && export MANPATH=$LOCAL/share/man:$MANPATH
 
-    for path in $LOCAL /usr/local /usr; do
-        if [ -d $path/lib/ccache ]; then
-            export PATH=$path/lib/ccache:$PATH
-            break
-        fi
-    done
+    #for path in $LOCAL /usr/local /usr; do
+    #    if [ -d $path/lib/ccache ]; then
+    #        export PATH=$path/lib/ccache:$PATH
+    #        break
+    #    fi
+    #done
     unset LOCAL
 fi
 
