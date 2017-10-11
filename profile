@@ -12,12 +12,9 @@
 
 if [[ "$OSTYPE" =~ darwin* ]]; then
     # for mac brew coreutils
-    COREUTILS_PREFIX=$(brew --prefix coreutils)
-    PATH="$COREUTILS_PREFIX/libexec/gnubin:$PATH"
-    #export MANPATH="$COREUTILS_PREFIX/libexec/gnuman:$MANPATH"
-    # add follow line to /etc/man.conf
-    #MANPATH_MAP /usr/local/opt/coreutils/libexec/gnubin /usr/local/opt/coreutils/libexec/gnuman
-
+    OPT=/usr/local/opt
+    PATH=$OPT/coreutils/libexec/gnubin:$OPT/findutils/libexec/gnubin:$OPT/gnu-tar/libexec/gnubin:$PATH
+    export MANPATH=$OPT/coreutils/libexec/gnuman:$MANPATH
     # ccache
     #PATH=/usr/local/opt/ccache/libexec:$PATH
 else
@@ -44,18 +41,9 @@ else
     unset LOCAL
 fi
 
-if [ -d $HOME/gopath ]; then
-    export GOPATH=$HOME/gopath
-    export PATH=$PATH:$GOPATH/bin
-    export CDPATH=.:$GOPATH/src
-fi
-
-for dir in $HOME/go /usr/local/go; do
-    if [ -f $dir/bin/go ]; then
-        export PATH=$dir/bin:$PATH
-        break
-    fi
-done
+export GOPATH=$HOME/gopath
+export CDPATH=.:$GOPATH/src
+export PATH=$HOME/go/bin:$PATH:$GOPAHT/bin
 
 [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
 [ -f "$HOME/.bashrc.local" ] && . "$HOME/.bashrc.local"
