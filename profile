@@ -43,7 +43,7 @@ fi
 
 export GOPATH=$HOME/gopath
 export CDPATH=.:$GOPATH/src
-export PATH=$HOME/go/bin:$PATH:$GOPAHT/bin
+export PATH=$HOME/go/bin:$PATH:$GOPATH/bin
 
 [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
 [ -f "$HOME/.bashrc.local" ] && . "$HOME/.bashrc.local"
