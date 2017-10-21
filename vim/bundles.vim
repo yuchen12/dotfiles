@@ -3,7 +3,8 @@ NeoBundle 'gregsexton/gitv', { 'external_commands': 'git' }
 NeoBundle 'kshenoy/vim-signature'
 NeoBundle 'mhinz/vim-signify'
 
-NeoBundle 'rking/ag.vim', {'autoload': {'commands': 'Ag'}}
+NeoBundle 'mileszs/ack.vim'
+NeoBundle 'tpope/vim-dispatch'
 
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'myusuf3/numbers.vim'

@@ -649,6 +649,13 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
+" ack {{{2
+let g:ackprg = 'ag --vimgrep --smart-case'
+let g:ack_use_dispatch = 1
+cnoreabbrev ag Ack!
+cnoreabbrev ag! Ack
+
+
 " airline {{{2
 let g:airline_theme='kalisi'
 set noshowmode
