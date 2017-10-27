@@ -13,7 +13,7 @@
 if [[ "$OSTYPE" =~ darwin* ]]; then
     # for mac brew coreutils
     OPT=/usr/local/opt
-    PATH=$OPT/coreutils/libexec/gnubin:$OPT/findutils/libexec/gnubin:$OPT/gnu-tar/libexec/gnubin:$PATH
+    PATH=$OPT/coreutils/libexec/gnubin:$OPT/findutils/libexec/gnubin:$OPT/gnu-tar/libexec/gnubin:$OPT/make/libexec/gnubin:$PATH
     export MANPATH=$OPT/coreutils/libexec/gnuman:$MANPATH
     # ccache
     #PATH=/usr/local/opt/ccache/libexec:$PATH
