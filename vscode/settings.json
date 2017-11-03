@@ -1,15 +1,16 @@
-// Place your settings in this file to overwrite the default settings
 {
-    "editor.fontSize": 14,
     "workbench.colorTheme": "One Dark Pro",
-    "editor.minimap.enabled": true,
-    "terminal.external.osxExec": "iTerm.app",
+    "workbench.startupEditor": "newUntitledFile",
     "workbench.iconTheme": "vs-seti",
-    "extensions.autoUpdate": true,
+    "terminal.external.osxExec": "iTerm.app",
+    "editor.fontSize": 14,
+    "editor.minimap.enabled": true,
     "editor.renderLineHighlight": "all",
     "editor.renderWhitespace": "boundary",
+    "extensions.autoUpdate": true,
 
     "vim.leader": ",",
+    "vim.disableAnnoyingNeovimMessage": true,
     "vim.enableNeovim": true,
     "vim.useSystemClipboard": true,
     "vim.easymotion": true,
@@ -76,11 +77,8 @@
 
     "go.formatTool": "goimports",
     "go.useCodeSnippetsOnFunctionSuggest": true,
+
     "python.formatting.formatOnSave": true,
-
     "python.pythonPath": "python3",
-    "python.formatting.provider": "yapf",
-
-    "vim.disableAnnoyingNeovimMessage": true,
-    "workbench.startupEditor": "newUntitledFile"
+    "python.formatting.provider": "yapf"
 }
