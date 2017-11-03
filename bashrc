@@ -92,14 +92,14 @@ fi
 
 ulimit -c unlimited
 
-if exist screen; then
-    a=$(screen -ls 2>/dev/null)
-    if ! echo "$a" | grep -q '^No Sockets found in'; then
-        echo ">>> screen sessions:"
-        echo "$a"
-    fi
-    unset a
-fi
+#if exist screen; then
+#    a=$(screen -ls 2>/dev/null)
+#    if ! echo "$a" | grep -q '^No Sockets found in'; then
+#        echo ">>> screen sessions:"
+#        echo "$a"
+#    fi
+#    unset a
+#fi
 
 if exist tmux; then
     source ~/.bash_completion_tmux.sh
