@@ -22,6 +22,9 @@ alias ipy=ipython
 alias less='less -R'
 alias sudo='sudo ' # to pass aliases through sudo
 alias g='git'
+complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null  || complete -o default -o nospace -F _git g
+alias d='docker'
+complete -o bashdefault -o default -o nospace -F _docker d 2>/dev/null  || complete -o default -o nospace -F _docker d
 alias hd='hexdump -C'
 alias curl-trace='curl -w "@$HOME/.curl-format" -o /dev/null -s'
 
@@ -42,8 +45,6 @@ ipip() {
 
 #if dir,cd into it. if file ,cd into where the file is
 goto(){ [ -d "$1" ] && cd "$1" || cd "$(dirname "$1")" || exit; }
-complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null \
-    || complete -o default -o nospace -F _git g
 
 svndiff() {
     svn diff "${@}" | view -
