@@ -10,7 +10,6 @@
     "extensions.autoUpdate": true,
 
     "vim.leader": ",",
-    "vim.disableAnnoyingNeovimMessage": true,
     "vim.enableNeovim": true,
     "vim.useSystemClipboard": true,
     "vim.easymotion": true,

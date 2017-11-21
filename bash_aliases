@@ -24,7 +24,9 @@ alias sudo='sudo ' # to pass aliases through sudo
 alias g='git'
 complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null  || complete -o default -o nospace -F _git g
 alias d='docker'
+alias dk='docker'
 complete -o bashdefault -o default -o nospace -F _docker d 2>/dev/null  || complete -o default -o nospace -F _docker d
+complete -o bashdefault -o default -o nospace -F _docker dk 2>/dev/null  || complete -o default -o nospace -F _docker dk
 alias hd='hexdump -C'
 alias curl-trace='curl -w "@$HOME/.curl-format" -o /dev/null -s'
 
@@ -34,6 +36,8 @@ alias urldecode='python3 -c "import sys, urllib.parse as parse; print(parse.unqu
 #alias htmldecode='python -c "import sys; from HTMLParser import HTMLParser; print(HTMLParser().unescape(sys.argv[1] if len(sys.argv) > 1 else raw_input()));"'
 alias htmlencode='python3 -c "import sys, html; print(html.escape(sys.argv[1] if len(sys.argv) > 1 else input()));"'
 alias htmldecode='python3 -c "import sys, html; print(html.unescape(sys.argv[1] if len(sys.argv) > 1 else input()));"'
+alias yaml2json='python3 -c "import sys, yaml, json; json.dump(yaml.load(sys.stdin), sys.stdout, ensure_ascii=False, indent=2)"'
+alias json2yaml='python3 -c "import sys, yaml, json; yaml.safe_dump(json.load(sys.stdin), sys.stdout, default_flow_style=False, allow_unicode=True)"'
 
 #alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias myip="nc ns1.dnspod.net 6666; echo"
