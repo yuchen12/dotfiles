@@ -24,6 +24,22 @@
 		"description": "func main"
 	},
 
+	"empty interface": {
+		"prefix": "inter",
+		"body": [
+			"interface{}$0"
+		],
+		"description": "empty interface"
+	},
+
+	"empty struct": {
+		"prefix": "struct",
+		"body": [
+			"struct{}$0"
+		],
+		"description": "empty struct"
+	},
+
 	"package": {
 		"prefix": "package",
 		"body": [

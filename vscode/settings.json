@@ -1,13 +1,14 @@
 {
     "workbench.colorTheme": "One Dark Pro",
+    "workbench.iconTheme": "material-icon-theme",
     "workbench.startupEditor": "newUntitledFile",
-    "workbench.iconTheme": "vs-seti",
     "terminal.external.osxExec": "iTerm.app",
     "editor.fontSize": 14,
     "editor.minimap.enabled": true,
     "editor.renderLineHighlight": "all",
     "editor.renderWhitespace": "boundary",
     "extensions.autoUpdate": true,
+    "editor.rulers": [120],
 
     "vim.leader": ",",
     "vim.enableNeovim": true,
