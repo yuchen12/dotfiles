@@ -10,6 +10,8 @@
     "extensions.autoUpdate": true,
     "editor.rulers": [120],
 
+    "material-icon-theme.showUpdateMessage": false
+
     "vim.leader": ",",
     "vim.enableNeovim": true,
     "vim.useSystemClipboard": true,
@@ -80,6 +82,5 @@
 
     "python.formatting.formatOnSave": true,
     "python.pythonPath": "python3",
-    "python.formatting.provider": "yapf",
-    "material-icon-theme.showUpdateMessage": false
+    "python.formatting.provider": "yapf"
 }
