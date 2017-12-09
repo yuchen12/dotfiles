@@ -10,7 +10,7 @@
     "extensions.autoUpdate": true,
     "editor.rulers": [120],
 
-    "material-icon-theme.showUpdateMessage": false
+    "material-icon-theme.showUpdateMessage": false,
 
     "vim.leader": ",",
     "vim.enableNeovim": true,
