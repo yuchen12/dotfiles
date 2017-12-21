@@ -10,6 +10,8 @@
     "extensions.autoUpdate": true,
     "editor.rulers": [120],
 
+    "files.autoGuessEncoding": true,
+
     "material-icon-theme.showUpdateMessage": false,
 
     "vim.leader": ",",
@@ -80,7 +82,9 @@
     "go.formatTool": "goimports",
     "go.useCodeSnippetsOnFunctionSuggest": true,
 
-    "python.formatting.formatOnSave": true,
     "python.pythonPath": "python3",
-    "python.formatting.provider": "yapf"
+    "python.formatting.provider": "yapf",
+    "[python]": {
+        "editor.formatOnSave": true
+    }
 }

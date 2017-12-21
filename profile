@@ -49,3 +49,5 @@ export PATH=$HOME/go/bin:$PATH:$GOPATH/bin
 [ -f "$HOME/.bashrc.local" ] && . "$HOME/.bashrc.local"
 
 true
+
+export PATH="$HOME/.cargo/bin:$PATH"
