@@ -48,7 +48,7 @@ ipip() {
 }
 
 #if dir,cd into it. if file ,cd into where the file is
-goto(){ [ -d "$1" ] && cd "$1" || cd "$(dirname "$1")" || exit; }
+goto(){ [ -d "$1" ] && cd "$1" || cd "$(dirname "$1")"; }
 
 svndiff() {
     svn diff "${@}" | view -
