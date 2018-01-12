@@ -4,7 +4,7 @@
     "workbench.startupEditor": "newUntitledFile",
     "terminal.external.osxExec": "iTerm.app",
     "editor.fontSize": 14,
-    "editor.minimap.enabled": true,
+    "editor.minimap.enabled": false,
     "editor.renderLineHighlight": "all",
     "editor.renderWhitespace": "boundary",
     "extensions.autoUpdate": true,
@@ -86,5 +86,16 @@
     "python.formatting.provider": "yapf",
     "[python]": {
         "editor.formatOnSave": true
+    },
+    "[rust]": {
+        "editor.formatOnSave": true
+    },
+    "rust.rustup": {
+        "toolchain": "nightly-x86_64-apple-darwin",
+        "nightlyToolchain": "nightly-x86_64-apple-darwin"
+    },
+    "rust.mode": "rls",
+    "rust.rls": {
+        "useRustfmt": true
     }
 }
