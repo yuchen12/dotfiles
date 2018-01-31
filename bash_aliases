@@ -23,6 +23,8 @@ alias less='less -R'
 alias sudo='sudo ' # to pass aliases through sudo
 alias g='git'
 complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null  || complete -o default -o nospace -F _git g
+alias git-root='cd $(git rev-parse --show-toplevel)'
+
 alias d='docker'
 alias dk='docker'
 complete -o bashdefault -o default -o nospace -F _docker d 2>/dev/null  || complete -o default -o nospace -F _docker d
