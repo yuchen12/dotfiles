@@ -63,9 +63,11 @@ setup_link() {
 		make_link "$PWD/$f" ~/."$f"
 	done
 
-	for f in vscode/*; do
-		make_link "$PWD/$f" ~/"Library/Application Support/Code/User/$(basename $f)"
-	done
+	if [[ $OSTYPE =~ darwin* ]]; then
+		for f in vscode/*; do
+			make_link "$PWD/$f" ~/"Library/Application Support/Code/User/$(basename $f)"
+		done
+	fi
 
     touch ~/.bash_sessions_disable
 }
