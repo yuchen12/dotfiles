@@ -97,5 +97,6 @@
     "rust.mode": "rls",
     "rust.rls": {
         "useRustfmt": true
-    }
+    },
+    "vsicons.dontShowNewVersionMessage": true
 }
