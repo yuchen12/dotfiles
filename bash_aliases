@@ -40,6 +40,7 @@ alias htmlencode='python3 -c "import sys, html; print(html.escape(sys.argv[1] if
 alias htmldecode='python3 -c "import sys, html; print(html.unescape(sys.argv[1] if len(sys.argv) > 1 else input()));"'
 alias yaml2json='python3 -c "import sys, yaml, json; json.dump(yaml.load(sys.stdin), sys.stdout, ensure_ascii=False, indent=2)"'
 alias json2yaml='python3 -c "import sys, yaml, json; yaml.safe_dump(json.load(sys.stdin), sys.stdout, default_flow_style=False, allow_unicode=True)"'
+alias unicode='python3 -c "import sys; print((sys.argv[1] if len(sys.argv) > 1 else input()).encode(\"unicode-escape\").decode(\"ascii\"))"'
 
 #alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias myip="nc ns1.dnspod.net 6666; echo"
