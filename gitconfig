@@ -19,8 +19,13 @@
 	meta = 223 bold
 	frag = 48
 	old = 168
-	new = 44
+	new = 43
 	commit = 172 bold
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
 [color "grep"]
 	;selected = 187
 	;context = 187
@@ -78,7 +83,7 @@
 	tool = kdiff3
 [core]
 	quotepath = false
-	pager = less -+S
+	pager = diff-so-fancy | less --tabs=4 -RFX
 	excludesfile = ~/.gitignore
 [push]
 	default = nothing
@@ -100,3 +105,6 @@
 	process = git-lfs filter-process
 [include]
 	path = ~/.gitconfig.local
+[diff-so-fancy]
+	useUnicodeRuler = false
+	stripLeadingSymbols = false
