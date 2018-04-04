@@ -98,5 +98,6 @@
     "rust.rls": {
         "useRustfmt": true
     },
-    "vsicons.dontShowNewVersionMessage": true
+    "vsicons.dontShowNewVersionMessage": true,
+    "workbench.statusBar.feedback.visible": false
 }
