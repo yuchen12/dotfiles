@@ -9,6 +9,7 @@
     "editor.renderWhitespace": "boundary",
     "extensions.autoUpdate": true,
     "editor.rulers": [120],
+    "editor.wordWrapColumn": 120,
 
     "files.autoGuessEncoding": true,
 
@@ -99,5 +100,8 @@
         "useRustfmt": true
     },
     "vsicons.dontShowNewVersionMessage": true,
-    "workbench.statusBar.feedback.visible": false
+    "workbench.statusBar.feedback.visible": false,
+    "python.formatting.yapfArgs": [
+        "--style {\"column_width\": 119}"
+    ]
 }
