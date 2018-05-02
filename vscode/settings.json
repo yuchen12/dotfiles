@@ -102,6 +102,6 @@
     "vsicons.dontShowNewVersionMessage": true,
     "workbench.statusBar.feedback.visible": false,
     "python.formatting.yapfArgs": [
-        "--style {\"column_width\": 119}"
+        "--style", "{column_limit: 119}"
     ]
 }
