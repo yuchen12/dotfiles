@@ -13,8 +13,8 @@ if exist git; then
     GIT_PS1_SHOWUPSTREAM="auto"
     GIT_PS1_SHOWCOLORHINTS=1
 
-    #source ~/.git-completion.bash
-    #source ~/.git-prompt.sh
+    source ~/.git-completion.bash
+    source ~/.git-prompt.sh
 fi
 
 ## color settings

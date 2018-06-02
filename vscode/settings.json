@@ -8,38 +8,58 @@
     "editor.renderLineHighlight": "all",
     "editor.renderWhitespace": "boundary",
     "extensions.autoUpdate": true,
-    "editor.rulers": [120],
+    "editor.rulers": [
+        120
+    ],
     "editor.wordWrapColumn": 120,
-
     "files.autoGuessEncoding": true,
-
     "material-icon-theme.showUpdateMessage": false,
-
     "vim.leader": ",",
     "vim.enableNeovim": true,
     "vim.useSystemClipboard": true,
     "vim.easymotion": true,
     "vim.insertModeKeyBindings": [
         {
-            "before": ["<C-f>"],
-            "after": ["<right>"]
+            "before": [
+                "<C-f>"
+            ],
+            "after": [
+                "<right>"
+            ]
         },
         {
-            "before": ["<C-a>"],
-            "after": ["<C-o>", "^"]
+            "before": [
+                "<C-a>"
+            ],
+            "after": [
+                "<C-o>",
+                "^"
+            ]
         },
         {
-            "before": ["<C-e>"],
-            "after": ["<C-o>", "$"]
+            "before": [
+                "<C-e>"
+            ],
+            "after": [
+                "<C-o>",
+                "$"
+            ]
         }
     ],
     "vim.otherModesKeyBindingsNonRecursive": [
         {
-            "before": [";"],
-            "after": [":"]
+            "before": [
+                ";"
+            ],
+            "after": [
+                ":"
+            ]
         },
         {
-            "before": ["leader", "f"],
+            "before": [
+                "leader",
+                "f"
+            ],
             "after": [],
             "commands": [
                 {
@@ -49,7 +69,10 @@
             ]
         },
         {
-            "before": ["leader", "s"],
+            "before": [
+                "leader",
+                "s"
+            ],
             "after": [],
             "commands": [
                 {
@@ -59,7 +82,10 @@
             ]
         },
         {
-            "before": ["leader", "d"],
+            "before": [
+                "leader",
+                "d"
+            ],
             "after": [],
             "commands": [
                 {
@@ -69,7 +95,10 @@
             ]
         },
         {
-            "before": ["leader", "h"],
+            "before": [
+                "leader",
+                "h"
+            ],
             "after": [],
             "commands": [
                 {
@@ -79,10 +108,8 @@
             ]
         }
     ],
-
     "go.formatTool": "goimports",
     "go.useCodeSnippetsOnFunctionSuggest": true,
-
     "python.pythonPath": "python3",
     "python.formatting.provider": "yapf",
     "[python]": {
@@ -99,9 +126,9 @@
     "rust.rls": {
         "useRustfmt": true
     },
-    "vsicons.dontShowNewVersionMessage": true,
     "workbench.statusBar.feedback.visible": false,
     "python.formatting.yapfArgs": [
-        "--style", "{column_limit: 119}"
+        "--style",
+        "{column_limit: 119}"
     ]
 }

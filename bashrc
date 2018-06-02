@@ -102,7 +102,7 @@ ulimit -c unlimited
 #fi
 
 if exist tmux; then
-    #source ~/.bash_completion_tmux.sh
+    source ~/.bash_completion_tmux.sh
     a=$(tmux ls 2>/dev/null)
     if [ -n "$a" ]; then
         echo ">>> tmux sessions:"
