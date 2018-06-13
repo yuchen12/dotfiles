@@ -52,7 +52,6 @@ files=(
 	profile
 	vimrc
 	vim
-	hgrc
 	tmux-mac.conf
 	tmux-linux.conf
 	inputrc
