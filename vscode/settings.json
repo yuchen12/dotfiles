@@ -8,9 +8,7 @@
     "editor.renderLineHighlight": "all",
     "editor.renderWhitespace": "boundary",
     "extensions.autoUpdate": true,
-    "editor.rulers": [
-        120
-    ],
+    "editor.rulers": [ 120 ],
     "editor.wordWrapColumn": 120,
     "files.autoGuessEncoding": true,
     "material-icon-theme.showUpdateMessage": false,
@@ -18,48 +16,28 @@
     "vim.enableNeovim": true,
     "vim.useSystemClipboard": true,
     "vim.easymotion": true,
+    "vim.hlsearch": true,
     "vim.insertModeKeyBindings": [
         {
-            "before": [
-                "<C-f>"
-            ],
-            "after": [
-                "<right>"
-            ]
+            "before": [ "<C-f>" ],
+            "after": [ "<right>" ]
         },
         {
-            "before": [
-                "<C-a>"
-            ],
-            "after": [
-                "<C-o>",
-                "^"
-            ]
+            "before": [ "<C-a>" ],
+            "after": [ "<C-o>", "^" ]
         },
         {
-            "before": [
-                "<C-e>"
-            ],
-            "after": [
-                "<C-o>",
-                "$"
-            ]
+            "before": [ "<C-e>" ],
+            "after": [ "<C-o>", "$" ]
         }
     ],
-    "vim.otherModesKeyBindingsNonRecursive": [
+    "vim.normalModeKeyBindingsNonRecursive": [
         {
-            "before": [
-                ";"
-            ],
-            "after": [
-                ":"
-            ]
+            "before": [ ";" ],
+            "after": [ ":" ]
         },
         {
-            "before": [
-                "leader",
-                "f"
-            ],
+            "before": [ "leader", "f" ],
             "after": [],
             "commands": [
                 {
@@ -69,10 +47,7 @@
             ]
         },
         {
-            "before": [
-                "leader",
-                "s"
-            ],
+            "before": [ "leader", "s" ],
             "after": [],
             "commands": [
                 {
@@ -82,10 +57,7 @@
             ]
         },
         {
-            "before": [
-                "leader",
-                "d"
-            ],
+            "before": [ "leader", "d" ],
             "after": [],
             "commands": [
                 {
@@ -95,10 +67,7 @@
             ]
         },
         {
-            "before": [
-                "leader",
-                "h"
-            ],
+            "before": [ "leader", "h" ],
             "after": [],
             "commands": [
                 {
