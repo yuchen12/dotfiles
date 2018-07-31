@@ -1,53 +1,63 @@
 // Place your key bindings in this file to overwrite the defaults
 [
-    {
-        "key": "cmd+l",
-        "command": "workbench.action.terminal.focus",
-        "when": "!terminalFocus"
-    },
-    {
-        "key": "cmd+l",
-        "command": "workbench.action.focusActiveEditorGroup",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "ctrl+n",
-        "command": "editor.action.triggerSuggest",
-        "when": "editorHasCompletionItemProvider && editorTextFocus && !editorReadonly && !suggestWidgetVisible"
-    },
-    {
-        "key": "cmd+escape",
-        "command": "toggleSuggestionDetails",
-        "when": "editorTextFocus && suggestWidgetVisible"
-    },
-    {
-        "key": "ctrl+cmd+i",
-        "command": "editor.action.peekTypeDefinition",
-        "when": ""
-    },
-    {
-        "key": "ctrl+space",
-        "command": "-editor.action.triggerSuggest",
-        "when": "editorHasCompletionItemProvider && editorTextFocus && !editorReadonly"
-    // },
-    // {
-    //     "key": "ctrl+f",
-    //     "command": "selectNextPageSuggestion",
-    //     "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
-    // },
-    // {
-    //     "key": "pagedown",
-    //     "command": "-selectNextPageSuggestion",
-    //     "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
-    // },
-    // {
-    //     "key": "ctrl+b",
-    //     "command": "selectPrevPageSuggestion",
-    //     "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
-    // },
-    // {
-    //     "key": "alt+pageup",
-    //     "command": "-selectPrevPageSuggestion",
-    //     "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
-    }
+  {
+    "key": "cmd+l",
+    "command": "workbench.action.terminal.focus",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "cmd+l",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "editor.action.triggerSuggest",
+    "when": "editorHasCompletionItemProvider && editorTextFocus && !editorReadonly && !suggestWidgetVisible"
+  },
+  {
+    "key": "cmd+escape",
+    "command": "toggleSuggestionDetails",
+    "when": "editorTextFocus && suggestWidgetVisible"
+  },
+  {
+    "key": "ctrl+cmd+i",
+    "command": "editor.action.peekTypeDefinition",
+    "when": ""
+  },
+  {
+    // Ctrl-h : Move backward
+    "key": "ctrl+h",
+    "command": "extension.vim_left",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Insert' && !inDebugRepl"
+  },
+  {
+    // Ctrl-f : Move foward
+    "key": "ctrl+f",
+    "command": "extension.vim_right",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Insert' && !inDebugRepl"
+  },
+  {
+    // Ctrl-l : Move foward
+    "key": "ctrl+l",
+    "command": "extension.vim_right",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Insert' && !inDebugRepl"
+  },
+  {
+    // Ctrl-l : Move upward
+    "key": "ctrl+k",
+    "command": "extension.vim_up",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Insert' && !inDebugRepl"
+  },
+  {
+    // Ctrl-l : Move downward
+    "key": "ctrl+j",
+    "command": "extension.vim_down",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Insert' && !inDebugRepl"
+  },
+  {
+    "key": "ctrl+space",
+    "command": "-editor.action.triggerSuggest",
+    "when": "editorHasCompletionItemProvider && editorTextFocus && !editorReadonly"
+  }
 ]
