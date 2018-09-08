@@ -17,20 +17,6 @@
     "vim.useSystemClipboard": true,
     "vim.easymotion": true,
     "vim.hlsearch": true,
-    "vim.insertModeKeyBindings": [
-        {
-            "before": [ "<C-f>" ],
-            "after": [ "<right>" ]
-        },
-        {
-            "before": [ "<C-a>" ],
-            "after": [ "<C-o>", "^" ]
-        },
-        {
-            "before": [ "<C-e>" ],
-            "after": [ "<C-o>", "$" ]
-        }
-    ],
     "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": [ ";" ],
@@ -77,6 +63,11 @@
             ]
         }
     ],
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-e>": false,
+        "<C-f>": false
+    },
     "go.formatTool": "goimports",
     "go.useCodeSnippetsOnFunctionSuggest": true,
     "python.pythonPath": "python3",
