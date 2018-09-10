@@ -27,11 +27,15 @@ alias curl-trace='curl -w "@$HOME/.curl-format" -o /dev/null -s'
 alias g='git'
 complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null  || complete -o default -o nospace -F _git g
 alias git-root='cd $(git rev-parse --show-toplevel || echo .)'
-_completion_loader git
+_completion_loader git 2>/dev/null || true
 
 alias d='docker'
 complete -o bashdefault -o default -o nospace -F _docker d 2>/dev/null  || complete -o default -o nospace -F _docker d
-_completion_loader docker
+_completion_loader docker 2>/dev/null || true
+
+alias k='kubectl'
+complete -o bashdefault -o default -o nospace -F __start_kubectl k 2>/dev/null  || complete -o default -o nospace -F __start_kubectl k
+_completion_loader __start_kubectl 2>/dev/null || true
 
 # URL-encode strings
 alias urlencode='python3 -c "import sys, urllib.parse as parse; print(parse.quote_plus(sys.argv[1] if len(sys.argv) > 1 else input()));"'
