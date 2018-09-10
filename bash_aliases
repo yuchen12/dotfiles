@@ -21,16 +21,17 @@ alias em=emacs
 alias ipy=ipython
 alias less='less -R'
 alias sudo='sudo ' # to pass aliases through sudo
+alias hd='hexdump -C'
+alias curl-trace='curl -w "@$HOME/.curl-format" -o /dev/null -s'
+
 alias g='git'
 complete -o bashdefault -o default -o nospace -F _git g 2>/dev/null  || complete -o default -o nospace -F _git g
 alias git-root='cd $(git rev-parse --show-toplevel || echo .)'
+_completion_loader git
 
 alias d='docker'
-alias dk='docker'
 complete -o bashdefault -o default -o nospace -F _docker d 2>/dev/null  || complete -o default -o nospace -F _docker d
-complete -o bashdefault -o default -o nospace -F _docker dk 2>/dev/null  || complete -o default -o nospace -F _docker dk
-alias hd='hexdump -C'
-alias curl-trace='curl -w "@$HOME/.curl-format" -o /dev/null -s'
+_completion_loader docker
 
 # URL-encode strings
 alias urlencode='python3 -c "import sys, urllib.parse as parse; print(parse.quote_plus(sys.argv[1] if len(sys.argv) > 1 else input()));"'
