@@ -50,7 +50,11 @@ fi
 . ~/.bash_prompt
 
 if [[ $OSTYPE =~ darwin* ]]; then
-    [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+    if [ -f /usr/local/share/bash-completion/bash_completion ]; then
+        . /usr/local/share/bash-completion/bash_completion
+    elif [ -f /usr/local/etc/bash_completion ]; then
+        . /usr/local/etc/bash_completion
+    fi
 else
     if ! shopt -oq posix; then
         if [ -f /usr/share/bash-completion/bash_completion ]; then
