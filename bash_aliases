@@ -23,6 +23,8 @@ alias less='less -R'
 alias sudo='sudo ' # to pass aliases through sudo
 alias hd='hexdump -C'
 alias curl-trace='curl -w "@$HOME/.curl-format" -o /dev/null -s'
+alias setproxy='. ~/scripts/proxy'
+alias unsetproxy='. ~/scripts/unset-proxy'
 
 alias g='git'
 _completion_loader git 2>/dev/null || true

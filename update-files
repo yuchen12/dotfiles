@@ -14,6 +14,7 @@ curl -# -L $url_prefix/git-completion.bash -o ~/.git-completion.bash
 curl -# -L $url_prefix/git-prompt.sh -o ~/.git-prompt.sh
 
 # tmux
-url='https://raw.githubusercontent.com/przepompownia/tmux-bash-completion/master/completions/tmux'
+url='https://raw.githubusercontent.com/imomaliev/tmux-bash-completion/master/completions/tmux'
+#url='https://raw.githubusercontent.com/przepompownia/tmux-bash-completion/master/completions/tmux'
 echo ">>> updating tmux files..."
 curl -# -L  "$url" -o ~/.bash_completion_tmux.sh

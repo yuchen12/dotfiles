@@ -383,7 +383,13 @@ let g:clang_complete_patterns=1
 let g:clang_auto_user_options="path, .clang_complete, compile_commands.json"
 let g:clang_use_library=1
 if has('mac')
-    let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
+    for dir in ['/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib',
+                \ '/Library/Developer/CommandLineTools/usr/lib']
+        if filereadable(dir . '/libclang.dylib')
+            let g:clang_library_path=dir
+            break
+        endif
+    endfor
 else
     for dir in ['/usr/local/lib', '/usr/lib']
         if filereadable(dir . '/libclang.so')

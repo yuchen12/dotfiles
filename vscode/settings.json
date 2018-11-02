@@ -70,6 +70,7 @@
     },
     "go.formatTool": "goimports",
     "go.useCodeSnippetsOnFunctionSuggest": true,
+    "go.autocompleteUnimportedPackages": true,
     "python.pythonPath": "python3",
     "python.formatting.provider": "yapf",
     "[python]": {
