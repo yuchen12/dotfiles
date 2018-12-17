@@ -50,7 +50,7 @@
 	cp = cherry-pick -x
 	co = checkout
 	mg = merge --no-edit
-	ci = commit -s
+	ci = commit
 	cs = commit -s
 	b = branch -vv
 	br = branch -vv
