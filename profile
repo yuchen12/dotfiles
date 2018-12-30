@@ -42,7 +42,7 @@ else
 fi
 
 export GOPATH=$HOME/gopath
-export CDPATH=.:$GOPATH/src
+export CDPATH=.:$GOPATH/src:$GOPATH/pkg/mod
 export PATH=$HOME/go/bin:$PATH:$GOPATH/bin
 
 [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
