@@ -14,6 +14,7 @@
     "material-icon-theme.showUpdateMessage": false,
     "vim.leader": ",",
     "vim.enableNeovim": true,
+    "vim.neovimPath": "/usr/local/bin/nvim",
     "vim.useSystemClipboard": true,
     "vim.easymotion": true,
     "vim.hlsearch": true,
