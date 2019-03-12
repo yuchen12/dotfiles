@@ -2,33 +2,17 @@
 
 " Author: Wang Zhen
 
-" neobundle settings {{{1
-" ===================================
-
-filetype off
-filetype plugin indent off
-
-let g:neobundle#install_process_timeout = 900
-
-set nocompatible
-if has('vim_starting')
-    set rtp+=~/.vim_bundle/neobundle
-endif
-call neobundle#begin(expand('~/.vim_bundle'))
-
-NeoBundleFetch 'Shougo/neobundle.vim', {'name': 'neobundle'}
-
+" vim-plug settings {{{1
+call plug#begin('~/.vim_plugged')
 if filereadable(expand("~/.vim/bundles.vim"))
     source ~/.vim/bundles.vim
 endif
-
-call neobundle#end()
+call plug#end()
 
 filetype plugin indent on
 syntax enable
 syntax on
-
-NeoBundleCheck
+set nocompatible
 
 " colors {{{1
 " ===================================

@@ -1,90 +1,84 @@
-NeoBundle 'tpope/vim-fugitive', { 'external_commands': 'git' }
-NeoBundle 'gregsexton/gitv', { 'external_commands': 'git' }
-NeoBundle 'kshenoy/vim-signature'
-NeoBundle 'mhinz/vim-signify'
+Plug 'tpope/vim-fugitive', { 'external_commands': 'git' }
+Plug 'gregsexton/gitv', { 'external_commands': 'git' }
+Plug 'kshenoy/vim-signature'
+Plug 'mhinz/vim-signify'
 
-NeoBundle 'mileszs/ack.vim'
-NeoBundle 'tpope/vim-dispatch'
+Plug 'mileszs/ack.vim'
+Plug 'tpope/vim-dispatch'
 
-NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'myusuf3/numbers.vim'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'myusuf3/numbers.vim'
 
-NeoBundleLazy 'majutsushi/tagbar', { 'autoload': { 'commands': 'TagbarToggle' } }
-"NeoBundleLazy 'sjl/gundo.vim', { 'autoload': { 'commands': 'GundoToggle' } }
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'jistr/vim-nerdtree-tabs'
-NeoBundle 'christoomey/vim-tmux-navigator'
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'christoomey/vim-tmux-navigator'
 
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'scrooloose/nerdcommenter'
+Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdcommenter'
 
 if has('nvim')
-	NeoBundle 'Shougo/deoplete.nvim'
-	NeoBundle 'zchee/deoplete-go', { 'build': 'make', 'autoload': {'filetypes': 'go'} }
+	Plug 'Shougo/deoplete.nvim'
+	Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go' }
 else
-	NeoBundle 'Shougo/neocomplete'
+	Plug 'Shougo/neocomplete'
 endif
-NeoBundleLazy 'Shougo/neosnippet.vim', {'autoload': {'insert': 1}}
-NeoBundleLazy 'Shougo/neosnippet-snippets', {'autoload': {'insert': 1}}
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 
-NeoBundle 'Shougo/vimproc', {
-            \ 'build': {
-            \   'unix': 'make -f make_unix.mak',
-            \   'mac': 'make -f make_mac.mak',
-            \   },
-            \}
+Plug 'Shougo/vimproc', { 'do': 'make' }
 
-NeoBundle 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
-NeoBundleLazy 'honza/vim-snippets', {'autoload': {'insert': 1}}
-NeoBundle 'tpope/vim-surround'
-"NeoBundle 'fholgado/minibufexpl.vim'
+Plug 'honza/vim-snippets'
+Plug 'tpope/vim-surround'
+"Plug 'fholgado/minibufexpl.vim'
 
-NeoBundleLazy 'keith/swift.vim',  {'autoload': {'filetypes': 'swift'}}
+Plug 'keith/swift.vim',  { 'for': 'swift' }
 
-NeoBundleLazy 'davidhalter/jedi-vim',  {'autoload': {'filetypes': 'python'}}
-NeoBundleLazy 'klen/python-mode', {'autoload': {'filetypes': 'python'}}
-NeoBundleLazy 'python.vim', {'autoload': {'filetypes': 'python'}}
-NeoBundleLazy 'python_match.vim', {'autoload': {'filetypes': 'python'}}
+Plug 'davidhalter/jedi-vim',  {'for': 'python'}
+Plug 'klen/python-mode', {'for': 'python'}
+Plug 'vim-scripts/python.vim', {'for': 'python'}
+Plug 'vim-scripts/python_match.vim', {'for': 'python'}
 
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
-NeoBundleLazy 'mattn/emmet-vim',  {'autoload': {'filetypes': ['css', 'html']} }
-NeoBundleLazy "elzr/vim-json", {'autoload': {'filetypes': 'json'}}
-NeoBundleLazy 'jansenm/vim-cmake', {'autoload': {'filetypes': 'cmake'}}
+Plug 'mattn/emmet-vim',  {'for': ['css', 'html']}
+Plug 'elzr/vim-json', {'for': 'json'}
+Plug 'jansenm/vim-cmake', {'for': 'cmake'}
 
-NeoBundleLazy 'fatih/vim-go', {'autoload': {'filetypes': ['go', 'gohtmltmpl']}}
-NeoBundleLazy 'plasticboy/vim-markdown', {'autoload': {'filetypes': 'markdown'}}
+Plug 'fatih/vim-go', {'for': ['go', 'gohtmltmpl']}
+Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 
 " vim-scripts repos
-NeoBundleLazy 'TaskList.vim', {'autoload': {'commands': 'TaskList'}}
-"NeoBundle 'winmanager'
-"NeoBundle 'bufexplorer.zip'
+Plug 'vim-scripts/TaskList.vim', {'on': 'TaskList'}
+"Plug 'winmanager'
+"Plug 'bufexplorer.zip'
 
-NeoBundleLazy 'a.vim', {'autoload': {'filetypes': ['c', 'cpp']}}
-NeoBundleLazy 'Rip-Rip/clang_complete', {'autoload': {'insert': 1, 'filetypes': ['c', 'cpp']}}
+Plug 'vim-scripts/a.vim', {'for': ['c', 'cpp']}
+Plug 'Rip-Rip/clang_complete', {'for': ['c', 'cpp']}
 
-NeoBundle 'CmdlineComplete'
-NeoBundle 'YankRing.vim'
-NeoBundle 'Align'
-NeoBundleLazy 'DrawIt', {'autoload': {'commands': 'DrawIt'}}
-NeoBundle 'VisIncr'
-"NeoBundle 'sudo.vim'
-NeoBundleLazy 'SudoEdit.vim', {'autoload': {'commands': ['SudoRead', 'SudoEdit']}}
-"NeoBundle 'FuzzyFinder'
-NeoBundle 'ntpeters/vim-better-whitespace'
-NeoBundle 'Raimondi/delimitMate'
+Plug 'vim-scripts/CmdlineComplete'
+Plug 'vim-scripts/YankRing.vim'
+Plug 'vim-scripts/Align'
+Plug 'vim-scripts/DrawIt', {'on': 'DrawIt'}
+Plug 'vim-scripts/VisIncr'
+"Plug 'sudo.vim'
+Plug 'vim-scripts/SudoEdit.vim', {'on': ['SudoRead', 'SudoEdit']}
+"Plug 'FuzzyFinder'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'Raimondi/delimitMate'
 
 " color scheme
-"NeoBundle 'desert-warm-256'
-"NeoBundle 'desert256.vim'
-"NeoBundle 'desertEx'
-"NeoBundle 'altercation/vim-colors-solarized'
-"NeoBundle 'Zenburn'
-"NeoBundle 'inkpot'
-"NeoBundle 'Colorzone'
-"NeoBundle 'manuscript.vim'
-"NeoBundle 'fisadev/fisa-vim-colorscheme'
-NeoBundle 'tomasr/molokai'
-"NeoBundle 'xoria256.vim'
+"Plug 'desert-warm-256'
+"Plug 'desert256.vim'
+"Plug 'desertEx'
+"Plug 'altercation/vim-colors-solarized'
+"Plug 'Zenburn'
+"Plug 'inkpot'
+"Plug 'Colorzone'
+"Plug 'manuscript.vim'
+"Plug 'fisadev/fisa-vim-colorscheme'
+Plug 'tomasr/molokai'
+"Plug 'xoria256.vim'
