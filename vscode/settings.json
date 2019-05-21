@@ -80,17 +80,11 @@
     "[rust]": {
         "editor.formatOnSave": true
     },
-    "rust.rustup": {
-        "toolchain": "nightly-x86_64-apple-darwin",
-        "nightlyToolchain": "nightly-x86_64-apple-darwin"
-    },
-    "rust.mode": "rls",
-    "rust.rls": {
-        "useRustfmt": true
-    },
     "workbench.statusBar.feedback.visible": false,
     "python.formatting.yapfArgs": [
         "--style",
         "{column_limit: 119}"
-    ]
+    ],
+    "breadcrumbs.enabled": true,
+    "editor.renderControlCharacters": true
 }
