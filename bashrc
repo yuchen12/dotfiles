@@ -114,3 +114,5 @@ if exist tmux; then
     fi
     unset a
 fi
+
+[ -f "$HOME/.bashrc.local" ] && . "$HOME/.bashrc.local"
