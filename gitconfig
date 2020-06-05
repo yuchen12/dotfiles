@@ -108,3 +108,5 @@
 [diff-so-fancy]
 	useUnicodeRuler = false
 	stripLeadingSymbols = false
+[pull]
+	rebase = false
